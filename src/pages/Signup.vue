@@ -1,10 +1,10 @@
 <template>
-  <div class="login-block">
-    <div class="login-block__form">
-      <div class="login-block__form__title-block">
+  <div class="signup-block">
+    <div class="signup-block__form">
+      <div class="signup-block__form__title-block">
         <h1 class="header-1">{{ msg }}</h1>
       </div>
-      <div class="login-block__form__inputs-block">
+      <div class="signup-block__form__inputs-block">
         <input
           type="text"
           v-model="userEmail"
@@ -12,13 +12,20 @@
           placeholder="email"
         />
         <input
+          type="text"
+          v-model="userName"
+          class="paragraph-primary"
+          placeholder="user name"
+        />
+        <input
           type="password"
           v-model="userPassword"
           class="paragraph-primary"
           placeholder="password"
         />
+
       </div>
-      <div class="login-block__form__submit-block">
+      <div class="signup-block__form__submit-block">
         <input
           type="submit"
           v-on:click="loginClick"
@@ -27,8 +34,8 @@
         />
       </div>
     </div>
-    <div class="login-block__links">
-      <router-link to='/signup' class="paragraph-secondary">Have no account? Register here</router-link>
+    <div class="signup-block__links">
+      <router-link to='/login' class="paragraph-secondary">Have an account? Login here</router-link>
     </div>
   </div>
 </template>
@@ -39,23 +46,49 @@ import axios from "axios";
 export default {
   data() {
     return {
-      msg: "Welcome back to Linkbase",
+      msg: "Welcome to Linkbase",
       userEmail: "",
+      userName: "",
       userPassword: "",
+      errorModel: []
+
     };
   },
   methods: {
     async loginClick() {
     const data = {
+            username: this.userName,
             email: this.userEmail,
-            password: this.userPassword,
+            password: this.userPassword
           };
     try {
       console.log('From try')
-      this.status = await axios.post(`http://bc910dab64b5.ngrok.io/api/user/login`, data)
-      console.log(this.status) 
+      let response = await axios.post(`http://c6a93e2c24d0.ngrok.io/api/user/signup`, data)
+      console.log(response.data) 
     } catch (error) {
-      console.log(error.response.data)
+      if(error.response.data.errors != null){
+        console.log(error.response.status)
+        this.errorModel = error.response.data.errors
+      } else {
+        this.errorModel = [error.response.data]
+      }
+        switch (this.errorModel[0].msg || this.errorModel[0].message) {
+          case 'Invalid data':
+            console.log('Invalid data on switch')
+            break;
+          case 'User already exists':
+            console.log('User already exists on switch')
+            break;
+          case 'Invalid email':
+            console.log('Invalid email on switch')
+            break;
+          case 'Invalid passwod (min 6 chars)':
+            console.log('Invalid password (min 6 chars) on switch')
+            break;
+          default:
+            console.log('from default xd')
+            break;
+        }
       }
     },
   }
@@ -65,7 +98,7 @@ export default {
 <style lang="scss" scoped>
     @import '@/assets/styles/_fonts.scss';
 
-    .login-block{
+    .signup-block{
         display: flex;
         width: 100%;
         justify-content: center;
@@ -78,7 +111,7 @@ export default {
         }
     }
 
-    .login-block__form{
+    .signup-block__form{
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -86,23 +119,21 @@ export default {
         margin-bottom: 8*$module;
     }
 
-    .login-block__form__title-block{
+    .signup-block__form__title-block{
         width: 67%;
         display: flex;
         justify-content: center;
         margin-bottom: 8*4px;
     }
 
-    .login-block__form__inputs-block{
+    .signup-block__form__inputs-block{
         display: flex;
         flex-direction: column;
         width: 67%;
         margin-bottom: 8*$module;
-        :first-child{
-            margin-bottom: 2*$module;
-        }
         input{
             padding: $module 2*$module;
+            margin-bottom: 2*$module;
             border-radius: $module;
             border: 1px solid #e4e4e4;
             background: #fcfcfc;
@@ -115,9 +146,12 @@ export default {
               background: #Ffffff;
             }
         }
+        :last-child{
+            margin-bottom: 0px;
+        }
     }
 
-    .login-block__form__submit-block{
+    .signup-block__form__submit-block{
         width: 67%;
         display: flex;
         justify-content: center;
@@ -126,16 +160,15 @@ export default {
             padding: 2*$module 2*$module;
             width: 100%;
             border-radius: 50vh;
-            color: #Ffffff;
             background: #1E9DEB;
             &:hover{
               background: #1084cc;
             }
-            
+            color: #Ffffff;
         }
     }
 
-    .login-block__links{
+    .signup-block__links{
       width: 19.333333%;
     }
 
