@@ -1,6 +1,8 @@
 import VueRouter from 'vue-router'
 import Login from '../pages/Login.vue'
 import Signup from '../pages/Signup.vue'
+import Promo from '../pages/Promo.vue'
+import Home from '../pages/Home.vue'
 
 export default new VueRouter({
     routes: [
@@ -11,6 +13,14 @@ export default new VueRouter({
         {
             path: '/signup',
             component: Signup
+        },
+        {
+            path: '/',
+            component: Promo
+        },
+        {
+            path: '/home',
+            component: Home
         },
     ],
 })

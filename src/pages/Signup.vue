@@ -11,6 +11,29 @@
           class="paragraph-primary"
           placeholder="email"
         />
+        <div
+          class="signup-block__form__inputs-block__error-email-notice"
+          :class="{
+            'signup-block__form__inputs-block__error-email-ntc__activated':
+              errorEmailExisted,
+          }"
+        >
+          <p class="paragraph-secondary">
+            The email already exists.
+            <router-link to="/login" class="paragraph-secondary"
+              >If you have an account, login here</router-link
+            >
+          </p>
+        </div>
+        <div
+          class="signup-block__form__inputs-block__error-email-notice"
+          :class="{
+            'signup-block__form__inputs-block__error-email-ntc__activated':
+              errorEmail,
+          }"
+        >
+          <p class="paragraph-secondary">Email written incorrectly.</p>
+        </div>
         <input
           type="text"
           v-model="userName"
@@ -23,19 +46,32 @@
           class="paragraph-primary"
           placeholder="password"
         />
-
+        <div
+          class="signup-block__form__inputs-block__error-email-notice"
+          :class="{
+            'signup-block__form__inputs-block__error-email-ntc__activated':
+              errorPassword,
+          }"
+        >
+          <p class="paragraph-secondary">
+            Password require to have more than 6 letters bruh
+          </p>
+        </div>
       </div>
       <div class="signup-block__form__submit-block">
         <input
           type="submit"
-          v-on:click="loginClick"
+          @click="loginClick"
           value="Login"
           class="paragraph-primary"
+          @click.stop.prevent="submit()"
         />
       </div>
     </div>
     <div class="signup-block__links">
-      <router-link to='/login' class="paragraph-secondary">Have an account? Login here</router-link>
+      <router-link to="/login" class="paragraph-secondary"
+        >Have an account? Login here</router-link
+      >
     </div>
   </div>
 </template>
@@ -50,126 +86,151 @@ export default {
       userEmail: "",
       userName: "",
       userPassword: "",
-      errorModel: []
-
+      errorModel: [],
+      errorEmailExisted: false,
+      errorEmail: false,
+      errorPassword: false,
     };
   },
   methods: {
     async loginClick() {
-    const data = {
-            username: this.userName,
-            email: this.userEmail,
-            password: this.userPassword
-          };
-    try {
-      console.log('From try')
-      let response = await axios.post(`http://c6a93e2c24d0.ngrok.io/api/user/signup`, data)
-      console.log(response.data) 
-    } catch (error) {
-      if(error.response.data.errors != null){
-        console.log(error.response.status)
-        this.errorModel = error.response.data.errors
-      } else {
-        this.errorModel = [error.response.data]
-      }
+      const data = {
+        username: this.userName,
+        email: this.userEmail,
+        password: this.userPassword,
+      };
+      try {
+        console.log("From try");
+        let response = await axios.post(
+          `http://0a325e8cfcb5.ngrok.io/api/user/signup`,
+          data
+        );
+        this.errorEmailExisted = false;
+        this.errorEmail = false;
+        this.errorPassword = false;
+        console.log(response.data);
+        this.$router.push("/home");
+      } catch (error) {
+        if (error.response.data.errors != null) {
+          console.log(error.response.status);
+          this.errorModel = error.response.data.errors;
+        } else {
+          this.errorModel = [error.response.data];
+        }
         switch (this.errorModel[0].msg || this.errorModel[0].message) {
-          case 'Invalid data':
-            console.log('Invalid data on switch')
+          case "Invalid data":
+            console.log("Invalid data on switch");
             break;
-          case 'User already exists':
-            console.log('User already exists on switch')
+          case "User already exists":
+            console.log("User already exists on switch");
+            this.errorEmailExisted = true;
             break;
-          case 'Invalid email':
-            console.log('Invalid email on switch')
+          case "Invalid email":
+            this.errorEmail = true;
+            console.log("Invalid email on switch");
             break;
-          case 'Invalid passwod (min 6 chars)':
-            console.log('Invalid password (min 6 chars) on switch')
+          case "Invalid passwod (min 6 chars)":
+            this.errorPassword = true;
+            this.console.log("Invalid password (min 6 chars) on switch");
             break;
           default:
-            console.log('from default xd')
+            console.log("from default xd");
             break;
         }
       }
     },
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-    @import '@/assets/styles/_fonts.scss';
+@import "@/assets/styles/_fonts.scss";
 
-    .signup-block{
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        flex-direction: column;
-        h1{
-            margin: 0;
-            padding: 0;
-        }
+.signup-block {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  h1 {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.signup-block__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 29%;
+  margin-bottom: 8 * $module;
+}
+
+.signup-block__form__title-block {
+  width: 67%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8 * 4px;
+}
+
+.signup-block__form__inputs-block {
+  display: flex;
+  flex-direction: column;
+  width: 67%;
+  margin-bottom: 8 * $module;
+  input {
+    padding: $module 2 * $module;
+    margin-bottom: 2 * $module;
+    border-radius: $module;
+    border: 1px solid #e4e4e4;
+    background: #fcfcfc;
+    &:active,
+    &:focus {
+      background: #ffffff;
+      border: 1px solid #1e9deb;
+      border-radius: $module;
     }
-
-    .signup-block__form{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 29%;
-        margin-bottom: 8*$module;
+    &:hover {
+      background: #ffffff;
     }
+  }
+  :last-child {
+    margin-bottom: 0px;
+  }
+}
 
-    .signup-block__form__title-block{
-        width: 67%;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 8*4px;
+.signup-block__form__submit-block {
+  width: 67%;
+  display: flex;
+  justify-content: center;
+  input {
+    border: 0;
+    padding: 2 * $module 2 * $module;
+    width: 100%;
+    border-radius: 50vh;
+    background: #1e9deb;
+    &:hover {
+      background: #1084cc;
     }
+    color: #ffffff;
+  }
+}
 
-    .signup-block__form__inputs-block{
-        display: flex;
-        flex-direction: column;
-        width: 67%;
-        margin-bottom: 8*$module;
-        input{
-            padding: $module 2*$module;
-            margin-bottom: 2*$module;
-            border-radius: $module;
-            border: 1px solid #e4e4e4;
-            background: #fcfcfc;
-            &:active, &:focus{
-                background: #Ffffff;
-                border: 1px solid #1E9DEB;
-                border-radius: $module;
-            }
-            &:hover{
-              background: #Ffffff;
-            }
-        }
-        :last-child{
-            margin-bottom: 0px;
-        }
-    }
+.signup-block__form__inputs-block__error-email-notice {
+  display: none;
+}
 
-    .signup-block__form__submit-block{
-        width: 67%;
-        display: flex;
-        justify-content: center;
-        input{
-            border: 0;
-            padding: 2*$module 2*$module;
-            width: 100%;
-            border-radius: 50vh;
-            background: #1E9DEB;
-            &:hover{
-              background: #1084cc;
-            }
-            color: #Ffffff;
-        }
-    }
+.signup-block__form__inputs-block__error-email-ntc__activated {
+  display: block;
+  color: red;
+  .paragraph-secondary {
+    margin-top: 0px;
+    margin-bottom: 2 * $module;
+  }
+}
 
-    .signup-block__links{
-      width: 19.333333%;
-    }
-
+.signup-block__links {
+  width: 19.333333%;
+}
 </style>
