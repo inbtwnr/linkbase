@@ -90,6 +90,7 @@ export default {
       errorEmailExisted: false,
       errorEmail: false,
       errorPassword: false,
+      userToken: "",
     };
   },
   methods: {
@@ -102,13 +103,14 @@ export default {
       try {
         console.log("From try");
         let response = await axios.post(
-          `http://0a325e8cfcb5.ngrok.io/api/user/signup`,
+          `${this.$store.getters.BASE_URL}user/signup`,
           data
         );
         this.errorEmailExisted = false;
         this.errorEmail = false;
         this.errorPassword = false;
         console.log(response.data);
+        this.$store.commit("SET_TOKEN", this.status.data.token);
         this.$router.push("/home");
       } catch (error) {
         if (error.response.data.errors != null) {

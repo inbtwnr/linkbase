@@ -46,6 +46,7 @@ export default {
       msg: "Welcome back to Linkbase",
       userEmail: "",
       userPassword: "",
+      userToken: "",
     };
   },
   methods: {
@@ -55,12 +56,14 @@ export default {
         password: this.userPassword,
       };
       try {
-        console.log("From try");
+        // console.log("From try");
         this.status = await axios.post(
-          `http://fba53d7b602e.ngrok.io/api/user/login`,
+          `${this.$store.getters.BASE_URL}user/login`,
           data
         );
+        this.$store.commit("SET_TOKEN", this.status.data.token);
         console.log(this.status);
+        this.$router.push("/home");
       } catch (error) {
         console.log(error.response.data);
       }

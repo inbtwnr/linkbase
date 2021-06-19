@@ -1,15 +1,38 @@
 <template>
-  <category-list></category-list>
+  <div class="category-block">
+    <block-heading
+      :btnText="categoryInf.buttonText"
+      :blcHeader="categoryInf.categoryHeader"
+    ></block-heading>
+    <category-list></category-list>
+  </div>
 </template>
 
 <script>
+import BlockHeading from "./BlockHeading.vue";
 import CategoryList from "./CategoryList.vue";
 export default {
+  data() {
+    return {
+      categoryInf: {
+        categoryHeader: "Shelfs",
+      },
+    };
+  },
   components: {
     CategoryList,
+    BlockHeading,
   },
 };
 </script>
 
-<style>
+<style lang="scss">
+@import "@/assets/styles/_fonts.scss";
+
+.category-block {
+  display: flex;
+  width: 1000px;
+  flex-direction: column;
+  margin-bottom: 64px;
+}
 </style>
