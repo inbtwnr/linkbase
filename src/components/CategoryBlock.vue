@@ -4,7 +4,7 @@
       :btnText="categoryInf.buttonText"
       :blcHeader="categoryInf.categoryHeader"
     ></block-heading>
-    <category-list></category-list>
+    <category-list :categories="categories"></category-list>
   </div>
 </template>
 
@@ -23,6 +23,7 @@ export default {
     CategoryList,
     BlockHeading,
   },
+  props: ["categories"],
 };
 </script>
 

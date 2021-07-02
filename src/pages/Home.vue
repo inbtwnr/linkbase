@@ -1,38 +1,27 @@
 <template>
   <div class="home-block">
     <div class="home-block-container">
-      <navigation-bar :username="userInfo.username"></navigation-bar>
-      <category-block></category-block>
+      <navigation-bar :username="userName"></navigation-bar>
+      <category-block :categories="userCategories"></category-block>
       <bookmarks-block></bookmarks-block>
     </div>
   </div>
 </template>
 <script>
-import axios from "axios";
 import bookmarksBlock from "@/components/BookmarksBlock.vue";
 import categoryBlock from "@/components/CategoryBlock.vue";
 import NavigationBar from "@/components/NavigationBar.vue";
 
+import { mapGetters } from "vuex";
+import { mapActions } from "vuex";
+
 export default {
-  data() {
-    return {
-      user: null,
-      userInfo: {
-        username: "",
-      },
-    };
-  },
-  async created() {
+  computed: mapGetters(["userCategories", "userName"]),
+  methods: mapActions(["getUserCategories", "getUserName"]),
+  async mounted() {
     try {
-      console.log(this.$store.getters.USER_TOKEN);
-      this.user = await axios.get(`${this.$store.getters.BASE_URL}/user/`, {
-        headers: {
-          Authorization: "Bearer " + this.$store.getters.USER_TOKEN, //the token is a variable which holds the token
-        },
-      });
-      this.userInfo.username = this.user.data.data.username;
-      this.$store.commit("SET_TOKEN", this.status.data.token);
-      console.log("from getter " + this.$store.getters.USER_TOKEN);
+      this.getUserCategories();
+      this.getUserName();
     } catch (error) {
       console.log(error.response.data);
     }

@@ -22,10 +22,7 @@
           >{{ bookmarkLink }}</a
         >
         <p class="paragraph-secondary">{{ bookmarkDate }}</p>
-        <p class="paragraph-secondary" @click="ToogleBookmark">Delete</p>
-      </div>
-      <div :class="{ 'bookmark-block__popup': isPopup, empty: !isPopup }">
-        Hello
+        <p class="paragraph-secondary">Delete</p>
       </div>
     </div>
   </div>

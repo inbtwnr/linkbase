@@ -1,32 +1,62 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-// import Axios from 'axios';
+import axios from 'axios';
 
 Vue.use(Vuex);
 
-export const store = new Vuex.Store({
+export default new Vuex.Store({
     state: {
         baseURL: 'http://linker-api-deploy.herokuapp.com/api/',
-        userToken: '',
-        userModel: null
+        userFrame: {
+            userName: "",
+            userCategories: [],
+        },
+        userToken: localStorage.getItem("token")
+    },
+    actions: {
+        async getUserCategories(ctx) {
+            const user = await axios.get(`${this.getters.baseURL}user/`, {
+                headers: {
+                    Authorization: "Bearer " + this.getters.userToken,
+                },
+            });
+            const userCategories = user.data.data.categories.map(
+                (item) => {
+                    return item;
+                }
+            );
+            ctx.commit('updateCategories', userCategories)
+        },
+        async getUserName(ctx) {
+            const user = await axios.get(`${this.getters.baseURL}user/`, {
+                headers: {
+                    Authorization: "Bearer " + this.getters.userToken,
+                },
+            });
+            const userName = user.data.data.username;
+            ctx.commit('updateUserName', userName)
+        }
     },
     mutations: {
-        SET_TOKEN: (state, payload) => {
-            state.userToken = payload;
+        updateCategories(state, userCategories) {
+            state.userFrame.userCategories = userCategories;
         },
-        SET_USER_MODEL: (state, payload) => {
-            state.userModel = payload;
+        updateUserName(state, userName) {
+            state.userFrame.userName = userName;
         }
     },
     getters: {
-        USER_TOKEN: state => {
+        baseURL(state) {
+            return state.baseURL;
+        },
+        userToken(state) {
             return state.userToken;
         },
-        USER_MODEL: state => {
-            return state.userModel;
+        userCategories(state) {
+            return state.userFrame.userCategories;
         },
-        BASE_URL: state => {
-            return state.baseURL;
+        userName(state) {
+            return state.userFrame.userName;
         }
-    }
+    },
 })

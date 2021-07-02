@@ -1,7 +1,7 @@
 <template>
   <div class="category-list">
     <div v-for="(category, index) in categories" :key="index">
-      <category-item :name="category.ctgrName"></category-item>
+      <category-item :nameLink="category.title"></category-item>
     </div>
   </div>
 </template>
@@ -12,36 +12,7 @@ export default {
   components: {
     CategoryItem,
   },
-  data() {
-    return {
-      categories: [
-        {
-          ctgrName: "English",
-        },
-        {
-          ctgrName: "Work",
-        },
-        {
-          ctgrName: "Programming tips",
-        },
-        {
-          ctgrName: "Entertaintment",
-        },
-        {
-          ctgrName: "Music",
-        },
-        {
-          ctgrName: "Cool websites",
-        },
-        {
-          ctgrName: "Cool mags",
-        },
-        {
-          ctgrName: "Movies",
-        },
-      ],
-    };
-  },
+  props: ["categories"],
 };
 </script>
 

@@ -7,8 +7,6 @@
         :bookmarkDescription="bookmark.bookmarkDescription"
         :bookmarkDate="bookmark.bookmarkDate"
         :bookmarkLink="bookmark.bookmarkLink"
-        :isPopup="bookmark.isBookmarkPopup"
-        :ToogleBookmark="ToogleBookmark"
       ></bookmarks-item>
     </div>
   </div>
@@ -35,11 +33,6 @@ export default {
         },
       ],
     };
-  },
-  methods: {
-    ToggleBookmark() {
-      this.isBookmarkPopup = !this.isBookmarkPopup;
-    },
   },
 };
 </script>

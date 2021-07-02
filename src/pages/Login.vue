@@ -1,24 +1,75 @@
 <template>
   <div class="login-block">
     <div class="login-block__form">
+      <router-link to="/"> Back </router-link>
       <div class="login-block__form__title-block">
         <h1 class="header-1">{{ msg }}</h1>
       </div>
 
       <div class="login-block__form__inputs-block">
+        <!-- email input and errors -->
         <input
           type="text"
           v-model="userEmail"
           class="paragraph-primary"
           placeholder="email"
         />
-
+        <div
+          class="signup-block__form__inputs-block__error-notice"
+          :class="{
+            'signup-block__form__inputs-block__error-ntc__activated':
+              invalidEmailError,
+          }"
+        >
+          <p class="paragraph-secondary">Format of email is invalid.</p>
+        </div>
+        <div
+          class="signup-block__form__inputs-block__error-notice"
+          :class="{
+            'signup-block__form__inputs-block__error-ntc__activated':
+              userNotFoundError,
+          }"
+        >
+          <router-link to="/signup" class="paragraph-secondary"
+            >User not found. Have no account? Register here</router-link
+          >
+        </div>
+        <!-- password input and errors -->
         <input
           type="password"
           v-model="userPassword"
           class="paragraph-primary"
           placeholder="password"
         />
+        <div
+          class="signup-block__form__inputs-block__error-notice"
+          :class="{
+            'signup-block__form__inputs-block__error-ntc__activated':
+              invalidPassword,
+          }"
+        >
+          <p class="paragraph-secondary">Format of password is invalid.</p>
+        </div>
+        <div
+          class="signup-block__form__inputs-block__error-notice"
+          :class="{
+            'signup-block__form__inputs-block__error-ntc__activated':
+              incorrectPassword,
+          }"
+        >
+          <p class="paragraph-secondary">Password is wrong, try again.</p>
+        </div>
+        <div
+          class="signup-block__form__inputs-block__error-notice"
+          :class="{
+            'signup-block__form__inputs-block__error-ntc__activated':
+              invalidEmailPasswordError,
+          }"
+        >
+          <p class="paragraph-secondary">
+            Format of email and password is invalid. Pull yourself together!
+          </p>
+        </div>
       </div>
       <div class="login-block__form__submit-block">
         <input
@@ -47,6 +98,14 @@ export default {
       userEmail: "",
       userPassword: "",
       userToken: "",
+
+      errorModel: [],
+
+      invalidEmailError: "",
+      invalidPassword: "",
+      incorrectPassword: "",
+      invalidEmailPasswordError: "",
+      userNotFoundError: "",
     };
   },
   methods: {
@@ -56,16 +115,50 @@ export default {
         password: this.userPassword,
       };
       try {
-        // console.log("From try");
+        console.log("From try");
+
         this.status = await axios.post(
-          `${this.$store.getters.BASE_URL}user/login`,
+          `${this.$store.getters.baseURL}user/login`,
           data
         );
-        this.$store.commit("SET_TOKEN", this.status.data.token);
+
+        this.invalidEmailError = false;
+        this.invalidPassword = false;
+        this.incorrectPassword = false;
+        this.userNotFoundError = false;
+
+        localStorage.setItem("token", this.status.data.token);
         console.log(this.status);
-        this.$router.push("/home");
+
+        this.$router.push("home");
       } catch (error) {
-        console.log(error.response.data);
+        console.log(error.response.data.code);
+        this.errorModel = error.response.data.code;
+        switch (this.errorModel) {
+          case "invalid_email":
+            console.log("Invalid format of email");
+            this.invalidEmailError = !this.invalidEmailError;
+            break;
+          case "invalid_password":
+            console.log("Invalid format of the pw, min 6 characters required");
+            this.invalidPassword = !this.invalidPassword;
+            break;
+          case "incorrect_password":
+            console.log("Incorrect password for user account");
+            this.incorrectPassword = !this.incorrectPassword;
+            break;
+          case "invalid_email_and_password":
+            console.log("Combination of two above codes");
+            this.invalidEmailPasswordError = !this.invalidEmailPasswordError;
+            break;
+          case "user_not_found":
+            console.log("User was not found in database");
+            this.userNotFoundError = !this.userNotFoundError;
+            break;
+          default:
+            console.log("Unknown error");
+            break;
+        }
       }
     },
   },
@@ -142,6 +235,19 @@ export default {
     &:hover {
       background: #1084cc;
     }
+  }
+}
+
+.signup-block__form__inputs-block__error-notice {
+  display: none;
+}
+
+.signup-block__form__inputs-block__error-ntc__activated {
+  display: block;
+  color: red;
+  .paragraph-secondary {
+    margin-top: 0px;
+    margin-bottom: 2 * $module;
   }
 }
 

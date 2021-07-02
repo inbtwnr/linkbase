@@ -39,7 +39,7 @@
           Add bookmark
         </div>
       </div>
-      <div class="navigaion-bar-block__username-and-exit">
+      <div class="navigaion-bar-block__username-and-exit" @click="closeHome">
         {{ username }}, exit
       </div>
     </div>
@@ -78,17 +78,10 @@ export default {
     ToggleNewBookmarkPopup() {
       this.newBookmark.isNewBookmark = !this.newBookmark.isNewBookmark;
     },
-    ClosePopup() {
-      var p = document.getElementById("popup");
-      p.onclick(() => {
-        console.log("clicked");
-      });
+    closeHome() {
+      this.$store.commit("RESET_STATE");
+      this.$router.push("/");
     },
-  },
-  mounted: function () {
-    this.$nextTick(function () {
-      console.log("Hello");
-    });
   },
 };
 </script>

@@ -5,6 +5,7 @@ import Promo from '../pages/Promo.vue'
 import Home from '../pages/Home.vue'
 
 export default new VueRouter({
+    mode: 'history',
     routes: [
         {
             path: '/login',
