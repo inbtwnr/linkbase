@@ -4,7 +4,7 @@
       <img
         :src="`${bookmarkLogo}`"
         class="bookmark-block__logo-section__logo"
-        alt="photo where???"
+        alt=""
       />
     </div>
     <div class="bookmark-block__informartion-section">
@@ -38,11 +38,6 @@ export default {
     "bookmarkDate",
     "isPopup",
   ],
-  methods: {
-    ToogleBookmark() {
-      this.isPopup = !this.isPopup;
-    },
-  },
 };
 </script>
 

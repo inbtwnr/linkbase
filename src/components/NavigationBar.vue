@@ -79,7 +79,7 @@ export default {
       this.newBookmark.isNewBookmark = !this.newBookmark.isNewBookmark;
     },
     closeHome() {
-      this.$store.commit("RESET_STATE");
+      this.$store.dispatch("increment");
       this.$router.push("/");
     },
   },

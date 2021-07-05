@@ -3,7 +3,7 @@
     <div class="home-block-container">
       <navigation-bar :username="userName"></navigation-bar>
       <category-block :categories="userCategories"></category-block>
-      <bookmarks-block></bookmarks-block>
+      <bookmarks-block :bookmarks="userOneCategoryList"></bookmarks-block>
     </div>
   </div>
 </template>
@@ -16,12 +16,17 @@ import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
 
 export default {
-  computed: mapGetters(["userCategories", "userName"]),
-  methods: mapActions(["getUserCategories", "getUserName"]),
+  computed: mapGetters(["userCategories", "userName", "userOneCategoryList"]),
+  methods: mapActions([
+    "getUserCategories",
+    "getUserName",
+    "getUserOneCategoryList",
+  ]),
   async mounted() {
     try {
       this.getUserCategories();
       this.getUserName();
+      this.getUserOneCategoryList();
     } catch (error) {
       console.log(error.response.data);
     }

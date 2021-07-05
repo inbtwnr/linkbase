@@ -1,7 +1,11 @@
 <template>
   <div class="category-list">
     <div v-for="(category, index) in categories" :key="index">
-      <category-item :nameLink="category.title"></category-item>
+      <category-item
+        :nameLink="category.title"
+        :idLink="category.id"
+        @click="check"
+      ></category-item>
     </div>
   </div>
 </template>
@@ -13,6 +17,11 @@ export default {
     CategoryItem,
   },
   props: ["categories"],
+  methods: {
+    check() {
+      console.log("henlo" + this.category.id);
+    },
+  },
 };
 </script>
 

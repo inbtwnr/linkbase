@@ -6,10 +6,10 @@
           <p class="paragraph-primary">Linkbase</p>
         </div>
         <div class="navigaion-bar-block__login-and-signup">
-          <div class="paragraph-primary" @click="ToggleNewShelfPopup">
+          <div class="paragraph-primary">
             <router-link to="login">Sign In</router-link>
           </div>
-          <div class="paragraph-primary" @click="ToggleNewBookmarkPopup">
+          <div class="paragraph-primary">
             <router-link to="signup">Sign up</router-link>
           </div>
         </div>

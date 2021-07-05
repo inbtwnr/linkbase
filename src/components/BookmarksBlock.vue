@@ -4,7 +4,7 @@
       :btnText="categoryInf.buttonText"
       :blcHeader="categoryInf.categoryHeader"
     ></block-heading>
-    <bookmarks-list></bookmarks-list>
+    <bookmarks-list :bookmarks="bookmarks"></bookmarks-list>
   </div>
 </template>
 
@@ -23,6 +23,7 @@ export default {
       },
     };
   },
+  props: ["bookmarks"],
 };
 </script>
 

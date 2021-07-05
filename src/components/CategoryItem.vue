@@ -1,5 +1,5 @@
 <template>
-  <div class="category-plate" @click="login">
+  <div class="category-plate">
     <p class="paragraph-primary">{{ nameLink }}</p>
     <div class="category-options__btn">
       <div class="category-options__btn__points">
@@ -13,8 +13,7 @@
 
 <script>
 export default {
-  props: ["nameLink"],
-  methods: {},
+  props: ["nameLink", "idLink"],
 };
 </script>
 

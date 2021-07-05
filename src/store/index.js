@@ -10,6 +10,8 @@ export default new Vuex.Store({
         userFrame: {
             userName: "",
             userCategories: [],
+            userOneCategoryList: [],
+            activeUserId: ""
         },
         userToken: localStorage.getItem("token")
     },
@@ -25,6 +27,7 @@ export default new Vuex.Store({
                     return item;
                 }
             );
+            console.log(userCategories)
             ctx.commit('updateCategories', userCategories)
         },
         async getUserName(ctx) {
@@ -35,6 +38,20 @@ export default new Vuex.Store({
             });
             const userName = user.data.data.username;
             ctx.commit('updateUserName', userName)
+        },
+        async getUserOneCategoryList(ctx) {
+            const idCategory = "60ccd654944753c52b2b3554"
+            const user = await axios.get(`${this.getters.baseURL}category/${idCategory}`, {
+                headers: {
+                    Authorization: "Bearer " + this.getters.userToken,
+                },
+            });
+            const userOneCategoryList = user.data.data.links;
+            console.log(userOneCategoryList)
+            ctx.commit('updateUserOneCategoryList', userOneCategoryList)
+        },
+        deleteUserToken(ctx) {
+            ctx.commit('deleteUserToken')
         }
     },
     mutations: {
@@ -43,6 +60,12 @@ export default new Vuex.Store({
         },
         updateUserName(state, userName) {
             state.userFrame.userName = userName;
+        },
+        updateUserOneCategoryList(state, userOneCategoryList) {
+            state.userFrame.userOneCategoryList = userOneCategoryList;
+        },
+        deleteUserToken(state) {
+            state.userToken = "";
         }
     },
     getters: {
@@ -57,6 +80,12 @@ export default new Vuex.Store({
         },
         userName(state) {
             return state.userFrame.userName;
+        },
+        userOneCategoryList(state) {
+            return state.userFrame.userOneCategoryList;
+        },
+        activeUserId(state) {
+            return state.activeUserId;
         }
     },
 })
