@@ -1,5 +1,5 @@
 <template>
-  <div class="category-plate">
+  <div class="category-plate" @click="getUserOneCategoryList(category)">
     <p class="paragraph-primary">{{ nameLink }}</p>
     <div class="category-options__btn">
       <div class="category-options__btn__points">
@@ -12,8 +12,12 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
-  props: ["nameLink", "idLink"],
+  props: ["nameLink", "category"],
+  // methods: mapActions(["setCurrentCategory"]),
+  methods: mapActions(["getUserOneCategoryList"]),
 };
 </script>
 

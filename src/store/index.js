@@ -11,7 +11,7 @@ export default new Vuex.Store({
             userName: "",
             userCategories: [],
             userOneCategoryList: [],
-            activeUserId: ""
+            currentId: ""
         },
         userToken: localStorage.getItem("token")
     },
@@ -30,6 +30,7 @@ export default new Vuex.Store({
             console.log(userCategories)
             ctx.commit('updateCategories', userCategories)
         },
+
         async getUserName(ctx) {
             const user = await axios.get(`${this.getters.baseURL}user/`, {
                 headers: {
@@ -39,15 +40,18 @@ export default new Vuex.Store({
             const userName = user.data.data.username;
             ctx.commit('updateUserName', userName)
         },
-        async getUserOneCategoryList(ctx) {
-            const idCategory = "60ccd654944753c52b2b3554"
-            const user = await axios.get(`${this.getters.baseURL}category/${idCategory}`, {
+        async getUserOneCategoryList(ctx, category) {
+            const currentId = category._id;
+            console.log(currentId)
+            const user = await axios.get(`${this.getters.baseURL}category/${currentId}`, {
                 headers: {
                     Authorization: "Bearer " + this.getters.userToken,
                 },
             });
+
+            console.log(user.data.data[0])
             const userOneCategoryList = user.data.data.links;
-            console.log(userOneCategoryList)
+            console.log(userOneCategoryList + " links")
             ctx.commit('updateUserOneCategoryList', userOneCategoryList)
         },
         deleteUserToken(ctx) {
@@ -60,6 +64,11 @@ export default new Vuex.Store({
         },
         updateUserName(state, userName) {
             state.userFrame.userName = userName;
+        },
+        updateCurrentId(state, currentId) {
+            console.log(currentId + " from mutation")
+            state.userFrame.currentId = currentId;
+            console.log(state.userFrame.currentId + " after setting")
         },
         updateUserOneCategoryList(state, userOneCategoryList) {
             state.userFrame.userOneCategoryList = userOneCategoryList;
@@ -84,8 +93,9 @@ export default new Vuex.Store({
         userOneCategoryList(state) {
             return state.userFrame.userOneCategoryList;
         },
-        activeUserId(state) {
-            return state.activeUserId;
+        activeCategoryId(state) {
+            console.log(state.userFrame.currentId)
+            return state.userFrame.currentId;
         }
     },
 })
