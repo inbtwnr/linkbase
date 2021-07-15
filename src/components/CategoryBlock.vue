@@ -1,9 +1,6 @@
 <template>
   <div class="category-block">
-    <block-heading
-      :btnText="categoryInf.buttonText"
-      :blcHeader="categoryInf.categoryHeader"
-    ></block-heading>
+    <block-heading :blcHeader="categoryInf.categoryHeader"></block-heading>
     <category-list :categories="categories"></category-list>
   </div>
 </template>

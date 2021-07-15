@@ -1,10 +1,10 @@
 <template>
   <div class="bookmarks-block">
-    <block-heading
-      :btnText="categoryInf.buttonText"
-      :blcHeader="categoryInf.categoryHeader"
-    ></block-heading>
-    <bookmarks-list :bookmarks="bookmarks"></bookmarks-list>
+    <block-heading :blcHeader="Bookmarks"></block-heading>
+    <bookmarks-list
+      :bookmarks="bookmarks"
+      :notice="this.$store.state.isLinks"
+    ></bookmarks-list>
   </div>
 </template>
 
@@ -18,6 +18,7 @@ export default {
   },
   data() {
     return {
+      Bookmarks: "Bookmarks",
       categoryInf: {
         categoryHeader: "Bookmarks",
       },

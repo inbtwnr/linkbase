@@ -16,12 +16,7 @@ import { mapGetters } from "vuex";
 import { mapActions } from "vuex";
 
 export default {
-  computed: mapGetters([
-    "userCategories",
-    "userName",
-    "userOneCategoryList",
-    "activeCategoryId",
-  ]),
+  computed: mapGetters(["userCategories", "userName", "userOneCategoryList"]),
   methods: mapActions([
     "getUserCategories",
     "getUserName",

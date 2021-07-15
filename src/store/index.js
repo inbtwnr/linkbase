@@ -11,52 +11,100 @@ export default new Vuex.Store({
             userName: "",
             userCategories: [],
             userOneCategoryList: [],
-            currentId: ""
+            isLinks: null,
+            currentId: localStorage.getItem("currentId")
         },
         userToken: localStorage.getItem("token")
     },
     actions: {
         async getUserCategories(ctx) {
-            const user = await axios.get(`${this.getters.baseURL}user/`, {
-                headers: {
-                    Authorization: "Bearer " + this.getters.userToken,
-                },
-            });
-            const userCategories = user.data.data.categories.map(
-                (item) => {
-                    return item;
-                }
-            );
-            console.log(userCategories)
-            ctx.commit('updateCategories', userCategories)
+
+            try {
+                const user = await axios.get(`${this.getters.baseURL}user/`, {
+                    headers: {
+                        Authorization: "Bearer " + this.getters.userToken,
+                    },
+                });
+                const userCategories = user.data.data.categories.map(
+                    (item) => {
+                        return item;
+                    }
+                );
+                ctx.commit('updateCategories', userCategories)
+            } catch (error) {
+                console.log(error.data.data.code)
+            }
+
         },
 
         async getUserName(ctx) {
-            const user = await axios.get(`${this.getters.baseURL}user/`, {
-                headers: {
-                    Authorization: "Bearer " + this.getters.userToken,
-                },
-            });
-            const userName = user.data.data.username;
-            ctx.commit('updateUserName', userName)
+            try {
+                const user = await axios.get(`${this.getters.baseURL}user/`, {
+                    headers: {
+                        Authorization: "Bearer " + this.getters.userToken,
+                    },
+                });
+                console.log("get username: " + user.data.data.username)
+                const userName = user.data.data.username;
+                ctx.commit('updateUserName', userName)
+            } catch (error) {
+                console.log(error.data.data.code)
+            }
         },
         async getUserOneCategoryList(ctx, category) {
-            const currentId = category._id;
-            console.log(currentId)
-            const user = await axios.get(`${this.getters.baseURL}category/${currentId}`, {
-                headers: {
-                    Authorization: "Bearer " + this.getters.userToken,
-                },
-            });
-
-            console.log(user.data.data[0])
-            const userOneCategoryList = user.data.data.links;
-            console.log(userOneCategoryList + " links")
-            ctx.commit('updateUserOneCategoryList', userOneCategoryList)
+            try {
+                const currentId = category._id;
+                localStorage.setItem("currentId", category._id)
+                const user = await axios.get(`${this.getters.baseURL}category/${currentId}`, {
+                    headers: {
+                        Authorization: "Bearer " + this.getters.userToken,
+                    },
+                });
+                let userOneCategoryList = null;
+                if (user.data.data.links.length != 0) {
+                    userOneCategoryList = user.data.data.links;
+                    this.state.isLinks = true;
+                }
+                else if (user.data.data.links.length == 0) {
+                    userOneCategoryList = "Have no links";
+                    this.state.isLinks = false;
+                }
+                ctx.commit('updateUserOneCategoryList', userOneCategoryList)
+            } catch (error) {
+                console.log(error.data.data.code)
+            }
         },
-        deleteUserToken(ctx) {
-            ctx.commit('deleteUserToken')
-        }
+        async createCategory(ctx, newShelf) {
+            try {
+                const data = {
+                    title: newShelf.categoryTitle,
+                };
+                await axios.post(
+                    `${this.$store.getters.baseURL}category/`,
+                    data,
+                    {
+                        headers: {
+                            Authorization: "Bearer " + this.$store.getters.userToken,
+                        },
+                    }
+                );
+                const userCategoriesList = await axios.get(`${this.getters.baseURL}user/`, {
+                    headers: {
+                        Authorization: "Bearer " + this.getters.userToken,
+                    },
+                });
+                const userCategories = userCategoriesList.data.data.categories.map(
+                    (item) => {
+                        return item;
+                    }
+                );
+                ctx.commit('updateCategories', userCategories)
+            } catch (error) {
+                console.log(error.response.data.code);
+            }
+
+            this.newShelf.isNewShelf = !this.newShelf.isNewShelf;
+        },
     },
     mutations: {
         updateCategories(state, userCategories) {
@@ -73,9 +121,6 @@ export default new Vuex.Store({
         updateUserOneCategoryList(state, userOneCategoryList) {
             state.userFrame.userOneCategoryList = userOneCategoryList;
         },
-        deleteUserToken(state) {
-            state.userToken = "";
-        }
     },
     getters: {
         baseURL(state) {

@@ -22,13 +22,22 @@
           >{{ bookmarkLink }}</a
         >
         <p class="paragraph-secondary">{{ bookmarkDate }}</p>
-        <p class="paragraph-secondary">Delete</p>
+        <form>
+          <button
+            type="submit"
+            class="confirm-button-delete"
+            @click="deleteBookmark(bookmark)"
+          >
+            <p class="paragraph-secondary">delete</p>
+          </button>
+        </form>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   props: [
     "bookmarkLogo",
@@ -37,7 +46,32 @@ export default {
     "bookmarkLink",
     "bookmarkDate",
     "isPopup",
+    "bookmark",
   ],
+  data() {
+    return {
+      bookmarkReq: null,
+      currentBookmarkId: "",
+    };
+  },
+  methods: {
+    async deleteBookmark(bookmark) {
+      try {
+        this.currentBookmarkId = bookmark._id;
+        this.bookmarkReq = await axios.delete(
+          `${this.$store.getters.baseURL}bookmark/${this.currentBookmarkId}`,
+          {
+            headers: {
+              Authorization: "Bearer " + this.$store.getters.userToken,
+            },
+          }
+        );
+        this.isEditBookmark = !this.isEditBookmark;
+      } catch (error) {
+        console.log(error.data.data.code);
+      }
+    },
+  },
 };
 </script>
 
@@ -97,5 +131,12 @@ export default {
 }
 .empty {
   display: none;
+}
+.confirm-button-delete {
+  cursor: pointer;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
 }
 </style>

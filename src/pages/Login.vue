@@ -106,6 +106,8 @@ export default {
       incorrectPassword: "",
       invalidEmailPasswordError: "",
       userNotFoundError: "",
+
+      status: null,
     };
   },
   methods: {
@@ -128,6 +130,7 @@ export default {
         this.userNotFoundError = false;
 
         localStorage.setItem("token", this.status.data.token);
+        console.log(this.$store.getters.userToken);
         console.log(this.status);
 
         this.$router.push("home");
