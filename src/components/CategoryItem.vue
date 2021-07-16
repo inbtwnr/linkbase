@@ -37,6 +37,8 @@ export default {
 @import "@/assets/styles/_fonts.scss";
 
 .category-plate {
+  margin-right: 3 * $module;
+  margin-bottom: 3 * $module;
   padding: $module 3 * $module;
   background: #f5f5f5;
   display: flex;
@@ -45,24 +47,6 @@ export default {
   .paragraph-primary {
     margin: 0;
     margin-right: 2 * $module;
-  }
-  cursor: pointer;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-}
-
-.active-category-plate {
-  padding: $module 3 * $module;
-  background: #3283fe;
-  display: flex;
-  align-items: center;
-  border-radius: $module;
-  .paragraph-primary {
-    margin: 0;
-    margin-right: 2 * $module;
-    color: #f5f5f5;
   }
   cursor: pointer;
   -moz-user-select: none;

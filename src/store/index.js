@@ -60,6 +60,8 @@ export default new Vuex.Store({
                         Authorization: "Bearer " + this.getters.userToken,
                     },
                 });
+
+                console.log(user.data.data.links)
                 let userOneCategoryList = null;
                 if (user.data.data.links.length != 0) {
                     userOneCategoryList = user.data.data.links;
@@ -71,7 +73,28 @@ export default new Vuex.Store({
                 }
                 ctx.commit('updateUserOneCategoryList', userOneCategoryList)
             } catch (error) {
-                console.log(error.data.data.code)
+                console.log(error.response.data.code)
+            }
+        },
+        async getAllBookmarks(ctx) {
+            try {
+                const allBookmarksList = await axios.get(
+                    `${this.getters.baseURL}bookmark/`,
+                    {
+                        headers: {
+                            Authorization: "Bearer " + this.getters.userToken,
+                        },
+                    }
+                );
+                console.log(allBookmarksList.data.data);
+                this.state.isLinks = true;
+                let userOneCategoryList = null;
+
+                userOneCategoryList = allBookmarksList.data.data;
+
+                ctx.commit('updateUserOneCategoryList', userOneCategoryList)
+            } catch (error) {
+                console.log(error.response.data.code);
             }
         },
         async createCategory(ctx, newShelf) {

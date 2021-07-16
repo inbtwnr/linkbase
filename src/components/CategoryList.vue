@@ -29,7 +29,9 @@
       </form>
     </div>
     <!-- category list -->
+
     <div class="category-list">
+      <all-bookmarks></all-bookmarks>
       <div v-for="(category, index) in categories" :key="index">
         <category-item
           :nameLink="category.title"
@@ -45,6 +47,7 @@
 
 <script>
 import CategoryItem from "./CategoryItem.vue";
+import AllBookmarks from "./AllBookmarks.vue";
 import axios from "axios";
 export default {
   data() {
@@ -57,6 +60,7 @@ export default {
   },
   components: {
     CategoryItem,
+    AllBookmarks,
   },
   props: ["categories"],
   methods: {
@@ -184,7 +188,7 @@ export default {
     padding: 2 * $module 4 * $module;
     box-shadow: none;
     font-size: 4 * $module;
-    margin-bottom: 4 * $module;
+    margin-bottom: 3 * $module;
   }
 }
 .confirm-button {
@@ -197,7 +201,6 @@ export default {
   width: 16 * $module;
   display: flex;
   justify-content: center;
-  margin-bottom: 6 * $module;
   .paragraph-secondary {
     margin: 0;
     font-size: 16px;
@@ -210,5 +213,6 @@ export default {
   padding: 0;
   margin: 0;
   text-align: left;
+  cursor: pointer;
 }
 </style>
