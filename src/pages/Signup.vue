@@ -77,7 +77,6 @@
           @click="loginClick"
           value="Sign up"
           class="paragraph-primary"
-          @click.stop.prevent="submit()"
         />
       </div>
     </div>
@@ -120,17 +119,16 @@ export default {
           data
         );
 
-        let loginResponse = await axios.post(
-          `${this.$store.getters.baseURL}user/login`,
-          data
-        );
-
         this.invalidEmailError = false;
         this.invalidPasswordError = false;
         this.invalidEmailPasswordError = false;
         this.userExistsError = false;
-
+        let loginResponse = await axios.post(
+          `${this.$store.getters.baseURL}user/login`,
+          data
+        );
         console.log(signupResponse.data);
+        console.log(loginResponse.data);
         console.log(loginResponse.data);
 
         localStorage.setItem("token", this.status.data.token);
