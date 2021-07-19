@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        baseURL: 'http://linker-api-deploy.herokuapp.com/api/',
+        baseURL: 'https://linker-api-deploy.herokuapp.com/api/',
         userFrame: {
             userName: "",
             userCategories: [],
