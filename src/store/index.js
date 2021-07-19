@@ -14,11 +14,11 @@ export default new Vuex.Store({
             isLinks: null,
             currentId: localStorage.getItem("currentId")
         },
-        userToken: localStorage.getItem("token")
+        userToken: localStorage.getItem("token"),
+        currentCategory: ""
     },
     actions: {
         async getUserCategories(ctx) {
-
             try {
                 const user = await axios.get(`${this.getters.baseURL}user/`, {
                     headers: {
@@ -34,9 +34,7 @@ export default new Vuex.Store({
             } catch (error) {
                 console.log(error.data.data.code)
             }
-
         },
-
         async getUserName(ctx) {
             try {
                 const user = await axios.get(`${this.getters.baseURL}user/`, {
@@ -61,7 +59,6 @@ export default new Vuex.Store({
                     },
                 });
 
-                console.log(user.data.data.links)
                 let userOneCategoryList = null;
                 if (user.data.data.links.length != 0) {
                     userOneCategoryList = user.data.data.links;
@@ -71,6 +68,21 @@ export default new Vuex.Store({
                     userOneCategoryList = "Have no links";
                     this.state.isLinks = false;
                 }
+
+                const categoryTitle = await axios.get(`${this.getters.baseURL}user/`, {
+                    headers: {
+                        Authorization: "Bearer " + this.getters.userToken,
+                    },
+                });
+
+                const userCategories = categoryTitle.data.data.categories.map(
+                    (item) => {
+                        return item;
+                    }
+                );
+
+                let currentCategory = userCategories.filter(word => word._id == category._id)
+                ctx.commit('updateCurrentCategory', currentCategory[0].title)
                 ctx.commit('updateUserOneCategoryList', userOneCategoryList)
             } catch (error) {
                 console.log(error.response.data.code)
@@ -91,7 +103,8 @@ export default new Vuex.Store({
                 let userOneCategoryList = null;
 
                 userOneCategoryList = allBookmarksList.data.data;
-
+                let currentCategory = "All bookmarks"
+                ctx.commit('updateCurrentCategory', currentCategory)
                 ctx.commit('updateUserOneCategoryList', userOneCategoryList)
             } catch (error) {
                 console.log(error.response.data.code);
@@ -144,10 +157,16 @@ export default new Vuex.Store({
         updateUserOneCategoryList(state, userOneCategoryList) {
             state.userFrame.userOneCategoryList = userOneCategoryList;
         },
+        updateCurrentCategory(state, currentCategory) {
+            state.currentCategory = currentCategory;
+        }
     },
     getters: {
         baseURL(state) {
             return state.baseURL;
+        },
+        currentCategory(state) {
+            return state.currentCategory;
         },
         userToken(state) {
             return state.userToken;

@@ -12,7 +12,7 @@
           <div class="popup-close" @click="ToggleNewShelfPopup">Cancel</div>
         </div>
         <div class="input-block">
-          <p>{{ newShelf.newShelfLabelMessage }}</p>
+          <p class="paragraph-secondary">{{ newShelf.newShelfLabelMessage }}</p>
           <input
             type="text"
             class="input-text-block"
@@ -175,6 +175,7 @@ export default {
       margin-right: 24px;
     }
     div {
+      color: #105cf4;
       padding: 4 * $module 2 * $module;
       margin-right: 24px;
       cursor: pointer;
@@ -182,6 +183,9 @@ export default {
       -khtml-user-select: none;
       -webkit-user-select: none;
       user-select: none;
+      &:hover {
+        color: #7aa6ff;
+      }
     }
     :last-child {
       margin-right: 0;
@@ -239,6 +243,7 @@ export default {
   justify-content: space-between;
   flex-direction: row;
   align-content: baseline;
+  margin-bottom: 4 * $module;
   p {
     margin: 0;
   }

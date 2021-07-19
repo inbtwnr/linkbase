@@ -21,6 +21,9 @@ export default {
   border-radius: $module;
   margin-bottom: 3 * $module;
   margin-right: 3 * $module;
+  &:hover {
+    background: #ececec;
+  }
   .paragraph-primary {
     margin: 0;
     margin-right: 2 * $module;

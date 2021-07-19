@@ -1,6 +1,6 @@
 <template>
   <div class="bookmarks-block">
-    <block-heading :blcHeader="Bookmarks"></block-heading>
+    <block-heading :blcHeader="currentCategory"></block-heading>
     <bookmarks-list
       :bookmarks="bookmarks"
       :notice="this.$store.state.isLinks"
@@ -16,15 +16,16 @@ export default {
     BookmarksList,
     BlockHeading,
   },
-  data() {
-    return {
-      Bookmarks: "Bookmarks",
-      categoryInf: {
-        categoryHeader: "Bookmarks",
-      },
-    };
-  },
   props: ["bookmarks"],
+  computed: {
+    currentCategory() {
+      if (this.$store.getters.currentCategory) {
+        return this.$store.getters.currentCategory;
+      } else {
+        return "Bookmarks";
+      }
+    },
+  },
 };
 </script>
 

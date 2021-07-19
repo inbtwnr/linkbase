@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="category-wrapper">
     <div class="category-plate">
       <p class="paragraph-primary" @click="getUserOneCategoryList(category)">
         {{ nameLink }}
@@ -36,6 +36,16 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/_fonts.scss";
 
+.category-plate {
+  &:hover {
+    background: #ececec;
+    .category-options__btn {
+      :hover {
+        background: #e0e0e0;
+      }
+    }
+  }
+}
 .category-plate {
   margin-right: 3 * $module;
   margin-bottom: 3 * $module;
