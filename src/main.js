@@ -3,8 +3,6 @@ import App from './App.vue'
 
 import axios from 'axios'
 
-import express from 'express'
-
 import store from './store';
 
 import Vuex from 'vuex';
@@ -26,7 +24,6 @@ new Vue({
   render: (h) => h(App),
   router,
   Vuex,
-  express,
   axios,
   el: '#app',
   store
