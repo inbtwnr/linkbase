@@ -1,72 +1,7 @@
 <template>
   <div>
-    <!-- <div :class="{ 'popup-screen': this.$store.state.isNewShelf }">
-      <form
-        :class="{
-          'popup-block': this.$store.state.isNewShelf,
-          empty: !this.$store.state.isNewShelf,
-        }"
-        @submit.prevent="submit"
-      >
-        <div class="popup-block__header-line">
-          <p class="header-2">{{ newShelf.newShelfHeader }}</p>
-          <div class="popup-close" @click="ToggleNewShelfPopup">Cancel</div>
-        </div>
-        <div class="input-block">
-          <p class="paragraph-secondary">{{ newShelf.newShelfLabelMessage }}</p>
-          <input
-            type="text"
-            class="input-text-block"
-            :placeholder="newShelf.newShelfInputPlaceHolder"
-            v-model="newShelf.categoryTitle"
-          />
-        </div>
-        <button
-          type="submit"
-          class="confirm-button"
-          @click="createCategory([newShelf.categoryTitle])"
-        >
-          <p class="paragraph-secondary">Add</p>
-        </button>
-      </form>
-    </div> -->
     <new-shelf-popup></new-shelf-popup>
     <new-bookmark-popup></new-bookmark-popup>
-    <!-- <div :class="{ 'popup-screen': isNewBookmark }">
-      <form
-        :class="{
-          'popup-block': isNewBookmark,
-          empty: !isNewBookmark,
-        }"
-      >
-        <div class="popup-block__header-line">
-          <p class="header-2">{{ newBookmarkHeader }}</p>
-          <div class="popup-close" @click="ToggleNewBookmarkPopup">Cancel</div>
-        </div>
-        <div class="input-block">
-          <p>{{ newBookmarkLabelMessage }}</p>
-          <select v-model="selected" class="selected-block">
-            <option
-              v-for="(category, index) in this.$store.getters.userCategories"
-              :value="{ title: category.title, id: category._id }"
-              :key="index"
-              class="option-block"
-            >
-              <p class="paragraph-secondary">{{ category.title }}</p>
-            </option>
-          </select>
-          <input
-            type="text"
-            class="input-text-block"
-            :placeholder="newBookmarkInputPlaceHolder"
-            v-model="bookmarkTitle"
-          />
-        </div>
-        <div class="confirm-button" @click="createBookmark">
-          <p class="paragraph-secondary">Add</p>
-        </div>
-      </form>
-    </div> -->
     <div class="navigaion-bar-block">
       <div class="navigaion-bar-block__logo-and-addings">
         <p class="paragraph-primary">Linkbase</p>
@@ -119,46 +54,9 @@ export default {
     ToggleNewBookmarkPopup() {
       this.updateIsNewBookmark(!this.$store.state.isNewBookmark);
     },
-    // async createCategory() {
-
-    //   const data = {
-    //     title: this.newShelf.categoryTitle,
-    //   };
-    //   try {
-    //     console.log(data.title);
-
-    //     await axios.post(`${this.$store.getters.baseURL}category/`, data, {
-    //       headers: {
-    //         Authorization: "Bearer " + this.$store.getters.userToken,
-    //       },
-    //     });
-    //     console.log("after creating category");
-    //   } catch (error) {
-    //     console.log(error.response.data.code);
-    //   }
-
-    //   this.newShelf.isNewShelf = !this.newShelf.isNewShelf;
-    // },
     submit() {
       this.createCategory();
     },
-    // async createBookmark(ctx, [bookmarkTitle, selected]) {
-    //   try {
-    //     const data = await {
-    //       link: bookmarkTitle,
-    //       category: selected.id,
-    //     };
-    //     await axios.post(`${this.$store.getters.baseURL}bookmark/`, data, {
-    //       headers: {
-    //         Authorization: "Bearer " + this.$store.getters.userToken,
-    //       },
-    //     });
-    //     console.log("after creating bookmark");
-    //     this.state.isNewBookmark = !this.state.isNewBookmark;
-    //   } catch (error) {
-    //     console.log(error.response.data.code);
-    //   }
-    // },
     closeHome() {
       this.$router.push("/");
     },

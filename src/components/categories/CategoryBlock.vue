@@ -1,7 +1,6 @@
 <template>
   <div class="category-block">
     <block-heading :blcHeader="categoryInf.categoryHeader"></block-heading>
-
     <category-list :categories="categories"></category-list>
   </div>
 </template>

@@ -86,15 +86,14 @@ export default {
       width: $module;
       height: $module;
       background: #041a25;
-      opacity: 20%;
       margin-right: $module / 2;
       border-radius: $module / 2;
+      :hover {
+        background: #041a25;
+      }
     }
     :first-child {
       margin-left: $module / 2;
-    }
-    :hover {
-      background: #041a25;
     }
   }
 }
