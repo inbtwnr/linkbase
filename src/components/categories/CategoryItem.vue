@@ -42,7 +42,7 @@ export default {
   &:hover {
     background: #ececec;
     .category-options__btn {
-      &:hover {
+      :hover {
         background: #e0e0e0;
       }
     }

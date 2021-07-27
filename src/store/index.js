@@ -36,6 +36,11 @@ export default new Vuex.Store({
     },
     actions: {
         async loginClick(ctx, [email, password]) {
+            ctx.commit("updateInvalidEmailError", false);
+            ctx.commit("updateInvalidPasswordError", false);
+            ctx.commit("updateInvalidEmailPasswordError", false);
+            ctx.commit("updateIncorrectPasswordError", false);
+            ctx.commit("updateUserNotFoundError", false);
 
             const data = {
                 email: email,
@@ -76,11 +81,11 @@ export default new Vuex.Store({
                         break;
                     case "invalid_password":
                         console.log("Invalid format of the pw, min 6 characters required");
-                        this.state.invalidPassword = !this.state.invalidPassword;
+                        this.state.invalidPasswordError = !this.state.invalidPasswordError;
                         break;
                     case "incorrect_password":
                         console.log("Incorrect password for user account");
-                        this.state.incorrectPassword = !this.state.incorrectPassword;
+                        this.state.incorrectPasswordError = !this.state.incorrectPasswordError;
                         break;
                     case "invalid_email_and_password":
                         console.log("Combination of two above codes");
@@ -97,7 +102,10 @@ export default new Vuex.Store({
             }
         },
         async signupClick(ctx, [name, email, password]) {
-
+            ctx.commit("updateInvalidEmailError", false);
+            ctx.commit("updateInvalidPasswordError", false);
+            ctx.commit("updateInvalidEmailPasswordError", false);
+            ctx.commit("updateUserExistsError", false);
             const data = {
                 username: name,
                 email: email,
@@ -128,7 +136,7 @@ export default new Vuex.Store({
                 console.log("Success. Redirected to home...")
 
                 localStorage.setItem("token", loginResponse.data.token);
-
+                ctx.commit("updateUserToken", localStorage.getItem("token"));
                 router.push("home");
             } catch (error) {
                 console.log(error);
@@ -152,7 +160,7 @@ export default new Vuex.Store({
                         break;
                     case "incorrect_password":
                         console.log("Incorrect password for user account");
-                        this.state.incorrectPassword = !this.state.incorrectPassword;
+                        this.state.incorrectPasswordError = !this.state.incorrectPasswordError;
                         break;
                     case "user_not_found":
                         console.log("User was not found in database");

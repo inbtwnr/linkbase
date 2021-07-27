@@ -1,6 +1,9 @@
 <template>
   <div class="signup-block">
-    <div class="signup-block__form">
+    <form
+      class="signup-block__form"
+      @submit.prevent="signupClick([name, email, password])"
+    >
       <router-link to="/"> Back </router-link>
       <div class="signup-block__form__title-block">
         <h1 class="header-1">{{ msg }}</h1>
@@ -72,14 +75,9 @@
         </div>
       </div>
       <div class="signup-block__form__submit-block">
-        <input
-          type="submit"
-          @click="signupClick([name, email, password])"
-          value="Sign up"
-          class="paragraph-primary"
-        />
+        <input type="submit" value="Sign up" class="paragraph-primary" />
       </div>
-    </div>
+    </form>
     <div class="signup-block__links">
       <router-link to="/login" class="paragraph-secondary"
         >Have an account? Login here</router-link

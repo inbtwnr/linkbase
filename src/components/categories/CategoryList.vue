@@ -1,39 +1,6 @@
 <template>
   <div v-if="categories">
-    <!-- change category popup -->
-    <!-- <div :class="{ 'popup-screen': isEditShelf }">
-      <form
-        @submit.prevent="deleteCategory"
-        :class="{ 'popup-block': isEditShelf, empty: !isEditShelf }"
-      >
-        <div class="popup-block__header-line">
-          <p class="header-2">Edit shelf</p>
-          <div @click="ToggleEditShelfPopup" class="popup-close">Cancel</div>
-        </div>
-        <div class="input-block">
-          <p>New title</p>
-          <input
-            type="text"
-            v-model="editShelfName"
-            class="input-text-block"
-            placeholder="New title"
-          />
-          <button
-            type="submit"
-            class="confirm-button"
-            @click="changeCategoryName"
-          >
-            <p class="paragraph-secondary">edit</p>
-          </button>
-          <button type="submit" class="delete-category" @click="deleteCategory">
-            <p class="paragraph-secondary">delete category</p>
-          </button>
-        </div>
-      </form>
-    </div> -->
     <edit-shelf-popup :currentCategoryId="currentCategoryId"></edit-shelf-popup>
-    <!-- category list -->
-
     <div class="category-list">
       <all-bookmarks></all-bookmarks>
       <div v-for="(category, index) in categories" :key="index">

@@ -8,7 +8,6 @@
       <div class="login-block__form__title-block">
         <h1 class="header-1">{{ msg }}</h1>
       </div>
-
       <div class="login-block__form__inputs-block">
         <!-- email input and errors -->
         <input

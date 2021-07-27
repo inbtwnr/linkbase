@@ -4,34 +4,6 @@
       :currentBookmarkId="currentBookmarkId"
       :bookmarkCategory="bookmarkCategory"
     ></edit-bookmark-popup>
-    <!-- <div :class="{ 'popup-screen': isEditBookmark }">
-      <div :class="{ 'popup-block': isEditBookmark, empty: !isEditBookmark }">
-        <div class="popup-block__header-line">
-          <p class="header-2">Change shelf</p>
-          <div @click="ToggleEditBookmarkPopup" class="popup-close">Cancel</div>
-        </div>
-        <p class="paragraph-secondary">Change placement for bookmark</p>
-        <div class="change-category-block">
-          <select v-model="selected" class="selected-block">
-            <option
-              v-for="(category, index) in this.$store.getters.userCategories"
-              :value="{ title: category.title, id: category._id }"
-              :key="index"
-              class="option-block"
-            >
-              <p class="paragraph-secondary">{{ category.title }}</p>
-            </option>
-          </select>
-          <button
-            type="submit"
-            class="confirm-button"
-            @click="changeBookmarkPlacing(selected, isEditBookmark)"
-          >
-            Edit
-          </button>
-        </div>
-      </div>
-    </div> -->
     <div v-for="(bookmark, index) in bookmarks" :key="index">
       <bookmarks-item
         :bookmarkLogo="bookmark.favicon[0]"
