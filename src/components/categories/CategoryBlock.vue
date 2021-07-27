@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import BlockHeading from "./BlockHeading.vue";
+import BlockHeading from "@/components/BlockHeading.vue";
 import CategoryList from "./CategoryList.vue";
 
 export default {

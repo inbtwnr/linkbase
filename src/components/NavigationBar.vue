@@ -1,11 +1,12 @@
 <template>
   <div>
-    <div :class="{ 'popup-screen': newShelf.isNewShelf }">
+    <!-- <div :class="{ 'popup-screen': this.$store.state.isNewShelf }">
       <form
         :class="{
-          'popup-block': newShelf.isNewShelf,
-          empty: !newShelf.isNewShelf,
+          'popup-block': this.$store.state.isNewShelf,
+          empty: !this.$store.state.isNewShelf,
         }"
+        @submit.prevent="submit"
       >
         <div class="popup-block__header-line">
           <p class="header-2">{{ newShelf.newShelfHeader }}</p>
@@ -20,24 +21,30 @@
             v-model="newShelf.categoryTitle"
           />
         </div>
-        <button type="submit" class="confirm-button" @click="createCategory">
+        <button
+          type="submit"
+          class="confirm-button"
+          @click="createCategory([newShelf.categoryTitle])"
+        >
           <p class="paragraph-secondary">Add</p>
         </button>
       </form>
-    </div>
-    <div :class="{ 'popup-screen': newBookmark.isNewBookmark }">
+    </div> -->
+    <new-shelf-popup></new-shelf-popup>
+    <new-bookmark-popup></new-bookmark-popup>
+    <!-- <div :class="{ 'popup-screen': isNewBookmark }">
       <form
         :class="{
-          'popup-block': newBookmark.isNewBookmark,
-          empty: !newBookmark.isNewBookmark,
+          'popup-block': isNewBookmark,
+          empty: !isNewBookmark,
         }"
       >
         <div class="popup-block__header-line">
-          <p class="header-2">{{ newBookmark.newBookmarkHeader }}</p>
+          <p class="header-2">{{ newBookmarkHeader }}</p>
           <div class="popup-close" @click="ToggleNewBookmarkPopup">Cancel</div>
         </div>
         <div class="input-block">
-          <p>{{ newBookmark.newBookmarkLabelMessage }}</p>
+          <p>{{ newBookmarkLabelMessage }}</p>
           <select v-model="selected" class="selected-block">
             <option
               v-for="(category, index) in this.$store.getters.userCategories"
@@ -51,15 +58,15 @@
           <input
             type="text"
             class="input-text-block"
-            :placeholder="newBookmark.newBookmarkInputPlaceHolder"
-            v-model="newBookmark.bookmarkTitle"
+            :placeholder="newBookmarkInputPlaceHolder"
+            v-model="bookmarkTitle"
           />
         </div>
-        <button type="submit" class="confirm-button" @click="createBookmark">
+        <div class="confirm-button" @click="createBookmark">
           <p class="paragraph-secondary">Add</p>
-        </button>
+        </div>
       </form>
-    </div>
+    </div> -->
     <div class="navigaion-bar-block">
       <div class="navigaion-bar-block__logo-and-addings">
         <p class="paragraph-primary">Linkbase</p>
@@ -78,74 +85,80 @@
 </template>
 
 <script>
-import axios from "axios";
-
+import { mapGetters, mapMutations } from "vuex";
+import NewShelfPopup from "@/components/popups/NewShelfPopup.vue";
+import NewBookmarkPopup from "@/components/popups/NewBookmarkPopup.vue";
 export default {
+  components: {
+    NewShelfPopup,
+    NewBookmarkPopup,
+  },
   props: ["username"],
   data() {
     return {
-      newShelf: {
-        isNewShelf: false,
-        newShelfHeader: "New Shelf",
-        newShelfLabelMessage: "Give a name of shelf",
-        newShelfInputPlaceHolder: "Shelf Name",
-        categoryTitle: "",
-      },
-      newBookmark: {
-        isNewBookmark: false,
-        newBookmarkHeader: "New Bookmark",
-        newBookmarkLabelMessage: "Give a name of bookmark",
-        newBookmarkInputPlaceHolder: "Link",
-        bookmarkTitle: "",
-        categoryId: "",
-      },
+      newShelfHeader: "New Shelf",
+      newShelfLabelMessage: "Give a name of shelf",
+      newShelfInputPlaceHolder: "Shelf Name",
+      categoryTitle: "",
+
+      newBookmarkHeader: "New Bookmark",
+      newBookmarkLabelMessage: "Give a name of bookmark",
+      newBookmarkInputPlaceHolder: "Link",
+      bookmarkTitle: "",
+      categoryId: "",
+
       user: null,
       selected: null,
     };
   },
   methods: {
+    ...mapMutations(["updateIsNewShelf", "updateIsNewBookmark"]),
     ToggleNewShelfPopup() {
-      this.newShelf.isNewShelf = !this.newShelf.isNewShelf;
+      this.updateIsNewShelf(!this.$store.state.isNewShelf);
     },
     ToggleNewBookmarkPopup() {
-      this.newBookmark.isNewBookmark = !this.newBookmark.isNewBookmark;
+      this.updateIsNewBookmark(!this.$store.state.isNewBookmark);
     },
-    async createCategory() {
-      try {
-        const data = {
-          title: this.newShelf.categoryTitle,
-        };
-        await axios.post(`${this.$store.getters.baseURL}category/`, data, {
-          headers: {
-            Authorization: "Bearer " + this.$store.getters.userToken,
-          },
-        });
-        console.log("after creating category");
-      } catch (error) {
-        console.log(error.response.data.code);
-      }
+    // async createCategory() {
 
-      this.newShelf.isNewShelf = !this.newShelf.isNewShelf;
+    //   const data = {
+    //     title: this.newShelf.categoryTitle,
+    //   };
+    //   try {
+    //     console.log(data.title);
+
+    //     await axios.post(`${this.$store.getters.baseURL}category/`, data, {
+    //       headers: {
+    //         Authorization: "Bearer " + this.$store.getters.userToken,
+    //       },
+    //     });
+    //     console.log("after creating category");
+    //   } catch (error) {
+    //     console.log(error.response.data.code);
+    //   }
+
+    //   this.newShelf.isNewShelf = !this.newShelf.isNewShelf;
+    // },
+    submit() {
+      this.createCategory();
     },
-    async createBookmark() {
-      try {
-        console.log(this.newBookmark.bookmarkTitle);
-        console.log(this.selected.id);
-        const data = {
-          link: this.newBookmark.bookmarkTitle,
-          category: this.selected.id,
-        };
-        await axios.post(`${this.$store.getters.baseURL}bookmark/`, data, {
-          headers: {
-            Authorization: "Bearer " + this.$store.getters.userToken,
-          },
-        });
-        console.log("after creating bookmark");
-        this.newBookmark.isNewBookmark = !this.newBookmark.isNewBookmark;
-      } catch (error) {
-        console.log(error.response.data.code);
-      }
-    },
+    // async createBookmark(ctx, [bookmarkTitle, selected]) {
+    //   try {
+    //     const data = await {
+    //       link: bookmarkTitle,
+    //       category: selected.id,
+    //     };
+    //     await axios.post(`${this.$store.getters.baseURL}bookmark/`, data, {
+    //       headers: {
+    //         Authorization: "Bearer " + this.$store.getters.userToken,
+    //       },
+    //     });
+    //     console.log("after creating bookmark");
+    //     this.state.isNewBookmark = !this.state.isNewBookmark;
+    //   } catch (error) {
+    //     console.log(error.response.data.code);
+    //   }
+    // },
     closeHome() {
       this.$router.push("/");
     },
@@ -154,6 +167,9 @@ export default {
       this.newBookmark.categoryId = category._id;
       console.log(this.newBookmark.categoryId);
     },
+  },
+  computed: {
+    ...mapGetters(["getUserCategories"]),
   },
 };
 </script>

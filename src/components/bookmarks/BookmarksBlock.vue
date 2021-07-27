@@ -9,7 +9,8 @@
 </template>
 
 <script>
-import BlockHeading from "./BlockHeading.vue";
+import { mapGetters } from "vuex";
+import BlockHeading from "@/components/BlockHeading.vue";
 import BookmarksList from "./BookmarksList.vue";
 export default {
   components: {
@@ -18,13 +19,7 @@ export default {
   },
   props: ["bookmarks"],
   computed: {
-    currentCategory() {
-      if (this.$store.getters.currentCategory) {
-        return this.$store.getters.currentCategory;
-      } else {
-        return "Bookmarks";
-      }
-    },
+    ...mapGetters(["currentCategory"]),
   },
 };
 </script>

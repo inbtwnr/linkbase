@@ -10,7 +10,7 @@
         <!-- email input and errors -->
         <input
           type="text"
-          v-model="userEmail"
+          v-model="email"
           class="paragraph-primary"
           placeholder="email"
         />
@@ -37,7 +37,7 @@
         <!-- password input and errors -->
         <input
           type="password"
-          v-model="userPassword"
+          v-model="password"
           class="paragraph-primary"
           placeholder="password"
         />
@@ -45,7 +45,7 @@
           class="signup-block__form__inputs-block__error-notice"
           :class="{
             'signup-block__form__inputs-block__error-ntc__activated':
-              invalidPassword,
+              invalidPasswordError,
           }"
         >
           <p class="paragraph-secondary">Format of password is invalid.</p>
@@ -54,7 +54,7 @@
           class="signup-block__form__inputs-block__error-notice"
           :class="{
             'signup-block__form__inputs-block__error-ntc__activated':
-              incorrectPassword,
+              incorrectPasswordError,
           }"
         >
           <p class="paragraph-secondary">Password is wrong, try again.</p>
@@ -74,7 +74,7 @@
       <div class="login-block__form__submit-block">
         <input
           type="submit"
-          v-on:click="loginClick"
+          @click="loginClick([email, password])"
           value="Login"
           class="paragraph-primary"
         />
@@ -89,82 +89,106 @@
 </template>
 
 <script>
-import axios from "axios";
-
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
-      msg: "Welcome back to Linkbase",
-      userEmail: "",
-      userPassword: "",
-      userToken: "",
-
-      errorModel: [],
-
-      invalidEmailError: "",
-      invalidPassword: "",
-      incorrectPassword: "",
-      invalidEmailPasswordError: "",
-      userNotFoundError: "",
-
-      status: null,
+      msg: "Welcome to Linkbase",
+      email: "",
+      password: "",
     };
   },
   methods: {
-    async loginClick() {
-      const data = {
-        email: this.userEmail,
-        password: this.userPassword,
-      };
-      try {
-        console.log("From try");
-
-        this.status = await axios.post(
-          `${this.$store.getters.baseURL}user/login`,
-          data
-        );
-
-        this.invalidEmailError = false;
-        this.invalidPassword = false;
-        this.incorrectPassword = false;
-        this.userNotFoundError = false;
-
-        localStorage.setItem("token", this.status.data.token);
-        console.log(this.$store.getters.userToken);
-        console.log(this.status);
-
-        this.$router.push("home");
-      } catch (error) {
-        console.log(error.response.data.code);
-        this.errorModel = error.response.data.code;
-        switch (this.errorModel) {
-          case "invalid_email":
-            console.log("Invalid format of email");
-            this.invalidEmailError = !this.invalidEmailError;
-            break;
-          case "invalid_password":
-            console.log("Invalid format of the pw, min 6 characters required");
-            this.invalidPassword = !this.invalidPassword;
-            break;
-          case "incorrect_password":
-            console.log("Incorrect password for user account");
-            this.incorrectPassword = !this.incorrectPassword;
-            break;
-          case "invalid_email_and_password":
-            console.log("Combination of two above codes");
-            this.invalidEmailPasswordError = !this.invalidEmailPasswordError;
-            break;
-          case "user_not_found":
-            console.log("User was not found in database");
-            this.userNotFoundError = !this.userNotFoundError;
-            break;
-          default:
-            console.log("Unknown error");
-            break;
-        }
-      }
-    },
+    ...mapActions(["loginClick"]),
   },
+  computed: {
+    ...mapGetters([
+      "invalidEmailError",
+      "invalidPasswordError",
+      "invalidEmailPasswordError",
+      "incorrectPasswordError",
+      "userNotFoundError",
+    ]),
+  },
+  // data() {
+  //   return {
+  //     msg: "Welcome back to Linkbase",
+  //     userEmail: "",
+  //     userPassword: "",
+  //     userToken: "",
+  //     errorModel: [],
+  //     invalidEmailError: "",
+  //     invalidPassword: "",
+  //     incorrectPassword: "",
+  //     invalidEmailPasswordError: "",
+  //     userNotFoundError: "",
+  //     status: null,
+  //   };
+  // },
+  // methods: {
+  //   async loginClick() {
+  //     const data = {
+  //       email: this.userEmail,
+  //       password: this.userPassword,
+  //     };
+  //     try {
+  //       console.log("From try");
+  //       this.status = await axios.post(
+  //         `${this.$store.getters.baseURL}user/login`,
+  //         data
+  //       );
+  //       this.invalidEmailError = false;
+  //       this.invalidPassword = false;
+  //       this.incorrectPassword = false;
+  //       this.userNotFoundError = false;
+  //       localStorage.setItem("token", this.status.data.token);
+  //       this.$store.state.userToken = localStorage.getItem("token");
+  //       console.log(this.$store.getters.userToken);
+  //       console.log(this.status);
+  //       this.$router.push("home");
+  //     } catch (error) {
+  //       console.log(error.response.data.code);
+  //       this.errorModel = error.response.data.code;
+  //       switch (this.errorModel) {
+  //         case "invalid_email":
+  //           console.log("Invalid format of email");
+  //           this.invalidEmailError = !this.invalidEmailError;
+  //           break;
+  //         case "invalid_password":
+  //           console.log("Invalid format of the pw, min 6 characters required");
+  //           this.invalidPassword = !this.invalidPassword;
+  //           break;
+  //         case "incorrect_password":
+  //           console.log("Incorrect password for user account");
+  //           this.incorrectPassword = !this.incorrectPassword;
+  //           break;
+  //         case "invalid_email_and_password":
+  //           console.log("Combination of two above codes");
+  //           this.invalidEmailPasswordError = !this.invalidEmailPasswordError;
+  //           break;
+  //         case "user_not_found":
+  //           console.log("User was not found in database");
+  //           this.userNotFoundError = !this.userNotFoundError;
+  //           break;
+  //         default:
+  //           console.log("Unknown error");
+  //           break;
+  //       }
+  //     }
+  //   },
+  // },
+  // computed: {
+  //   userPassword: {
+  //     set(value) {
+  //       this.$store.commit("updateUserPassword", value);
+  //     },
+  //   },
+  //   userEmail: {
+  //     set(value) {
+  //       this.$store.commit("updateUserEmail", value);
+  //     },
+  //   },
+  // },
 };
 </script>
 

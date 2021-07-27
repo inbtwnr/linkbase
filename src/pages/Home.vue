@@ -3,30 +3,29 @@
     <div class="home-block-container">
       <navigation-bar :username="userName"></navigation-bar>
       <category-block :categories="userCategories"></category-block>
-      <bookmarks-block :bookmarks="userOneCategoryList"></bookmarks-block>
+      <bookmarks-block :bookmarks="userBookmarks"></bookmarks-block>
     </div>
   </div>
 </template>
 <script>
-import bookmarksBlock from "@/components/BookmarksBlock.vue";
-import categoryBlock from "@/components/CategoryBlock.vue";
+import bookmarksBlock from "@/components/bookmarks/BookmarksBlock.vue";
+import categoryBlock from "@/components/categories/CategoryBlock.vue";
 import NavigationBar from "@/components/NavigationBar.vue";
 
-import { mapGetters } from "vuex";
-import { mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
-  computed: mapGetters(["userCategories", "userName", "userOneCategoryList"]),
-  methods: mapActions([
-    "getUserCategories",
-    "getUserName",
-    "getUserOneCategoryList",
-  ]),
-  async mounted() {
+  computed: {
+    ...mapGetters(["userCategories", "userName", "userBookmarks"]),
+  },
+  methods: {
+    ...mapActions(["getUserCategories", "getUserName", "getUserBookmarks"]),
+  },
+  mounted() {
     try {
       this.getUserCategories();
       this.getUserName();
-      this.getUserOneCategoryList();
+      this.getUserBookmarks();
     } catch (error) {
       console.log(error.response.data);
     }

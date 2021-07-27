@@ -1,8 +1,11 @@
 <template>
   <div v-if="categories">
     <!-- change category popup -->
-    <div :class="{ 'popup-screen': isEditShelf }">
-      <form :class="{ 'popup-block': isEditShelf, empty: !isEditShelf }">
+    <!-- <div :class="{ 'popup-screen': isEditShelf }">
+      <form
+        @submit.prevent="deleteCategory"
+        :class="{ 'popup-block': isEditShelf, empty: !isEditShelf }"
+      >
         <div class="popup-block__header-line">
           <p class="header-2">Edit shelf</p>
           <div @click="ToggleEditShelfPopup" class="popup-close">Cancel</div>
@@ -27,7 +30,8 @@
           </button>
         </div>
       </form>
-    </div>
+    </div> -->
+    <edit-shelf-popup :currentCategoryId="currentCategoryId"></edit-shelf-popup>
     <!-- category list -->
 
     <div class="category-list">
@@ -47,8 +51,10 @@
 
 <script>
 import CategoryItem from "./CategoryItem.vue";
-import AllBookmarks from "./AllBookmarks.vue";
-import axios from "axios";
+import AllBookmarks from "@/components/bookmarks/AllBookmarks.vue";
+import EditShelfPopup from "@/components/popups/EditShelfPopup.vue";
+import { mapMutations } from "vuex";
+
 export default {
   data() {
     return {
@@ -61,50 +67,17 @@ export default {
   components: {
     CategoryItem,
     AllBookmarks,
+    EditShelfPopup,
   },
   props: ["categories"],
   methods: {
+    ...mapMutations(["updateIsEditShelf"]),
     ToggleEditShelfPopup() {
-      this.isEditShelf = !this.isEditShelf;
+      this.updateIsEditShelf(!this.$store.state.isEditShelf);
     },
     changeCurrentCategory(category) {
-      this.isEditShelf = !this.isEditShelf;
+      this.updateIsEditShelf(!this.$store.state.isEditShelf);
       this.currentCategoryId = category._id;
-    },
-    async changeCategoryName() {
-      try {
-        const data = {
-          title: this.editShelfName,
-        };
-        console.log(data);
-        this.category = await axios.put(
-          `${this.$store.getters.baseURL}category/${this.currentCategoryId}`,
-          data,
-          {
-            headers: {
-              Authorization: "Bearer " + this.$store.getters.userToken,
-            },
-          }
-        );
-        this.isEditShelf = !this.isEditShelf;
-      } catch (error) {
-        console.log(error.data.data.code);
-      }
-    },
-    async deleteCategory() {
-      try {
-        this.category = await axios.delete(
-          `${this.$store.getters.baseURL}category/${this.currentCategoryId}`,
-          {
-            headers: {
-              Authorization: "Bearer " + this.$store.getters.userToken,
-            },
-          }
-        );
-        this.isEditShelf = !this.isEditShelf;
-      } catch (error) {
-        console.log(error.data.data.code);
-      }
     },
   },
 };

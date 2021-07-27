@@ -1,6 +1,10 @@
 <template>
   <div v-if="notice">
-    <div :class="{ 'popup-screen': isEditBookmark }">
+    <edit-bookmark-popup
+      :currentBookmarkId="currentBookmarkId"
+      :bookmarkCategory="bookmarkCategory"
+    ></edit-bookmark-popup>
+    <!-- <div :class="{ 'popup-screen': isEditBookmark }">
       <div :class="{ 'popup-block': isEditBookmark, empty: !isEditBookmark }">
         <div class="popup-block__header-line">
           <p class="header-2">Change shelf</p>
@@ -21,22 +25,24 @@
           <button
             type="submit"
             class="confirm-button"
-            @click="changeBookmarkPlacing"
+            @click="changeBookmarkPlacing(selected, isEditBookmark)"
           >
             Edit
           </button>
         </div>
       </div>
-    </div>
+    </div> -->
     <div v-for="(bookmark, index) in bookmarks" :key="index">
       <bookmarks-item
         :bookmarkLogo="bookmark.favicon[0]"
-        :bookmarkHeader="bookmark.title"
+        :bookmarkHeader="bookmarkHeader(bookmark)"
         :bookmarkDescription="bookmark.description"
         :bookmarkDate="bookmarkDateItem(bookmark)"
         :bookmarkLink="bookmark.link"
+        :bookmarkSharedLink="bookmarkSharedLink(bookmark)"
         :bookmark="bookmark"
         @button-trigger="ToggleEditBookmarkPopup(bookmark)"
+        @delete-button="deleteBookmark(bookmark)"
       ></bookmarks-item>
     </div>
   </div>
@@ -45,10 +51,12 @@
 
 <script>
 import BookmarksItem from "./BookmarksItem.vue";
-import axios from "axios";
+import EditBookmarkPopup from "@/components/popups/EditBookmarkPopup.vue";
+import { mapActions } from "vuex";
 export default {
   components: {
     BookmarksItem,
+    EditBookmarkPopup,
   },
   props: ["bookmarks", "notice"],
   data() {
@@ -58,12 +66,16 @@ export default {
       editBookmarkName: "",
       currentBookmarkId: "",
       selected: null,
+      bookmarkCategory: "",
     };
   },
   methods: {
+    ...mapActions(["changeBookmarkPlacing", "deleteBookmark"]),
     ToggleEditBookmarkPopup(bookmark) {
       this.currentBookmarkId = bookmark._id;
-      this.isEditBookmark = !this.isEditBookmark;
+      this.bookmarkCategory = bookmark.category;
+      this.$store.state.isEditBookmark = !this.$store.state.isEditBookmark;
+      console.log(this.currentBookmarkId);
     },
     bookmarkDateItem(bookmark) {
       let linkDate = new Date(bookmark.date);
@@ -108,26 +120,20 @@ export default {
       }
       return result;
     },
-    async changeBookmarkPlacing() {
-      try {
-        const data = {
-          category: this.selected.id,
-        };
-        console.log(data);
-        console.log("bookmark id: " + this.currentBookmarkId);
-        this.bookmark = await axios.put(
-          `${this.$store.getters.baseURL}bookmark/${this.currentBookmarkId}`,
-          data,
-          {
-            headers: {
-              Authorization: "Bearer " + this.$store.getters.userToken,
-            },
-          }
-        );
-        this.isEditBookmark = !this.isEditBookmark;
-      } catch (error) {
-        console.log(error.response.data.code);
+    bookmarkHeader(bookmark) {
+      if (bookmark.title.length > 48) {
+        let bookmarkHeader = bookmark.title.split("", 48);
+        return bookmarkHeader.join("") + "...";
+      } else {
+        return bookmark.title;
       }
+    },
+    bookmarkSharedLink(bookmark) {
+      if (bookmark.link.length > 48) {
+        let bookmarkSharedlink = bookmark.link.split("", 48);
+        return bookmarkSharedlink.join("") + "...";
+      }
+      return bookmark.link;
     },
   },
 };

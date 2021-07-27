@@ -9,7 +9,7 @@
         <!-- email input and errors -->
         <input
           type="text"
-          v-model="userEmail"
+          v-model="email"
           class="paragraph-primary"
           placeholder="email"
         />
@@ -26,7 +26,7 @@
         <!-- username input and errors -->
         <input
           type="text"
-          v-model="userName"
+          v-model="name"
           class="paragraph-primary"
           placeholder="user name"
         />
@@ -46,7 +46,7 @@
         <!-- password input and errors -->
         <input
           type="password"
-          v-model="userPassword"
+          v-model="password"
           class="paragraph-primary"
           placeholder="password"
         />
@@ -74,7 +74,7 @@
       <div class="signup-block__form__submit-block">
         <input
           type="submit"
-          @click="loginClick"
+          @click="signupClick([name, email, password])"
           value="Sign up"
           class="paragraph-primary"
         />
@@ -89,80 +89,91 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
     return {
       msg: "Welcome to Linkbase",
-      userEmail: "",
-      userName: "",
-      userPassword: "",
-      invalidEmailError: "",
-      invalidPasswordError: "",
-      invalidEmailPasswordError: "",
-      userExistsError: "",
+      name: "",
+      email: "",
+      password: "",
     };
   },
   methods: {
-    async loginClick() {
-      const data = {
-        username: this.userName,
-        email: this.userEmail,
-        password: this.userPassword,
-      };
-      try {
-        console.log("From try");
-
-        let signupResponse = await axios.post(
-          `${this.$store.getters.baseURL}user/signup`,
-          data
-        );
-
-        this.invalidEmailError = false;
-        this.invalidPasswordError = false;
-        this.invalidEmailPasswordError = false;
-        this.userExistsError = false;
-        let loginResponse = await axios.post(
-          `${this.$store.getters.baseURL}user/login`,
-          data
-        );
-        console.log(signupResponse.data);
-        console.log(loginResponse.data);
-        console.log(loginResponse.data);
-
-        localStorage.setItem("token", this.status.data.token);
-        this.$router.push("/home");
-      } catch (error) {
-        if (error.response.data.errors != null) {
-          console.log(error.response.status);
-          this.errorModel = error.response.data.errors;
-        } else {
-          this.errorModel = [error.response.data];
-        }
-        switch (this.errorModel[0].msg || this.errorModel[0].message) {
-          case "invalid_email":
-            console.log("Invalid format of email");
-            this.invalidEmailError = true;
-            break;
-          case "invalid_password":
-            console.log("Invalid format of the pw, min 6 characters required");
-            this.invalidPasswordError = true;
-            break;
-          case "invalid_email_and_password":
-            console.log("Combination of two above codes");
-            this.invalidEmailPasswordError = true;
-            break;
-          case "user_exists":
-            console.log("User already exists in database");
-            this.userExistsError = true;
-            break;
-          default:
-            console.log("Unknown error");
-            break;
-        }
-      }
-    },
+    ...mapActions(["signupClick"]),
+    // async loginClick() {
+    //   const data = {
+    //     username: this.userName,
+    //     email: this.userEmail,
+    //     password: this.userPassword,
+    //   };
+    //   const dataLogin = {
+    //     email: this.userEmail,
+    //     password: this.userPassword,
+    //   };
+    //   try {
+    //     console.log("From try");
+    //     let signupResponse = await axios.post(
+    //       `${this.$store.getters.baseURL}user/signup`,
+    //       data
+    //     );
+    //     console.log(signupResponse.data);
+    //     this.invalidEmailError = false;
+    //     this.invalidPasswordError = false;
+    //     this.invalidEmailPasswordError = false;
+    //     this.userExistsError = false;
+    //     let loginResponse = await axios.post(
+    //       `${this.$store.getters.baseURL}user/login`,
+    //       dataLogin
+    //     );
+    //     console.log(loginResponse.data);
+    //     localStorage.setItem("token", this.loginResponse.data.token);
+    //     this.$router.push("/home");
+    //   } catch (error) {
+    //     console.log(error.response.status);
+    //     this.errorModel = error.response.data.code;
+    //     switch (error.response.data.code) {
+    //       case "invalid_email":
+    //         console.log("Invalid format of email");
+    //         this.invalidEmailError = true;
+    //         break;
+    //       case "invalid_password":
+    //         console.log("Invalid format of the pw, min 6 characters required");
+    //         this.invalidPasswordError = true;
+    //         break;
+    //       case "invalid_email_and_password":
+    //         console.log("Combination of two above codes");
+    //         this.invalidEmailPasswordError = true;
+    //         break;
+    //       case "user_exists":
+    //         console.log("User already exists in database");
+    //         this.userExistsError = true;
+    //         break;
+    //       case "incorrect_password":
+    //         console.log("Incorrect password for user account");
+    //         this.incorrectPassword = !this.incorrectPassword;
+    //         break;
+    //       case "user_not_found":
+    //         console.log("User was not found in database");
+    //         this.userNotFoundError = !this.userNotFoundError;
+    //         break;
+    //       default:
+    //         console.log("Unknown error");
+    //         console.log(this.errorModel[0].msg);
+    //         console.log(this.errorModel[0].message);
+    //         break;
+    //     }
+    //   }
+    // },
+  },
+  computed: {
+    ...mapGetters([
+      "invalidEmailError",
+      "invalidPasswordError",
+      "invalidEmailPasswordError",
+      "userExistsError",
+    ]),
   },
 };
 </script>

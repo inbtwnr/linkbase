@@ -7,7 +7,9 @@
 <script>
 import { mapActions } from "vuex";
 export default {
-  methods: mapActions(["getAllBookmarks"]),
+  methods: {
+    ...mapActions(["getAllBookmarks"]),
+  },
 };
 </script>
 

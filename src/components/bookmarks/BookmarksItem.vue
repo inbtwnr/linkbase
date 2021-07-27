@@ -20,21 +20,17 @@
         <a
           :href="`${bookmarkLink}`"
           target="_blank"
-          class="paragraph-secondary"
-          >{{ bookmarkLink }}</a
-        >
+          class="bookmark-block__informartion-section__secondary__link"
+          ><p class="paragraph-secondary">{{ bookmarkSharedLink }}</p>
+        </a>
         <p class="paragraph-secondary">{{ bookmarkDate }}</p>
         <form>
           <div @click="$emit('button-trigger')" class="confirm-button-edit">
             <p class="paragraph-secondary">change shelf</p>
           </div>
         </form>
-        <form>
-          <button
-            type="submit"
-            class="confirm-button-delete"
-            @click="deleteBookmark(bookmark)"
-          >
+        <form @submit.prevent="$emit('delete-button')">
+          <button type="submit" class="confirm-button-delete">
             <p class="paragraph-secondary">delete</p>
           </button>
         </form>
@@ -44,7 +40,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   props: [
     "bookmarkLogo",
@@ -54,30 +49,13 @@ export default {
     "bookmarkDate",
     "isPopup",
     "bookmark",
+    "bookmarkSharedLink",
   ],
   data() {
     return {
       bookmarkReq: null,
       currentBookmarkId: "",
     };
-  },
-  methods: {
-    async deleteBookmark(bookmark) {
-      try {
-        this.currentBookmarkId = bookmark._id;
-        this.bookmarkReq = await axios.delete(
-          `${this.$store.getters.baseURL}bookmark/${this.currentBookmarkId}`,
-          {
-            headers: {
-              Authorization: "Bearer " + this.$store.getters.userToken,
-            },
-          }
-        );
-        this.isEditBookmark = !this.isEditBookmark;
-      } catch (error) {
-        console.log(error.data.data.code);
-      }
-    },
   },
 };
 </script>
@@ -172,6 +150,12 @@ export default {
     font-family: $main-font-family;
     margin-right: 5 * $module;
     line-height: 160%;
+  }
+}
+.bookmark-block__informartion-section__secondary__link {
+  max-width: 400px;
+  .paragraph-secondary {
+    word-wrap: break-word;
   }
 }
 </style>

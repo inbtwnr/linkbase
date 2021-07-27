@@ -1,7 +1,7 @@
 <template>
   <div class="category-wrapper">
     <div class="category-plate">
-      <p class="paragraph-primary" @click="getUserOneCategoryList(category)">
+      <p class="paragraph-primary" @click="getUserBookmarks(category)">
         {{ nameLink }}
       </p>
       <div class="category-options__btn">
@@ -23,7 +23,9 @@ import { mapActions } from "vuex";
 
 export default {
   props: ["nameLink", "category"],
-  methods: mapActions(["getUserOneCategoryList"]),
+  methods: {
+    ...mapActions(["getUserBookmarks"]),
+  },
 
   data() {
     return {
@@ -40,7 +42,7 @@ export default {
   &:hover {
     background: #ececec;
     .category-options__btn {
-      :hover {
+      &:hover {
         background: #e0e0e0;
       }
     }
@@ -90,6 +92,9 @@ export default {
     }
     :first-child {
       margin-left: $module / 2;
+    }
+    :hover {
+      background: #041a25;
     }
   }
 }
