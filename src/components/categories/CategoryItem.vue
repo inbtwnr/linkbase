@@ -77,7 +77,7 @@ export default {
     display: flex;
     z-index: 50;
     padding: 6.5px 1px 7.5px 1px;
-    &:hover {
+    :hover {
       background: #e7e5e5;
       padding: 6.5px 1px 7.5px 1px;
       border-radius: $module;

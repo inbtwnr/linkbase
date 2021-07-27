@@ -58,6 +58,7 @@ export default new Vuex.Store({
                 console.log("Successful login");
                 console.log("Directing to home page");
                 localStorage.setItem("token", status.data.token);
+                ctx.commit("updateUserToken", localStorage.getItem("token"));
                 ctx.commit("updateInvalidEmailError", false);
                 ctx.commit("updateInvalidPasswordError", false);
                 ctx.commit("updateInvalidEmailPasswordError", false);
