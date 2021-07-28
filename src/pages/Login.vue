@@ -74,7 +74,7 @@
         </div>
       </div>
       <div class="login-block__form__submit-block">
-        <input type="submit" value="Login" class="paragraph-primary" />
+        <input type="submit" :value="buttonText" class="paragraph-primary" />
       </div>
     </form>
     <div class="login-block__links">
@@ -93,6 +93,7 @@ export default {
       msg: "Welcome to Linkbase",
       email: "",
       password: "",
+      buttonText: "Login",
     };
   },
   methods: {

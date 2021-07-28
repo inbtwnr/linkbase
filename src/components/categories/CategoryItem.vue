@@ -85,12 +85,9 @@ export default {
     .category-options__btn__points__point {
       width: $module;
       height: $module;
-      background: #88b8ff;
+      background: #747474;
       margin-right: $module / 2;
       border-radius: $module / 2;
-      :hover {
-        background: #3283fe;
-      }
     }
     :first-child {
       margin-left: $module / 2;

@@ -62,6 +62,7 @@ export default new Vuex.Store({
 
                 console.log("Successful login");
                 console.log("Directing to home page");
+                this.buttonText = "Waiting";
                 localStorage.setItem("token", status.data.token);
                 ctx.commit("updateUserToken", localStorage.getItem("token"));
                 ctx.commit("updateInvalidEmailError", false);
@@ -483,18 +484,6 @@ export default new Vuex.Store({
                     userBookmarks = "Have no links";
                     this.state.isLinks = false;
                 }
-                const categoryTitle = await axios.get(`${this.getters.baseURL}user/`, {
-                    headers: {
-                        Authorization: "Bearer " + this.getters.userToken,
-                    },
-                });
-                const userCategories = categoryTitle.data.data.categories.map(
-                    (item) => {
-                        return item;
-                    }
-                );
-                let currentCategory = userCategories.filter(word => word._id == selected.id)
-                ctx.commit('updateCurrentCategory', currentCategory[0].title)
                 ctx.commit('updateUserBookmarks', userBookmarks)
             } catch (error) {
                 console.log(error)
