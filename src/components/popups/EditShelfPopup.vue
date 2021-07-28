@@ -13,9 +13,7 @@
       </div>
       <div class="input-block">
         <form
-          @submit.prevent="
-            changeCategoryName([editShelfName, currentCategoryId])
-          "
+          @submit.prevent="editCategoryName([editShelfName, currentCategoryId])"
         >
           <p>New title</p>
           <input
@@ -49,6 +47,10 @@ export default {
   methods: {
     ...mapMutations(["updateIsEditShelf"]),
     ...mapActions(["changeCategoryName", "deleteCategory"]),
+    async editCategoryName([editShelfName, currentCategoryId]) {
+      await this.changeCategoryName([editShelfName, currentCategoryId]);
+      this.editShelfName = "";
+    },
     ToggleEditShelfPopup() {
       this.updateIsEditShelf(!this.$store.state.isEditShelf);
     },

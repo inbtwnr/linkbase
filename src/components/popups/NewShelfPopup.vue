@@ -44,8 +44,9 @@ export default {
     ToggleNewShelfPopup() {
       this.updateIsNewShelf(!this.$store.state.isNewShelf);
     },
-    submit() {
-      this.createCategory([this.categoryTitle]);
+    async submit() {
+      await this.createCategory([this.categoryTitle]);
+      this.categoryTitle = "";
     },
   },
 };

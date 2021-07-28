@@ -363,6 +363,7 @@ export default new Vuex.Store({
                         },
                     }
                 );
+
                 this.state.isEditShelf = !this.state.isEditShelf;
                 const user = await axios.get(`${this.getters.baseURL}user/`, {
                     headers: {
@@ -419,7 +420,7 @@ export default new Vuex.Store({
                         },
                     }
                 );
-                this.state.isEditBookmark = !this.state.isEditBookmark;
+
                 if (bookmarkOwner) {
                     const user = await axios.get(`${this.getters.baseURL}category/${bookmarkOwner}`, {
                         headers: {

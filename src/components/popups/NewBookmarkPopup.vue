@@ -56,8 +56,10 @@ export default {
     ToggleNewBookmarkPopup() {
       this.updateIsNewBookmark(!this.$store.state.isNewBookmark);
     },
-    submit() {
-      this.createBookmark([this.bookmarkTitle, this.selected]);
+    async submit() {
+      await this.createBookmark([this.bookmarkTitle, this.selected]);
+      this.bookmarkTitle = "";
+      this.selected = "";
     },
   },
 };
