@@ -6,11 +6,15 @@
           <p class="paragraph-primary">Linkbase</p>
         </div>
         <div class="navigaion-bar-block__login-and-signup">
-          <div class="paragraph-primary">
-            <router-link to="login">Sign In</router-link>
+          <div class="login-button">
+            <router-link class="paragraph-primary" to="login"
+              >Login</router-link
+            >
           </div>
-          <div class="paragraph-primary">
-            <router-link to="signup">Sign up</router-link>
+          <div class="signup-button">
+            <router-link class="paragraph-primary" to="signup"
+              >Sign up</router-link
+            >
           </div>
         </div>
       </div>
@@ -32,6 +36,7 @@
     display: flex;
     margin: 0;
     padding: 0;
+    align-items: center;
     p {
       margin: 0;
       padding: 4 * $module 0;
@@ -59,9 +64,7 @@
     -webkit-user-select: none;
     user-select: none;
     display: flex;
-    :first-child {
-      margin-right: 4 * $module;
-    }
+    align-items: center;
   }
 }
 .promo-block {
@@ -81,5 +84,37 @@
 }
 .promo-block__main {
   width: 1000px;
+}
+
+.login-button {
+  padding: 1 * $module 3 * $module;
+  background: #fff;
+  border-radius: 9 * $module;
+  a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #000;
+  }
+  &:hover {
+    padding: 1 * $module 3 * $module;
+    background: #f3f3f3;
+    border-radius: 9 * $module;
+  }
+  margin-right: 4 * $module;
+}
+.signup-button {
+  padding: 1 * $module 3 * $module;
+  background: #3283fe;
+  border-radius: 9 * $module;
+  a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #fff;
+  }
+  &:hover {
+    padding: 1 * $module 3 * $module;
+    background: #236ddb;
+    border-radius: 9 * $module;
+  }
 }
 </style>
