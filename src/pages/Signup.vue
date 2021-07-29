@@ -1,7 +1,9 @@
 <template>
   <div class="signup-block">
     <form class="signup-block__form" @submit.prevent="signupSubmit()">
-      <router-link to="/"> Back </router-link>
+      <router-link to="/" class="back-button"
+        ><p class="paragraph-secondary">Back</p></router-link
+      >
       <div class="signup-block__form__title-block">
         <h1 class="header-1">{{ msg }}</h1>
       </div>
@@ -76,8 +78,10 @@
       </div>
     </form>
     <div class="signup-block__links">
-      <router-link to="/login" class="paragraph-secondary"
-        >Have an account? Login here</router-link
+      <router-link to="/login" class="bottom-button"
+        ><p class="paragraph-secondary">
+          Have an account? Login here
+        </p></router-link
       >
     </div>
   </div>
@@ -168,6 +172,23 @@ export default {
   }
   :last-child {
     margin-bottom: 0px;
+  }
+}
+
+.back-button {
+  text-decoration: none;
+  color: #105cf4;
+  margin-bottom: 6 * $module;
+  &:hover {
+    color: #7aa6ff;
+  }
+}
+
+.bottom-button {
+  text-decoration: none;
+  color: #105cf4;
+  &:hover {
+    color: #7aa6ff;
   }
 }
 
