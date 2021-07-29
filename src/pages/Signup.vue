@@ -1,9 +1,6 @@
 <template>
   <div class="signup-block">
-    <form
-      class="signup-block__form"
-      @submit.prevent="signupClick([name, email, password])"
-    >
+    <form class="signup-block__form" @submit.prevent="signupSubmit()">
       <router-link to="/"> Back </router-link>
       <div class="signup-block__form__title-block">
         <h1 class="header-1">{{ msg }}</h1>
@@ -75,7 +72,7 @@
         </div>
       </div>
       <div class="signup-block__form__submit-block">
-        <input type="submit" value="Sign up" class="paragraph-primary" />
+        <input type="submit" :value="buttonText" class="paragraph-primary" />
       </div>
     </form>
     <div class="signup-block__links">
@@ -96,74 +93,15 @@ export default {
       name: "",
       email: "",
       password: "",
+      buttonText: "Sign up",
     };
   },
   methods: {
     ...mapActions(["signupClick"]),
-    // async loginClick() {
-    //   const data = {
-    //     username: this.userName,
-    //     email: this.userEmail,
-    //     password: this.userPassword,
-    //   };
-    //   const dataLogin = {
-    //     email: this.userEmail,
-    //     password: this.userPassword,
-    //   };
-    //   try {
-    //     console.log("From try");
-    //     let signupResponse = await axios.post(
-    //       `${this.$store.getters.baseURL}user/signup`,
-    //       data
-    //     );
-    //     console.log(signupResponse.data);
-    //     this.invalidEmailError = false;
-    //     this.invalidPasswordError = false;
-    //     this.invalidEmailPasswordError = false;
-    //     this.userExistsError = false;
-    //     let loginResponse = await axios.post(
-    //       `${this.$store.getters.baseURL}user/login`,
-    //       dataLogin
-    //     );
-    //     console.log(loginResponse.data);
-    //     localStorage.setItem("token", this.loginResponse.data.token);
-    //     this.$router.push("/home");
-    //   } catch (error) {
-    //     console.log(error.response.status);
-    //     this.errorModel = error.response.data.code;
-    //     switch (error.response.data.code) {
-    //       case "invalid_email":
-    //         console.log("Invalid format of email");
-    //         this.invalidEmailError = true;
-    //         break;
-    //       case "invalid_password":
-    //         console.log("Invalid format of the pw, min 6 characters required");
-    //         this.invalidPasswordError = true;
-    //         break;
-    //       case "invalid_email_and_password":
-    //         console.log("Combination of two above codes");
-    //         this.invalidEmailPasswordError = true;
-    //         break;
-    //       case "user_exists":
-    //         console.log("User already exists in database");
-    //         this.userExistsError = true;
-    //         break;
-    //       case "incorrect_password":
-    //         console.log("Incorrect password for user account");
-    //         this.incorrectPassword = !this.incorrectPassword;
-    //         break;
-    //       case "user_not_found":
-    //         console.log("User was not found in database");
-    //         this.userNotFoundError = !this.userNotFoundError;
-    //         break;
-    //       default:
-    //         console.log("Unknown error");
-    //         console.log(this.errorModel[0].msg);
-    //         console.log(this.errorModel[0].message);
-    //         break;
-    //     }
-    //   }
-    // },
+    signupSubmit() {
+      this.buttonText = "Waiting...";
+      this.signupClick([this.name, this.email, this.password]);
+    },
   },
   computed: {
     ...mapGetters([

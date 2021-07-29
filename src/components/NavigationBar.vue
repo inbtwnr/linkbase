@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations, mapActions } from "vuex";
 import NewShelfPopup from "@/components/popups/NewShelfPopup.vue";
 import NewBookmarkPopup from "@/components/popups/NewBookmarkPopup.vue";
 export default {
@@ -48,6 +48,7 @@ export default {
   },
   methods: {
     ...mapMutations(["updateIsNewShelf", "updateIsNewBookmark"]),
+    ...mapActions(["deleteEverything"]),
     ToggleNewShelfPopup() {
       this.updateIsNewShelf(!this.$store.state.isNewShelf);
     },
@@ -57,7 +58,8 @@ export default {
     submit() {
       this.createCategory();
     },
-    closeHome() {
+    async closeHome() {
+      await this.deleteEverything();
       this.$router.push("/");
     },
     chooseCategory(category) {

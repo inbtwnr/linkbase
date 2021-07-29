@@ -491,6 +491,14 @@ export default new Vuex.Store({
                 console.log(error.response.data.code);
             }
         },
+        deleteEverything(ctx) {
+            ctx.commit('updateUserName', "");
+            ctx.commit('updateUserCategories', []);
+            ctx.commit('updateUserEmail', "");
+            ctx.commit('updateUserPassword', "");
+            ctx.commit('updateUserBookmark', [])
+            localStorage.removeItem("token")
+        }
     },
     getters: {
         userName(state) {

@@ -1,9 +1,6 @@
 <template>
   <div class="login-block">
-    <form
-      class="login-block__form"
-      @submit.prevent="loginClick([email, password])"
-    >
+    <form class="login-block__form" @submit.prevent="loginSubmit()">
       <router-link to="/"> Back </router-link>
       <div class="login-block__form__title-block">
         <h1 class="header-1">{{ msg }}</h1>
@@ -98,6 +95,10 @@ export default {
   },
   methods: {
     ...mapActions(["loginClick"]),
+    loginSubmit() {
+      this.buttonText = "Waiting...";
+      this.loginClick([this.email, this.password]);
+    },
   },
   computed: {
     ...mapGetters([
@@ -108,85 +109,6 @@ export default {
       "userNotFoundError",
     ]),
   },
-  // data() {
-  //   return {
-  //     msg: "Welcome back to Linkbase",
-  //     userEmail: "",
-  //     userPassword: "",
-  //     userToken: "",
-  //     errorModel: [],
-  //     invalidEmailError: "",
-  //     invalidPassword: "",
-  //     incorrectPassword: "",
-  //     invalidEmailPasswordError: "",
-  //     userNotFoundError: "",
-  //     status: null,
-  //   };
-  // },
-  // methods: {
-  //   async loginClick() {
-  //     const data = {
-  //       email: this.userEmail,
-  //       password: this.userPassword,
-  //     };
-  //     try {
-  //       console.log("From try");
-  //       this.status = await axios.post(
-  //         `${this.$store.getters.baseURL}user/login`,
-  //         data
-  //       );
-  //       this.invalidEmailError = false;
-  //       this.invalidPassword = false;
-  //       this.incorrectPassword = false;
-  //       this.userNotFoundError = false;
-  //       localStorage.setItem("token", this.status.data.token);
-  //       this.$store.state.userToken = localStorage.getItem("token");
-  //       console.log(this.$store.getters.userToken);
-  //       console.log(this.status);
-  //       this.$router.push("home");
-  //     } catch (error) {
-  //       console.log(error.response.data.code);
-  //       this.errorModel = error.response.data.code;
-  //       switch (this.errorModel) {
-  //         case "invalid_email":
-  //           console.log("Invalid format of email");
-  //           this.invalidEmailError = !this.invalidEmailError;
-  //           break;
-  //         case "invalid_password":
-  //           console.log("Invalid format of the pw, min 6 characters required");
-  //           this.invalidPassword = !this.invalidPassword;
-  //           break;
-  //         case "incorrect_password":
-  //           console.log("Incorrect password for user account");
-  //           this.incorrectPassword = !this.incorrectPassword;
-  //           break;
-  //         case "invalid_email_and_password":
-  //           console.log("Combination of two above codes");
-  //           this.invalidEmailPasswordError = !this.invalidEmailPasswordError;
-  //           break;
-  //         case "user_not_found":
-  //           console.log("User was not found in database");
-  //           this.userNotFoundError = !this.userNotFoundError;
-  //           break;
-  //         default:
-  //           console.log("Unknown error");
-  //           break;
-  //       }
-  //     }
-  //   },
-  // },
-  // computed: {
-  //   userPassword: {
-  //     set(value) {
-  //       this.$store.commit("updateUserPassword", value);
-  //     },
-  //   },
-  //   userEmail: {
-  //     set(value) {
-  //       this.$store.commit("updateUserEmail", value);
-  //     },
-  //   },
-  // },
 };
 </script>
 
