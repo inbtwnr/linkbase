@@ -53,6 +53,28 @@ export default {
 <style lang="scss">
 @import "@/assets/styles/_fonts.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
+  .home-block {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .home-block-container {
+    display: block;
+    .home-block-container__main-header {
+      margin: 16 * $module 0;
+      p {
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        user-select: none;
+        margin: 0;
+      }
+    }
+  }
+  .no-token-block {
+    width: 100%;
+    height: 100%;
+  }
 }
 @media screen and (min-device-width: 425px) and (max-device-width: 768px) {
 }

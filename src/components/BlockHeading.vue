@@ -16,6 +16,23 @@ export default {
 <style lang="scss">
 @import "@/assets/styles/_fonts.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
+  .button-block {
+    display: flex;
+    align-items: center;
+    p {
+      margin: 0;
+      margin-right: 6 * $module;
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+  }
+  hr {
+    border: 1px solid #f1f1f1;
+    margin-top: 4 * $module;
+    margin-bottom: 6 * $module;
+  }
 }
 @media screen and (min-device-width: 425px) and (max-device-width: 768px) {
 }

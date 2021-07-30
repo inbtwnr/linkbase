@@ -228,12 +228,16 @@ export default {
     box-sizing: border-box;
   }
 }
+
 @media screen and (min-device-width: 425px) and (max-device-width: 768px) {
 }
+
 @media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
 }
+
 @media screen and (min-device-width: 1024px) and (max-device-width: 1364px) {
 }
+
 @media screen and (min-device-width: 1365px) {
   .login-block {
     display: flex;

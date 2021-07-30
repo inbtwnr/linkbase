@@ -27,6 +27,15 @@ export default {
 <style lang="scss">
 @import "@/assets/styles/_fonts.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
+  .bookmarks-block {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    margin-bottom: 64px;
+    box-sizing: border-box;
+    padding-left: 6 * $module;
+    padding-right: 6 * $module;
+  }
 }
 @media screen and (min-device-width: 425px) and (max-device-width: 768px) {
 }
