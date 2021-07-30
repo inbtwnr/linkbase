@@ -52,107 +52,111 @@ export default {
 
 <style lang="scss">
 @import "@/assets/styles/_fonts.scss";
-.category-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  :last-child {
-    margin-right: 0;
+@media screen and (min-device-width: 360px) and (max-device-width: 424px) {
+}
+@media screen and (min-device-width: 425px) and (max-device-width: 768px) {
+}
+@media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+}
+@media screen and (min-device-width: 1024px) and (max-device-width: 1364px) {
+}
+@media screen and (min-device-width: 1365px) {
+  .category-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    :last-child {
+      margin-right: 0;
+    }
+    div {
+      .category-plate {
+        margin-right: 3 * $module;
+        margin-bottom: 3 * $module;
+      }
+    }
   }
-  div {
-    .category-plate {
-      margin-right: 3 * $module;
+  .popup-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 98;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .confirm-button {
+    cursor: pointer;
+    background-color: #3283fe;
+    border: none;
+    color: white;
+    padding: 2 * $module 3 * $module;
+    border-radius: $module;
+    .paragraph-secondary {
+      margin: 0;
+      font-size: 13px;
+    }
+  }
+  .popup-block {
+    background: #fff;
+    padding: 24px 38px;
+    border-radius: 4px;
+    box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.12);
+    z-index: 99;
+  }
+  .popup-block__header-line {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-content: baseline;
+    p {
+      margin: 0;
+    }
+  }
+  .popup-close {
+    cursor: pointer;
+    color: #3283fe;
+  }
+  .empty {
+    display: none;
+  }
+  .input-block {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    .input-text-block {
+      width: 325px;
+      padding: 2 * $module 4 * $module;
+      box-shadow: none;
+      font-size: 4 * $module;
       margin-bottom: 3 * $module;
     }
   }
-}
-.popup-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 98;
-  background-color: rgba(0, 0, 0, 0.2);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.confirm-button {
-  cursor: pointer;
-  background-color: #3283fe;
-  border: none;
-  color: white;
-  padding: 2 * $module 3 * $module;
-  border-radius: $module;
-  .paragraph-secondary {
+  .confirm-button {
+    cursor: pointer;
+    background-color: #3283fe;
+    border: none;
+    color: white;
+    padding: 2 * $module 3 * $module;
+    border-radius: $module;
+    width: 16 * $module;
+    display: flex;
+    justify-content: center;
+    .paragraph-secondary {
+      margin: 0;
+      font-size: 16px;
+    }
+  }
+  .delete-category {
+    border: none;
+    background: none;
+    padding: 0;
     margin: 0;
-    font-size: 13px;
+    text-align: left;
+    cursor: pointer;
   }
-}
-
-.popup-block {
-  background: #fff;
-  padding: 24px 38px;
-  border-radius: 4px;
-  box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.12);
-  z-index: 99;
-}
-.popup-block__header-line {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  align-content: baseline;
-  p {
-    margin: 0;
-  }
-}
-
-.popup-close {
-  cursor: pointer;
-  color: #3283fe;
-}
-
-.empty {
-  display: none;
-}
-
-.input-block {
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-
-  .input-text-block {
-    width: 325px;
-    padding: 2 * $module 4 * $module;
-    box-shadow: none;
-    font-size: 4 * $module;
-    margin-bottom: 3 * $module;
-  }
-}
-.confirm-button {
-  cursor: pointer;
-  background-color: #3283fe;
-  border: none;
-  color: white;
-  padding: 2 * $module 3 * $module;
-  border-radius: $module;
-  width: 16 * $module;
-  display: flex;
-  justify-content: center;
-  .paragraph-secondary {
-    margin: 0;
-    font-size: 16px;
-  }
-}
-
-.delete-category {
-  border: none;
-  background: none;
-  padding: 0;
-  margin: 0;
-  text-align: left;
-  cursor: pointer;
 }
 </style>

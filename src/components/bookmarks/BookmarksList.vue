@@ -113,61 +113,71 @@ export default {
 
 <style lang="scss">
 @import "@/assets/styles/_fonts.scss";
-.popup-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 98;
-  background-color: rgba(0, 0, 0, 0.2);
+@media screen and (min-device-width: 360px) and (max-device-width: 424px) {
+}
+@media screen and (min-device-width: 425px) and (max-device-width: 768px) {
+}
+@media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+}
+@media screen and (min-device-width: 1024px) and (max-device-width: 1364px) {
+}
+@media screen and (min-device-width: 1365px) {
+  .popup-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 98;
+    background-color: rgba(0, 0, 0, 0.2);
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.confirm-button {
-  cursor: pointer;
-  background-color: #3283fe;
-  border: none;
-  color: white;
-  padding: 2 * $module 3 * $module;
-  border-radius: $module;
-  .paragraph-secondary {
-    margin: 0;
-    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-}
-.empty {
-  display: none;
-}
-.option-block {
-  padding: 2 * $module;
-  font-size: 16px;
-}
-.selected-block {
-  margin-bottom: 16px;
-  padding: 8px 16px;
-  font-size: 16px;
-  width: 360px;
-}
-.popup-block__header-line {
-  margin-bottom: 32px;
-}
-.change-category-block {
-  display: flex;
-  flex-direction: column;
-}
-.confirm-button {
-  cursor: pointer;
-  background-color: #3283fe;
-  border: none;
-  color: white;
-  padding: 2 * $module 3 * $module;
-  border-radius: $module;
-  .paragraph-secondary {
-    margin: 0;
-    font-size: 13px;
+  .confirm-button {
+    cursor: pointer;
+    background-color: #3283fe;
+    border: none;
+    color: white;
+    padding: 2 * $module 3 * $module;
+    border-radius: $module;
+    .paragraph-secondary {
+      margin: 0;
+      font-size: 13px;
+    }
+  }
+  .empty {
+    display: none;
+  }
+  .option-block {
+    padding: 2 * $module;
+    font-size: 16px;
+  }
+  .selected-block {
+    margin-bottom: 16px;
+    padding: 8px 16px;
+    font-size: 16px;
+    width: 360px;
+  }
+  .popup-block__header-line {
+    margin-bottom: 32px;
+  }
+  .change-category-block {
+    display: flex;
+    flex-direction: column;
+  }
+  .confirm-button {
+    cursor: pointer;
+    background-color: #3283fe;
+    border: none;
+    color: white;
+    padding: 2 * $module 3 * $module;
+    border-radius: $module;
+    .paragraph-secondary {
+      margin: 0;
+      font-size: 13px;
+    }
   }
 }
 </style>
