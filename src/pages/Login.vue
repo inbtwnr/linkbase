@@ -119,6 +119,114 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/styles/_fonts.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
+  .login-block {
+    display: flex;
+    width: 100%;
+
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    h1 {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .back-button {
+    text-decoration: none;
+    color: #105cf4;
+    margin-bottom: 6 * $module;
+    &:hover {
+      color: #7aa6ff;
+    }
+  }
+
+  .bottom-button {
+    text-decoration: none;
+    color: #105cf4;
+    &:hover {
+      color: #7aa6ff;
+    }
+  }
+
+  .login-block__form {
+    display: flex;
+    flex-direction: column;
+    padding-left: 6 * $module;
+    padding-right: 6 * $module;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 8 * $module;
+  }
+
+  .login-block__form__title-block {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8 * 4px;
+  }
+
+  .login-block__form__inputs-block {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 8 * $module;
+    :first-child {
+      margin-bottom: 2 * $module;
+    }
+    input {
+      padding: 3 * $module 2 * $module;
+      border-radius: $module;
+      border: 1px solid #e4e4e4;
+      background: #fcfcfc;
+      &:active,
+      &:focus {
+        background: #ffffff;
+        border: 1px solid #1e9deb;
+        border-radius: $module;
+      }
+      &:hover {
+        background: #ffffff;
+      }
+    }
+  }
+
+  .login-block__form__submit-block {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    input {
+      border: 0;
+      padding: 3 * $module 2 * $module;
+      width: 100%;
+      border-radius: 50vh;
+      color: #ffffff;
+      background: #1e9deb;
+      &:hover {
+        background: #1084cc;
+      }
+    }
+  }
+
+  .signup-block__form__inputs-block__error-notice {
+    display: none;
+  }
+
+  .signup-block__form__inputs-block__error-ntc__activated {
+    display: block;
+    color: red;
+    .paragraph-secondary {
+      margin-top: 0px;
+      margin-bottom: 2 * $module;
+    }
+  }
+
+  .login-block__links {
+    width: 100%;
+    padding-left: 6 * $module;
+    padding-right: 6 * $module;
+    box-sizing: border-box;
+  }
 }
 @media screen and (min-device-width: 425px) and (max-device-width: 768px) {
 }
