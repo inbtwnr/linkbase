@@ -1,8 +1,10 @@
 <template>
   <div>
-    <div class="button-block">
-      <p class="header-2">{{ blcHeader }}</p>
-    </div>
+    <transition name="fade" mode="out-in">
+      <div class="button-block">
+        <p class="header-2">{{ blcHeader }}</p>
+      </div>
+    </transition>
     <hr />
   </div>
 </template>

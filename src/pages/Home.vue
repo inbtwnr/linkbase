@@ -1,5 +1,10 @@
 <template>
   <div v-if="token" class="home-block">
+    <div v-if="loadingScreen">
+      <div class="loading-screen">
+        <img src="@/assets/spinner.svg" alt="" />
+      </div>
+    </div>
     <div class="home-block-container">
       <navigation-bar :username="userName"></navigation-bar>
       <category-block :categories="userCategories"></category-block>
@@ -26,18 +31,22 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["userCategories", "userName", "userBookmarks"]),
+    ...mapGetters([
+      "userCategories",
+      "userName",
+      "userBookmarks",
+      "loadingScreen",
+    ]),
   },
   methods: {
-    ...mapActions(["getUserCategories", "getUserName", "getUserBookmarks"]),
+    ...mapActions(["getUserMainInfo", "getUserBookmarks"]),
     directToLogin() {
       this.$router.push("login");
     },
   },
   mounted() {
     try {
-      this.getUserCategories();
-      this.getUserName();
+      this.getUserMainInfo();
       this.getUserBookmarks();
     } catch (error) {
       console.log(error.response.data);
@@ -83,6 +92,22 @@ export default {
 @media screen and (min-device-width: 1024px) and (max-device-width: 1364px) {
 }
 @media screen and (min-device-width: 1365px) {
+  .loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 98;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
   .home-block {
     width: 100%;
     display: flex;

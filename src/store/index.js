@@ -33,7 +33,8 @@ export default new Vuex.Store({
         isNewShelf: false,
         isNewBookmark: false,
         isEditShelf: false,
-        isEditBookmark: false
+        isEditBookmark: false,
+        loadingTrigger: null,
     },
     actions: {
         async loginClick(ctx, [email, password]) {
@@ -175,19 +176,25 @@ export default new Vuex.Store({
             }
 
         },
-        async getUserCategories(ctx) {
+        async getUserMainInfo(ctx) {
             try {
+                ctx.commit("updateLoadingTrigger", true)
                 const user = await axios.get(`${this.getters.baseURL}user/`, {
                     headers: {
                         Authorization: "Bearer " + this.getters.userToken,
                     },
                 });
+                ctx.commit("updateLoadingTrigger", false)
                 const userCategories = user.data.data.categories.map(
                     (item) => {
                         return item;
                     }
                 );
+                const userName = user.data.data.username;
+
+                ctx.commit('updateUserName', userName)
                 ctx.commit('updateUserCategories', userCategories)
+
             } catch (error) {
                 console.log(error.data.data.code)
             }
@@ -403,6 +410,8 @@ export default new Vuex.Store({
                         return item;
                     }
                 );
+                ctx.commit('updateCurrentCategory', "Bookmarks")
+                this.state.isLinks = false;
                 ctx.commit('updateUserCategories', userCategories)
             } catch (error) {
                 console.log(error);
@@ -504,6 +513,9 @@ export default new Vuex.Store({
         }
     },
     getters: {
+        loadingScreen(state) {
+            return state.loadingTrigger;
+        },
         userName(state) {
             return state.userName;
         },
@@ -567,6 +579,9 @@ export default new Vuex.Store({
         },
     },
     mutations: {
+        updateLoadingTrigger(state, loadingTrigger) {
+            state.loadingTrigger = loadingTrigger;
+        },
         updateUserName(state, userName) {
             state.userName = userName;
         },
