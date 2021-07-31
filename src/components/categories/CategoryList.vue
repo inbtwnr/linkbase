@@ -57,6 +57,8 @@ export default {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-top: 6 * $module;
+
     :last-child {
       margin-right: 0;
     }

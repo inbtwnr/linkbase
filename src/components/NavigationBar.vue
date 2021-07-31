@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="navigaion-bar-block__username-and-exit" @click="closeHome">
-        {{ username }}, exit
+        {{ username }}, Log out
       </div>
     </div>
   </div>
@@ -132,6 +132,7 @@ export default {
   .navigaion-bar-block {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 48px;
     .navigaion-bar-block__logo-and-addings {
       display: flex;
@@ -167,6 +168,13 @@ export default {
       -khtml-user-select: none;
       -webkit-user-select: none;
       user-select: none;
+      padding: 2 * $module 2 * $module;
+      border: 1px solid #e78080;
+      border-radius: $module;
+      color: #e78080;
+      &:hover {
+        background: #fff7f7;
+      }
     }
   }
 }

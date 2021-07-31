@@ -87,6 +87,7 @@ export default {
     width: 100%;
     display: flex;
     justify-content: center;
+    overflow: hidden;
   }
   .home-block-container {
     display: block;

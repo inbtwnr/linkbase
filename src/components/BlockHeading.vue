@@ -56,7 +56,6 @@ export default {
   hr {
     border: 1px solid #f1f1f1;
     margin-top: 4 * $module;
-    margin-bottom: 6 * $module;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="notice">
+  <div v-if="notice" class="bookmarks-list">
     <edit-bookmark-popup
       :currentBookmarkId="currentBookmarkId"
       :bookmarkCategory="bookmarkCategory"
@@ -56,7 +56,11 @@ export default {
     bookmarkDateItem(bookmark) {
       let linkDate = new Date(bookmark.date);
       let result = "";
-      if (linkDate.getMonth() < 10 && linkDate.getDate() < 10) {
+      if (
+        linkDate.getMonth() < 10 &&
+        linkDate.getDate() < 10 &&
+        linkDate.getMinutes() < 10
+      ) {
         result =
           "0" +
           linkDate.getDate().toString() +
@@ -68,6 +72,7 @@ export default {
           " at " +
           linkDate.getHours().toString() +
           ":" +
+          "0" +
           linkDate.getMinutes().toString();
       } else if (linkDate.getDate() < 10) {
         result =
@@ -92,6 +97,18 @@ export default {
           " at " +
           linkDate.getHours().toString() +
           ":" +
+          linkDate.getMinutes().toString();
+      } else if (linkDate.getMinutes() < 10) {
+        result =
+          linkDate.getDate().toString() +
+          "." +
+          (linkDate.getMonth() + 1).toString() +
+          "." +
+          linkDate.getFullYear().toString() +
+          " at " +
+          linkDate.getHours().toString() +
+          ":" +
+          "0" +
           linkDate.getMinutes().toString();
       }
       return result;
@@ -126,6 +143,26 @@ export default {
 @media screen and (min-device-width: 1024px) and (max-device-width: 1364px) {
 }
 @media screen and (min-device-width: 1365px) {
+  .bookmarks-list {
+    overflow: auto;
+    height: 540px;
+    padding-bottom: 16 * $module;
+    box-sizing: border-box;
+  }
+
+  .bookmarks-list::-webkit-scrollbar {
+    width: 0.6em;
+  }
+
+  .bookmarks-list::-webkit-scrollbar-track {
+    background-color: rgb(241, 241, 241);
+    border-radius: 100vh;
+  }
+
+  .bookmarks-list::-webkit-scrollbar-thumb {
+    background-color: rgb(199, 199, 199);
+    border-radius: 100vh;
+  }
   .popup-screen {
     position: fixed;
     top: 0;

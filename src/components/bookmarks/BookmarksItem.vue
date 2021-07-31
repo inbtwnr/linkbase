@@ -191,14 +191,14 @@ export default {
     :focus {
       .bookmark-settings-block {
         display: block;
-        position: absolute;
-        z-index: 50;
+        position: relative;
+        z-index: 1;
         padding: 0;
-        border: 1px solid rgb(223, 223, 223);
-        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.12);
+        height: 0;
         border-radius: 2 * $module;
         animation-name: example;
         animation-duration: 0.25s;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.12);
       }
       @keyframes example {
         from {
@@ -290,6 +290,11 @@ export default {
     box-sizing: border-box;
     display: flex;
     width: 100%;
+    border-left: 1px solid rgb(223, 223, 223);
+    border-right: 1px solid rgb(223, 223, 223);
+    border-bottom: 1px solid rgb(223, 223, 223);
+
+    z-index: 1;
     &:hover {
       background: rgb(255, 239, 239);
     }
@@ -304,12 +309,18 @@ export default {
     cursor: pointer;
     background: none;
     border: none;
-    border-radius: 2 * $module 2 * $module 0 0 ;
+    border-radius: 2 * $module 2 * $module 0 0;
+    background: #fff;
+    z-index: 1;
     margin: 0;
     padding: 2 * $module 4 * $module;
     box-sizing: border-box;
     display: flex;
     width: 100%;
+    border-top: 1px solid rgb(223, 223, 223);
+    border-left: 1px solid rgb(223, 223, 223);
+    border-right: 1px solid rgb(223, 223, 223);
+
     &:hover {
       background: rgb(241, 241, 241);
     }
