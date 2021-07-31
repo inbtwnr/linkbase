@@ -17,13 +17,13 @@ export default {
 @import "@/assets/styles/_fonts.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
   .category-plate {
-    padding: 0 3 * $module;
+    margin-right: 3 * $module;
+    margin-bottom: 3 * $module;
+    padding: 2 * $module 3 * $module;
     background: #f5f5f5;
     display: flex;
     align-items: center;
-    border-radius: $module;
-    margin-bottom: 3 * $module;
-    margin-right: 3 * $module;
+    border-radius: 2 * $module;
     &:hover {
       background: #ececec;
     }

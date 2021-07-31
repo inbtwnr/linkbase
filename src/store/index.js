@@ -22,6 +22,7 @@ export default new Vuex.Store({
         userExistsError: false,
 
         status: null,
+        bookmarkSettingsTrigger: false,
 
         userCategories: [],
         userBookmarks: [],
@@ -412,6 +413,7 @@ export default new Vuex.Store({
             try {
                 let currentBookmarkId = bookmark._id;
                 let bookmarkOwner = bookmark.category;
+                this.trigger = false;
                 await axios.delete(
                     `${this.getters.baseURL}bookmark/${currentBookmarkId}`,
                     {
@@ -459,6 +461,7 @@ export default new Vuex.Store({
                 const data = {
                     category: selected.id,
                 };
+                this.trigger = false;
                 console.log(data);
                 console.log("bookmark id: " + currentBookmarkId);
                 await axios.put(

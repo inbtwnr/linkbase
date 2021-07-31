@@ -49,6 +49,7 @@ export default {
       this.$store.state.isEditBookmark = !this.$store.state.isEditBookmark;
       console.log(this.currentBookmarkId);
     },
+
     bookmarkDateItem(bookmark) {
       let linkDate = new Date(bookmark.date);
       let result = "";

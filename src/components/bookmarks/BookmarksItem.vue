@@ -23,17 +23,29 @@
           class="bookmark-block__informartion-section__secondary__link"
           ><p class="paragraph-secondary">{{ bookmarkSharedLink }}</p>
         </a>
-        <p class="paragraph-secondary">{{ bookmarkDate }}</p>
-        <form>
-          <div @click="$emit('button-trigger')" class="confirm-button-edit">
-            <p class="paragraph-secondary">change shelf</p>
+        <div class="bookmark-date-block">
+          <p class="paragraph-secondary">{{ bookmarkDate }}</p>
+        </div>
+        <div>
+          <div class="settings-button">
+            <p class="paragraph-secondary">Settings</p>
+            <div class="bookmark-settings-block">
+              <form>
+                <div
+                  @click="$emit('button-trigger')"
+                  class="confirm-button-edit"
+                >
+                  <p class="paragraph-secondary">change shelf</p>
+                </div>
+              </form>
+              <form @submit.prevent="$emit('delete-button')">
+                <button type="submit" class="confirm-button-delete">
+                  <p class="paragraph-secondary">delete</p>
+                </button>
+              </form>
+            </div>
           </div>
-        </form>
-        <form @submit.prevent="$emit('delete-button')">
-          <button type="submit" class="confirm-button-delete">
-            <p class="paragraph-secondary">delete</p>
-          </button>
-        </form>
+        </div>
       </div>
     </div>
   </div>
@@ -55,7 +67,13 @@ export default {
     return {
       bookmarkReq: null,
       currentBookmarkId: "",
+      trigger: false,
     };
+  },
+  methods: {
+    toggleMenu() {
+      this.trigger = !this.trigger;
+    },
   },
 };
 </script>
@@ -85,7 +103,7 @@ export default {
     flex-direction: column;
   }
   .bookmark-block__informartion-section__primary {
-    width: 60%;
+    width: 100%;
     margin: 0 0 3 * $module 0;
     a {
       color: #000;
@@ -168,6 +186,37 @@ export default {
 @media screen and (min-device-width: 1024px) and (max-device-width: 1364px) {
 }
 @media screen and (min-device-width: 1365px) {
+  .settings-button {
+    &:hover,
+    :focus {
+      .bookmark-settings-block {
+        display: block;
+        position: absolute;
+        z-index: 50;
+        padding: 0;
+        border: 1px solid rgb(223, 223, 223);
+        border-radius: 2 * $module;
+        animation-name: example;
+        animation-duration: 0.25s;
+      }
+      @keyframes example {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 100%;
+        }
+      }
+    }
+    .bookmark-settings-block {
+      display: none;
+    }
+  }
+
+  .bookmark-date-block {
+    cursor: auto;
+    margin-right: 6 * $module;
+  }
   .bookmark-block {
     display: flex;
     align-items: stretch;
@@ -234,14 +283,18 @@ export default {
     background: none;
     border: none;
     margin: 0;
-    padding: 0;
+    padding: 2 * $module 4 * $module;
     line-height: 160%;
-
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    &:hover {
+      background: rgb(255, 239, 239);
+    }
     .paragraph-secondary {
       color: #c4082e;
       font-size: 16px;
       font-family: $main-font-family;
-      margin-right: 5 * $module;
       line-height: 160%;
     }
   }
@@ -250,11 +303,16 @@ export default {
     background: none;
     border: none;
     margin: 0;
-    padding: 0;
+    padding: 2 * $module 4 * $module;
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    &:hover {
+      background: rgb(241, 241, 241);
+    }
     .paragraph-secondary {
       font-size: 16px;
       font-family: $main-font-family;
-      margin-right: 5 * $module;
       line-height: 160%;
     }
   }

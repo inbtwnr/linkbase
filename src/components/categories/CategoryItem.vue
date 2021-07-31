@@ -51,11 +51,11 @@ export default {
   .category-plate {
     margin-right: 3 * $module;
     margin-bottom: 3 * $module;
-    padding: $module 3 * $module;
+    padding: 2 * $module 3 * $module;
     background: #f5f5f5;
     display: flex;
     align-items: center;
-    border-radius: $module;
+    border-radius: 2 * $module;
     .paragraph-primary {
       margin: 0;
       margin-right: 2 * $module;
@@ -129,7 +129,7 @@ export default {
     }
   }
 }
-@media screen and (min-device-width: 425px) and (max-device-width: 768px) {
+@media screen and (min-device-width: 425px) and (max-device-width: 767px) {
 }
 @media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
 }
