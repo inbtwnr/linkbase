@@ -93,7 +93,7 @@
 
   .login-button {
     padding: 1 * $module 3 * $module;
-    background: #fff;
+
     border-radius: 9 * $module;
     a {
       text-decoration: none;
@@ -140,6 +140,10 @@
       margin: 0;
       padding: 0;
       align-items: center;
+      .paragraph-primary {
+        font-weight: 700;
+        color: #151c45;
+      }
       p {
         margin: 0;
         padding: 4 * $module 0;
@@ -172,6 +176,7 @@
   }
   .promo-block {
     width: 100%;
+    background: #fafbff;
     display: flex;
     justify-content: center;
   }
@@ -180,10 +185,16 @@
     flex-direction: column;
   }
   .promo-text {
-    font-size: 96px;
-    width: 60%;
-    font-weight: 800;
-    line-height: 110%;
+    font-size: 72px;
+    width: 50%;
+    font-weight: 700;
+    color: #151c45;
+    line-height: 100%;
+    letter-spacing: -3px;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
   }
   .promo-block__main {
     width: 1000px;
@@ -191,7 +202,7 @@
 
   .login-button {
     padding: 1 * $module 3 * $module;
-    background: #fff;
+
     border-radius: 9 * $module;
     a {
       text-decoration: none;
@@ -200,7 +211,8 @@
     }
     &:hover {
       padding: 1 * $module 3 * $module;
-      background: #f3f3f3;
+
+      background: #e9ebf5;
       border-radius: 9 * $module;
     }
     margin-right: 4 * $module;

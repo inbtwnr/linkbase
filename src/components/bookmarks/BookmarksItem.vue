@@ -187,6 +187,9 @@ export default {
 }
 @media screen and (min-device-width: 1365px) {
   .settings-button {
+    .paragraph-secondary {
+      font-weight: 600;
+    }
     &:hover,
     :focus {
       .bookmark-settings-block {
@@ -199,6 +202,9 @@ export default {
         animation-name: example;
         animation-duration: 0.25s;
         box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.12);
+        .paragraph-secondary {
+          font-weight: 400;
+        }
       }
       @keyframes example {
         from {

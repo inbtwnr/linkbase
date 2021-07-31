@@ -34,7 +34,7 @@ export default {
     return {
       newShelfHeader: "New Shelf",
       newShelfLabelMessage: "Give a name of shelf",
-      newShelfInputPlaceHolder: "Shelf Name",
+      newShelfInputPlaceHolder: "shelf name",
       categoryTitle: "",
     };
   },
@@ -52,7 +52,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scope>
 @import "@/assets/styles/_fonts.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
 }
@@ -71,7 +71,6 @@ export default {
     bottom: 0;
     z-index: 98;
     background-color: rgba(0, 0, 0, 0.1);
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -81,11 +80,13 @@ export default {
     background-color: #3283fe;
     border: none;
     color: white;
-    padding: 2 * $module 3 * $module;
-    border-radius: $module;
+    padding: 2 * $module 4 * $module;
+    border-radius: 3 * $module;
     .paragraph-secondary {
       margin: 0;
-      font-size: 13px;
+    }
+    &:hover {
+      background-color: #1966d8;
     }
   }
   .popup-block {
@@ -103,7 +104,7 @@ export default {
     justify-content: space-between;
     flex-direction: row;
     align-content: baseline;
-    margin-bottom: 4 * $module;
+    margin-bottom: 2 * $module;
     p {
       margin: 0;
     }
@@ -112,38 +113,26 @@ export default {
     cursor: pointer;
     color: #3283fe;
   }
-  .confirm-button {
-    cursor: pointer;
-    background-color: #3283fe;
-    border: none;
-    color: white;
-    padding: 2 * $module 3 * $module;
-    border-radius: $module;
-    .paragraph-secondary {
-      margin: 0;
-      font-size: 13px;
-    }
-  }
   .input-block {
     margin-bottom: 8 * $module;
     background: #fff;
     display: flex;
     flex-direction: column;
-    .selected-block {
-      margin-bottom: 16px;
-      padding: 8px 16px;
-      font-size: 16px;
+    .paragraph-secondary {
+      margin-bottom: 2 * $module;
+      color: #6d7188;
     }
     .input-text-block {
       width: 325px;
       padding: 2 * $module 4 * $module;
       box-shadow: none;
-      font-size: 16px;
+      font-size: 14px;
+      border: 1px solid #dddee4;
+      border-radius: $module;
+      :active {
+        border-radius: $module;
+      }
     }
-  }
-  .option-block {
-    padding: 2 * $module;
-    font-size: 16px;
   }
 }
 </style>
