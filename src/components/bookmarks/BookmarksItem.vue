@@ -195,6 +195,7 @@ export default {
         z-index: 50;
         padding: 0;
         border: 1px solid rgb(223, 223, 223);
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.12);
         border-radius: 2 * $module;
         animation-name: example;
         animation-duration: 0.25s;
@@ -285,6 +286,7 @@ export default {
     margin: 0;
     padding: 2 * $module 4 * $module;
     line-height: 160%;
+    border-radius: 0 0 2 * $module 2 * $module;
     box-sizing: border-box;
     display: flex;
     width: 100%;
@@ -302,6 +304,7 @@ export default {
     cursor: pointer;
     background: none;
     border: none;
+    border-radius: 2 * $module 2 * $module 0 0 ;
     margin: 0;
     padding: 2 * $module 4 * $module;
     box-sizing: border-box;

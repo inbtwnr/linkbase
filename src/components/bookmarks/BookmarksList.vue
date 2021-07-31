@@ -6,7 +6,7 @@
     ></edit-bookmark-popup>
     <div v-for="(bookmark, index) in bookmarks" :key="index">
       <bookmarks-item
-        :bookmarkLogo="bookmark.favicon[0]"
+        :bookmarkLogo="bookmarkFavicon(bookmark)"
         :bookmarkHeader="bookmarkHeader(bookmark)"
         :bookmarkDescription="bookmark.description"
         :bookmarkDate="bookmarkDateItem(bookmark)"
@@ -49,7 +49,10 @@ export default {
       this.$store.state.isEditBookmark = !this.$store.state.isEditBookmark;
       console.log(this.currentBookmarkId);
     },
-
+    bookmarkFavicon(bookmark) {
+      let linkIcon = bookmark.favicon[bookmark.favicon.length - 1];
+      return linkIcon;
+    },
     bookmarkDateItem(bookmark) {
       let linkDate = new Date(bookmark.date);
       let result = "";
