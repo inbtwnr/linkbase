@@ -297,6 +297,7 @@ export default {
     box-sizing: border-box;
     display: flex;
     width: 100%;
+    background: #fff;
     border-left: 1px solid rgb(223, 223, 223);
     border-right: 1px solid rgb(223, 223, 223);
     border-bottom: 1px solid rgb(223, 223, 223);
