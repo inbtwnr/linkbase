@@ -1,5 +1,10 @@
 <template>
-  <div class="promo-block">
+  <div v-if="promoSpinnerTrigger">
+    <div class="loading-screen">
+      <img src="@/assets/spinner.svg" alt="" />
+    </div>
+  </div>
+  <div v-else class="promo-block">
     <div class="promo-container">
       <div class="navigaion-bar-block">
         <div class="navigaion-bar-block__logo">
@@ -53,6 +58,24 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      promoSpinnerTrigger: true,
+    };
+  },
+  methods: {
+    turnSpinnerOff() {
+      this.promoSpinnerTrigger = false;
+    },
+  },
+  mounted() {
+    setTimeout(this.turnSpinnerOff, 2000);
+  },
+};
+</script>
 
 <style lang="scss">
 @import "@/assets/styles/_fonts.scss";

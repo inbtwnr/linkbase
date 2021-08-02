@@ -195,6 +195,7 @@ export default {
       .bookmark-settings-block {
         display: block;
         position: relative;
+        background: #fff;
         z-index: 1;
         padding: 0;
         height: 0;
