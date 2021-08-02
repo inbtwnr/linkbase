@@ -43,8 +43,8 @@ export default {
   data() {
     return {
       newBookmarkHeader: "New Bookmark",
-      newBookmarkLabelMessage: "Choose a shelf and name the new bookmark",
-      newBookmarkInputPlaceHolder: "Link",
+      newBookmarkLabelMessage: "Choose a shelf and paste the link",
+      newBookmarkInputPlaceHolder: "https://...",
       bookmarkTitle: "",
       categoryId: "",
       selected: "",
@@ -223,20 +223,32 @@ export default {
     display: flex;
     flex-direction: column;
     .selected-block {
-      margin-bottom: 16px;
-      padding: 8px 16px;
-      font-size: 16px;
+      margin-bottom: 4 * $module;
+      padding: 2 * $module 4 * $module;
+      font-size: 14px;
+      border: 1px solid #dddee4;
+      border-radius: $module;
+      :active {
+        border-radius: $module;
+      }
+      .option-block {
+        padding: 2 * $module 4 * $module;
+        font-size: 14px;
+        border: 1px solid #dddee4;
+        border-radius: $module;
+      }
     }
     .input-text-block {
       width: 325px;
       padding: 2 * $module 4 * $module;
       box-shadow: none;
-      font-size: 16px;
+      font-size: 14px;
+      border: 1px solid #dddee4;
+      border-radius: $module;
+      :active {
+        border-radius: $module;
+      }
     }
-  }
-  .option-block {
-    padding: 2 * $module;
-    font-size: 16px;
   }
 }
 </style>

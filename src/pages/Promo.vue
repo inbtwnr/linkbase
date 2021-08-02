@@ -19,7 +19,36 @@
         </div>
       </div>
       <div class="promo-block__main">
-        <p class="promo-text">Linkbase. Bookmark Storage</p>
+        <div class="promo-greet">
+          <p class="promo-header">Linkbase. Bookmark storage</p>
+          <p class="promo-sub-header">Storage of links in the web</p>
+        </div>
+        <img class="promo-page-img" src="@/assets/promo/page.svg" alt="" />
+        <div class="promo-create-block">
+          <p class="promo-create-block__header">Save links</p>
+          <p class="promo-create-block__text">
+            Link manager that keeps your links in one place. You can save it in
+            some category and use when you need it.
+          </p>
+          <img src="@/assets/promo/bookmarks.png" alt="" />
+        </div>
+        <div class="promo-create-block">
+          <p class="promo-create-block__header">Group links</p>
+          <p class="promo-create-block__text">
+            Every link should have a category. Make groups of links and share
+            with friends!
+          </p>
+          <img src="@/assets/promo/shelfs.png" alt="" />
+        </div>
+        <div class="promo-create-block">
+          <p class="promo-create-block__header">Try on your own</p>
+          <div class="direct-to-login-button">
+            <router-link to="signup">Sign up on Linkbase</router-link>
+          </div>
+        </div>
+      </div>
+      <div class="promo-footer">
+        Design, frontend — Sasha Prysyazhnii, backend — Daniel Karshai
       </div>
     </div>
   </div>
@@ -134,7 +163,7 @@
     display: flex;
     width: 1000px;
     justify-content: space-between;
-    margin-bottom: 48px;
+    margin-bottom: 32 * $module;
     .navigaion-bar-block__logo {
       display: flex;
       margin: 0;
@@ -184,10 +213,12 @@
     display: flex;
     flex-direction: column;
   }
-  .promo-text {
+  .promo-header {
     font-size: 72px;
-    width: 50%;
+    width: 610px;
     font-weight: 700;
+    margin: 0;
+    margin-bottom: 12 * $module;
     color: #151c45;
     line-height: 100%;
     letter-spacing: -3px;
@@ -195,11 +226,90 @@
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+    text-align: center;
+  }
+  .promo-sub-header {
+    font-size: 36px;
+    width: 610px;
+    font-weight: 600;
+    margin: 0;
+    color: #8b9bdb;
+    line-height: 100%;
+    letter-spacing: -1.6px;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    text-align: center;
   }
   .promo-block__main {
     width: 1000px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 24 * $module;
   }
-
+  .promo-greet {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 24 * $module;
+  }
+  .promo-page-img {
+    width: 797px;
+    margin-bottom: 24 * $module;
+  }
+  .promo-create-block {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 24 * $module;
+  }
+  .promo-create-block__header {
+    font-size: 36px;
+    letter-spacing: -1.6px;
+    font-weight: 700;
+    color: #151c45;
+    margin: 0;
+    margin-bottom: 16px;
+  }
+  .promo-create-block__text {
+    font-size: 18px;
+    letter-spacing: -0.3px;
+    width: 360px;
+    line-height: 150%;
+    color: #151c45;
+    margin: 0;
+    text-align: center;
+    margin-bottom: 12 * $module;
+  }
+  .direct-to-login-button {
+    padding: 4 * $module 6 * $module;
+    background: #d5dbf2;
+    border-radius: 6 * $module;
+    color: #151c45;
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: -0.3;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 8 * $module;
+    cursor: pointer;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    a {
+      color: #151c45;
+      font-weight: 600;
+      font-size: 24px;
+      text-decoration: none;
+    }
+    &:hover {
+      background: #c1c8e4;
+    }
+  }
   .login-button {
     padding: 1 * $module 3 * $module;
 
@@ -231,6 +341,11 @@
       background: #236ddb;
       border-radius: 9 * $module;
     }
+  }
+
+  .promo-footer {
+    margin-bottom: 12 * $module;
+    color: #8b9bdb;
   }
 }
 </style>

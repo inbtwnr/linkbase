@@ -2,8 +2,8 @@
   <div>
     <new-shelf-popup></new-shelf-popup>
     <new-bookmark-popup></new-bookmark-popup>
-    <div class="navigaion-bar-block">
-      <div class="navigaion-bar-block__logo-and-addings">
+    <div class="navigation-bar-block">
+      <div class="navigation-bar-block__logo-and-addings">
         <p class="paragraph-primary">Linkbase</p>
         <div class="paragraph-primary" @click="ToggleNewShelfPopup">
           Add shelf
@@ -12,7 +12,7 @@
           Add bookmark
         </div>
       </div>
-      <div class="navigaion-bar-block__username-and-exit" @click="closeHome">
+      <div class="navigation-bar-block__username-and-exit" @click="closeHome">
         {{ username }}, Log out
       </div>
     </div>
@@ -77,7 +77,7 @@ export default {
 <style lang='scss' scoped>
 @import "@/assets/styles/_fonts.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
-  .navigaion-bar-block {
+  .navigation-bar-block {
     display: flex;
     justify-content: space-between;
     margin-bottom: 48px;
@@ -85,7 +85,7 @@ export default {
     box-sizing: border-box;
     padding-left: 6 * $module;
     padding-right: 6 * $module;
-    .navigaion-bar-block__logo-and-addings {
+    .navigation-bar-block__logo-and-addings {
       display: flex;
       margin: 0;
       padding: 0;
@@ -112,7 +112,7 @@ export default {
       }
     }
 
-    .navigaion-bar-block__username-and-exit {
+    .navigation-bar-block__username-and-exit {
       margin: 4 * $module 0;
       cursor: pointer;
       -moz-user-select: none;
@@ -129,12 +129,12 @@ export default {
 @media screen and (min-device-width: 1024px) and (max-device-width: 1364px) {
 }
 @media screen and (min-device-width: 1365px) {
-  .navigaion-bar-block {
+  .navigation-bar-block {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 48px;
-    .navigaion-bar-block__logo-and-addings {
+    .navigation-bar-block__logo-and-addings {
       display: flex;
       margin: 0;
       padding: 0;
@@ -161,7 +161,7 @@ export default {
       }
     }
 
-    .navigaion-bar-block__username-and-exit {
+    .navigation-bar-block__username-and-exit {
       margin: 4 * $module 0;
       cursor: pointer;
       -moz-user-select: none;
