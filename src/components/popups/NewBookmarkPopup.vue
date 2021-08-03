@@ -67,6 +67,7 @@ export default {
 
 <style lang="scss" scope>
 @import "@/assets/styles/_fonts.scss";
+@import "@/assets/styles/_main.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
   .popup-screen {
     position: fixed;

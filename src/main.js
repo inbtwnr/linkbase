@@ -13,6 +13,8 @@ import VueRouter from 'vue-router'
 import router from './router/index'
 
 import '@/assets/styles/_fonts.scss'
+import '@/assets/styles/_main.scss'
+import "@/assets/styles/_colors.scss";
 
 Vue.use(VueRouter);
 Vue.use(Vuex);

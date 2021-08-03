@@ -61,6 +61,9 @@ export default {
 </script>
 <style lang="scss">
 @import "@/assets/styles/_fonts.scss";
+@import "@/assets/styles/_main.scss";
+@import "@/assets/styles/pages/_home.scss";
+@import "@/assets/styles/otherComponentStyles/_loading.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
   .home-block {
     width: 100%;
@@ -92,44 +95,10 @@ export default {
 @media screen and (min-device-width: 1024px) and (max-device-width: 1364px) {
 }
 @media screen and (min-device-width: 1365px) {
-  .loading-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 98;
-    background: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-  }
-  .home-block {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-  }
   .home-block-container {
-    display: block;
     .home-block-container__main-header {
       margin: 16 * $module 0;
-      p {
-        -moz-user-select: none;
-        -khtml-user-select: none;
-        -webkit-user-select: none;
-        user-select: none;
-        margin: 0;
-      }
     }
-  }
-  .no-token-block {
-    width: 100%;
-    height: 100%;
   }
 }
 </style>

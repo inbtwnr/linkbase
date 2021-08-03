@@ -18,7 +18,9 @@
       ></bookmarks-item>
     </div>
   </div>
-  <div v-else>This is where your bookmarks will be located.</div>
+  <div v-else class="empty-bookmark-list">
+    This is where your bookmarks will be located.
+  </div>
 </template>
 
 <script>
@@ -134,6 +136,7 @@ export default {
 
 <style lang="scss">
 @import "@/assets/styles/_fonts.scss";
+@import "@/assets/styles/_main.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
 }
 @media screen and (min-device-width: 425px) and (max-device-width: 768px) {
@@ -148,6 +151,10 @@ export default {
     height: 540px;
     padding-bottom: 16 * $module;
     box-sizing: border-box;
+  }
+
+  .empty-bookmark-list {
+    margin-top: 4 * $module;
   }
 
   .bookmarks-list::-webkit-scrollbar {

@@ -1,0 +1,90 @@
+@import "@/assets/styles/_colors.scss";
+
+.promo-block {
+    width: 100%;
+    background: $promo-page-background;
+    display: flex;
+    justify-content: center;
+  }
+  .promo-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .promo-header {
+    margin: 0;
+    color: $main-font-color;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    text-align: center;
+  }
+  .promo-sub-header {
+    margin: 0;
+    color: $additional-font-color;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    text-align: center;
+  }
+  .promo-block__main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .promo-greet {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    pointer-events: none
+  }
+  .promo-page-img{
+    pointer-events: none
+  }
+  .promo-create-block {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    pointer-events: none
+  }
+  .promo-create-block__header {
+    color: $main-font-color;
+    margin: 0;
+  }
+  .promo-create-block__text {
+    color: $main-font-color;
+    margin: 0;
+    text-align: center;
+  }
+  .direct-to-login-button {
+    background: $promo-button-standart;
+    color: $main-font-color;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: auto;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    a {
+      color: $main-font-color;
+      text-decoration: none;
+    }
+    &:hover {
+      background: $promo-button-hover;
+    }
+  }
+  .promo-footer {
+    color: $additional-font-color;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }

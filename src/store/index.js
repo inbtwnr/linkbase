@@ -178,13 +178,13 @@ export default new Vuex.Store({
         },
         async getUserMainInfo(ctx) {
             try {
-                ctx.commit("updateLoadingTrigger", true)
+                ctx.commit("updateLoadingTrigger", true);
                 const user = await axios.get(`${this.getters.baseURL}user/`, {
                     headers: {
                         Authorization: "Bearer " + this.getters.userToken,
                     },
                 });
-                ctx.commit("updateLoadingTrigger", false)
+                ctx.commit("updateLoadingTrigger", false);
                 const userCategories = user.data.data.categories.map(
                     (item) => {
                         return item;
@@ -195,20 +195,6 @@ export default new Vuex.Store({
                 ctx.commit('updateUserName', userName)
                 ctx.commit('updateUserCategories', userCategories)
 
-            } catch (error) {
-                console.log(error.data.data.code)
-            }
-        },
-        async getUserName(ctx) {
-            try {
-                const user = await axios.get(`${this.getters.baseURL}user/`, {
-                    headers: {
-                        Authorization: "Bearer " + this.getters.userToken,
-                    },
-                });
-                console.log("get username: " + user.data.data.username)
-                const userName = user.data.data.username;
-                ctx.commit('updateUserName', userName)
             } catch (error) {
                 console.log(error.data.data.code)
             }

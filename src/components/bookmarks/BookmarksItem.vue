@@ -80,6 +80,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_fonts.scss";
+@import "@/assets/styles/_main.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
   .bookmark-block {
     display: flex;

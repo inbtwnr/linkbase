@@ -1,22 +1,23 @@
 <template>
-  <div v-if="promoSpinnerTrigger">
-    <div class="loading-screen">
-      <img src="@/assets/spinner.svg" alt="" />
-    </div>
+  <div
+    v-if="!promoPageBookmarks && !promoPageShelfs && !promoPagePic"
+    class="loading-screen"
+  >
+    <img src="@/assets/spinner.svg" alt="" />
   </div>
   <div v-else class="promo-block">
     <div class="promo-container">
-      <div class="navigaion-bar-block">
-        <div class="navigaion-bar-block__logo">
+      <div class="promo-navigation-bar-block">
+        <div class="promo-navigation-bar-block__logo">
           <p class="paragraph-primary">Linkbase</p>
         </div>
-        <div class="navigaion-bar-block__login-and-signup">
-          <div class="login-button">
+        <div class="promo-navigation-bar-block__login-and-signup">
+          <div class="promo-login-button">
             <router-link class="paragraph-primary" to="login"
               >Login</router-link
             >
           </div>
-          <div class="signup-button">
+          <div class="promo-signup-button">
             <router-link class="paragraph-primary" to="signup"
               >Sign up</router-link
             >
@@ -28,14 +29,14 @@
           <p class="promo-header">Linkbase. Bookmark storage</p>
           <p class="promo-sub-header">Storage of links in the web</p>
         </div>
-        <img class="promo-page-img" src="@/assets/promo/page.svg" alt="" />
+        <img class="promo-page-img" :src="promoPagePic" alt="" />
         <div class="promo-create-block">
           <p class="promo-create-block__header">Save links</p>
           <p class="promo-create-block__text">
             Link manager that keeps your links in one place. You can save it in
             some category and use when you need it.
           </p>
-          <img src="@/assets/promo/bookmarks.png" alt="" />
+          <img :src="promoPageBookmarks" alt="" />
         </div>
         <div class="promo-create-block">
           <p class="promo-create-block__header">Group links</p>
@@ -43,7 +44,7 @@
             Every link should have a category. Make groups of links and share
             with friends!
           </p>
-          <img src="@/assets/promo/shelfs.png" alt="" />
+          <img :src="promoPageShelfs" alt="" />
         </div>
         <div class="promo-create-block">
           <p class="promo-create-block__header">Try on your own</p>
@@ -63,22 +64,20 @@
 export default {
   data() {
     return {
-      promoSpinnerTrigger: true,
+      promoPagePic: require("@/assets/promo/page.svg"),
+      promoPageBookmarks: require("@/assets/promo/bookmarks.png"),
+      promoPageShelfs: require("@/assets/promo/shelfs.png"),
     };
-  },
-  methods: {
-    turnSpinnerOff() {
-      this.promoSpinnerTrigger = false;
-    },
-  },
-  mounted() {
-    setTimeout(this.turnSpinnerOff, 2000);
   },
 };
 </script>
 
 <style lang="scss">
 @import "@/assets/styles/_fonts.scss";
+@import "@/assets/styles/_main.scss";
+@import "@/assets/styles/otherComponentStyles/_navigation-bar.scss";
+@import "@/assets/styles/pages/_promo.scss";
+
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
   .navigaion-bar-block {
     display: flex;
@@ -182,100 +181,63 @@ export default {
 @media screen and (min-device-width: 1024px) and (max-device-width: 1364px) {
 }
 @media screen and (min-device-width: 1365px) {
-  .navigaion-bar-block {
-    display: flex;
+  .promo-navigation-bar-block {
     width: 1000px;
-    justify-content: space-between;
     margin-bottom: 32 * $module;
-    .navigaion-bar-block__logo {
-      display: flex;
-      margin: 0;
-      padding: 0;
-      align-items: center;
-      .paragraph-primary {
-        font-weight: 700;
-        color: #151c45;
-      }
+    .promo-navigation-bar-block__logo {
       p {
-        margin: 0;
         padding: 4 * $module 0;
-        margin-right: 24px;
+        margin-right: 6 * $module;
       }
       div {
         padding: 4 * $module 2 * $module;
         margin-right: 24px;
-        cursor: pointer;
-        -moz-user-select: none;
-        -khtml-user-select: none;
-        -webkit-user-select: none;
-        user-select: none;
-      }
-      :last-child {
-        margin-right: 0;
       }
     }
-
-    .navigaion-bar-block__login-and-signup {
+    .promo-navigation-bar-block__login-and-signup {
       margin: 4 * $module 0;
-      cursor: pointer;
-      -moz-user-select: none;
-      -khtml-user-select: none;
-      -webkit-user-select: none;
-      user-select: none;
-      display: flex;
-      align-items: center;
     }
   }
-  .promo-block {
-    width: 100%;
-    background: #fafbff;
-    display: flex;
-    justify-content: center;
+  .promo-login-button {
+    padding: 1 * $module 3 * $module;
+    border-radius: 9 * $module;
+    margin-right: 4 * $module;
+    &:hover {
+      padding: 1 * $module 3 * $module;
+      background: #e9ebf5;
+      border-radius: 9 * $module;
+    }
   }
-  .promo-container {
-    display: flex;
-    flex-direction: column;
+  .promo-signup-button {
+    padding: 1 * $module 3 * $module;
+    background: $promo-button-standart;
+    border-radius: 9 * $module;
+    &:hover {
+      padding: 1 * $module 3 * $module;
+      background: $promo-button-hover;
+      border-radius: 9 * $module;
+    }
   }
   .promo-header {
     font-size: 72px;
     width: 610px;
-    font-weight: 700;
-    margin: 0;
     margin-bottom: 12 * $module;
-    color: #151c45;
-    line-height: 100%;
+    font-weight: 700;
     letter-spacing: -3px;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    text-align: center;
+    line-height: 100%;
   }
   .promo-sub-header {
     font-size: 36px;
     width: 610px;
     font-weight: 600;
-    margin: 0;
-    color: #8b9bdb;
     line-height: 100%;
     letter-spacing: -1.6px;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    text-align: center;
   }
   .promo-block__main {
     width: 1000px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     margin-bottom: 24 * $module;
   }
   .promo-greet {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     margin-bottom: 24 * $module;
   }
   .promo-page-img {
@@ -283,92 +245,35 @@ export default {
     margin-bottom: 24 * $module;
   }
   .promo-create-block {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     margin-bottom: 24 * $module;
   }
   .promo-create-block__header {
     font-size: 36px;
     letter-spacing: -1.6px;
     font-weight: 700;
-    color: #151c45;
-    margin: 0;
-    margin-bottom: 16px;
+    margin-bottom: 4 * $module;
   }
   .promo-create-block__text {
     font-size: 18px;
     letter-spacing: -0.3px;
     width: 360px;
     line-height: 150%;
-    color: #151c45;
-    margin: 0;
-    text-align: center;
     margin-bottom: 12 * $module;
   }
   .direct-to-login-button {
     padding: 4 * $module 6 * $module;
-    background: #d5dbf2;
     border-radius: 6 * $module;
-    color: #151c45;
     font-weight: 600;
     font-size: 24px;
     letter-spacing: -0.3;
-    text-align: center;
-    display: flex;
-    justify-content: center;
     margin-top: 8 * $module;
-    cursor: pointer;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
     a {
-      color: #151c45;
       font-weight: 600;
       font-size: 24px;
-      text-decoration: none;
-    }
-    &:hover {
-      background: #c1c8e4;
     }
   }
-  .login-button {
-    padding: 1 * $module 3 * $module;
-
-    border-radius: 9 * $module;
-    a {
-      text-decoration: none;
-      font-weight: 500;
-      color: #000;
-    }
-    &:hover {
-      padding: 1 * $module 3 * $module;
-
-      background: #e9ebf5;
-      border-radius: 9 * $module;
-    }
-    margin-right: 4 * $module;
-  }
-  .signup-button {
-    padding: 1 * $module 3 * $module;
-    background: #3283fe;
-    border-radius: 9 * $module;
-    a {
-      text-decoration: none;
-      font-weight: 500;
-      color: #fff;
-    }
-    &:hover {
-      padding: 1 * $module 3 * $module;
-      background: #236ddb;
-      border-radius: 9 * $module;
-    }
-  }
-
   .promo-footer {
     margin-bottom: 12 * $module;
-    color: #8b9bdb;
   }
 }
 </style>

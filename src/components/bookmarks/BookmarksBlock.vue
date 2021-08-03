@@ -1,6 +1,9 @@
 <template>
   <div class="bookmarks-block">
-    <block-heading :blcHeader="currentCategory"></block-heading>
+    <block-heading
+      :blcHeader="currentCategory"
+      :isBookmarkHeading="BookmarkHeadingTrigger"
+    ></block-heading>
     <bookmarks-list
       :bookmarks="bookmarks"
       :notice="this.$store.state.isLinks"
@@ -13,6 +16,11 @@ import { mapGetters } from "vuex";
 import BlockHeading from "@/components/BlockHeading.vue";
 import BookmarksList from "./BookmarksList.vue";
 export default {
+  data() {
+    return {
+      BookmarkHeadingTrigger: true,
+    };
+  },
   components: {
     BookmarksList,
     BlockHeading,
@@ -26,6 +34,8 @@ export default {
 
 <style lang="scss">
 @import "@/assets/styles/_fonts.scss";
+@import "@/assets/styles/_main.scss";
+
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
   .bookmarks-block {
     display: flex;

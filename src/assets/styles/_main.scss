@@ -1,0 +1,15 @@
+@import "@/assets/styles/_fonts.scss";
+@import "@/assets/styles/_colors.scss";
+
+body{
+    padding: 0;
+    margin: 0;
+    font-family: $main-font-family;
+}
+
+#app{
+    font-family: $main-font-family;
+    overflow: hidden;
+}
+
+$module: 4px;

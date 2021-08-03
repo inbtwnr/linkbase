@@ -1,40 +1,24 @@
 <template>
-  <div>
-    <transition name="fade" mode="out-in">
-      <div class="button-block">
-        <p class="header-2">{{ blcHeader }}</p>
-      </div>
-    </transition>
+  <div
+    :class="{
+      'shelf-block-heading-block': isShelfHeading,
+      'bookmark-block-heading-block': isBookmarkHeading,
+    }"
+  >
+    <p class="header-2">{{ blcHeader }}</p>
     <hr />
   </div>
 </template>
 
 <script>
 export default {
-  props: ["blcHeader"],
+  props: ["blcHeader", "isShelfHeading", "isBookmarkHeading", "classLiner"],
 };
 </script>
 
 <style lang="scss">
-@import "@/assets/styles/_fonts.scss";
+@import "@/assets/styles/otherComponentStyles/_block-heading.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
-  .button-block {
-    display: flex;
-    align-items: center;
-    p {
-      margin: 0;
-      margin-right: 6 * $module;
-      -moz-user-select: none;
-      -khtml-user-select: none;
-      -webkit-user-select: none;
-      user-select: none;
-    }
-  }
-  hr {
-    border: 1px solid #f1f1f1;
-    margin-top: 4 * $module;
-    margin-bottom: 6 * $module;
-  }
 }
 @media screen and (min-device-width: 425px) and (max-device-width: 768px) {
 }
@@ -43,21 +27,18 @@ export default {
 @media screen and (min-device-width: 1024px) and (max-device-width: 1364px) {
 }
 @media screen and (min-device-width: 1365px) {
-  .button-block {
-    display: flex;
-    align-items: center;
-    p {
-      margin: 0;
-      margin-right: 6 * $module;
-      -moz-user-select: none;
-      -khtml-user-select: none;
-      -webkit-user-select: none;
-      user-select: none;
+  .shelf-block-heading-block {
+    hr {
+      margin-top: 2 * $module;
+      margin-bottom: 4 * $module;
     }
   }
-  hr {
-    border: 1px solid #f1f1f1;
-    margin-top: 4 * $module;
+  .bookmark-block-heading-block {
+    hr {
+      margin-top: 2 * $module;
+      margin-block-start: 0;
+      margin-block-end: 0.2em;
+    }
   }
 }
 </style>

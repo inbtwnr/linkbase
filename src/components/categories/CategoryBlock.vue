@@ -1,6 +1,10 @@
 <template>
   <div class="category-block">
-    <block-heading :blcHeader="categoryInf.categoryHeader"></block-heading>
+    <block-heading
+      :blcHeader="categoryInf.categoryHeader"
+      :isShelfHeading="ShelfHeadingTrigger"
+      :isBookmarkHeading="false"
+    ></block-heading>
     <category-list :categories="categories"></category-list>
   </div>
 </template>
@@ -15,6 +19,7 @@ export default {
       categoryInf: {
         categoryHeader: "Shelfs",
       },
+      ShelfHeadingTrigger: true,
     };
   },
   components: {
@@ -27,6 +32,9 @@ export default {
 
 <style lang="scss">
 @import "@/assets/styles/_fonts.scss";
+@import "@/assets/styles/_main.scss";
+@import "@/assets/styles/otherComponentStyles/_block-heading.scss";
+@import "@/assets/styles/shelfs styles/_shelfs.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
   .category-block {
     display: flex;
@@ -46,9 +54,7 @@ export default {
 }
 @media screen and (min-device-width: 1365px) {
   .category-block {
-    display: flex;
     width: 1000px;
-    flex-direction: column;
     margin-bottom: 12 * $module;
   }
 }

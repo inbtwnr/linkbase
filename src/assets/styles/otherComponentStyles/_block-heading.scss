@@ -1,0 +1,35 @@
+@import "@/assets/styles/_colors.scss";
+@import "@/assets/styles/_main.scss";
+
+.shelf-block-heading-block {
+    
+    p {
+      margin: 0;
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    hr {
+      border: 1px solid $block-header-stroke;
+    }
+}
+  
+
+  .bookmark-block-heading-block {
+    
+    p {
+      
+
+      margin: 0;
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    hr {
+        border: 1px solid $block-header-stroke;
+        margin-top: 2 * $module;
+      }
+  }
+  

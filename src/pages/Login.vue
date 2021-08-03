@@ -118,6 +118,9 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/styles/_fonts.scss";
+@import "@/assets/styles/_main.scss";
+@import "@/assets/styles/pages/_login.scss";
+
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
   .login-block {
     display: flex;
@@ -239,54 +242,18 @@ export default {
 }
 
 @media screen and (min-device-width: 1365px) {
-  .login-block {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    flex-direction: column;
-    h1 {
-      margin: 0;
-      padding: 0;
-    }
-  }
-
   .back-button {
-    text-decoration: none;
-    color: #105cf4;
     margin-bottom: 6 * $module;
-    &:hover {
-      color: #7aa6ff;
-    }
   }
-
-  .bottom-button {
-    text-decoration: none;
-    color: #105cf4;
-    &:hover {
-      color: #7aa6ff;
-    }
-  }
-
   .login-block__form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 29%;
     margin-bottom: 8 * $module;
   }
-
   .login-block__form__title-block {
     width: 67%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 8 * 4px;
+    margin-bottom: 8 * $module;
   }
-
   .login-block__form__inputs-block {
-    display: flex;
-    flex-direction: column;
     width: 67%;
     margin-bottom: 8 * $module;
     :first-child {
@@ -294,51 +261,19 @@ export default {
     }
     input {
       padding: $module 2 * $module;
-      border-radius: $module;
-      border: 1px solid #e4e4e4;
-      background: #fcfcfc;
-      &:active,
-      &:focus {
-        background: #ffffff;
-        border: 1px solid #1e9deb;
-        border-radius: $module;
-      }
-      &:hover {
-        background: #ffffff;
-      }
     }
   }
-
   .login-block__form__submit-block {
     width: 67%;
-    display: flex;
-    justify-content: center;
     input {
-      border: 0;
       padding: 2 * $module 2 * $module;
-      width: 100%;
-      border-radius: 50vh;
-      color: #ffffff;
-      background: #1e9deb;
-      &:hover {
-        background: #1084cc;
-      }
     }
   }
-
-  .signup-block__form__inputs-block__error-notice {
-    display: none;
-  }
-
   .signup-block__form__inputs-block__error-ntc__activated {
-    display: block;
-    color: red;
     .paragraph-secondary {
-      margin-top: 0px;
       margin-bottom: 2 * $module;
     }
   }
-
   .login-block__links {
     width: 19.333333%;
   }

@@ -2,8 +2,8 @@
   <div>
     <new-shelf-popup></new-shelf-popup>
     <new-bookmark-popup></new-bookmark-popup>
-    <div class="navigation-bar-block">
-      <div class="navigation-bar-block__logo-and-addings">
+    <div class="home-navigation-bar-block">
+      <div class="home-navigation-bar-block__logo-and-addings">
         <p class="paragraph-primary">Linkbase</p>
         <div class="paragraph-primary" @click="ToggleNewShelfPopup">
           Add shelf
@@ -12,7 +12,10 @@
           Add bookmark
         </div>
       </div>
-      <div class="navigation-bar-block__username-and-exit" @click="closeHome">
+      <div
+        class="home-navigation-bar-block__username-and-exit"
+        @click="closeHome"
+      >
         {{ username }}, Log out
       </div>
     </div>
@@ -76,16 +79,14 @@ export default {
 
 <style lang='scss' scoped>
 @import "@/assets/styles/_fonts.scss";
+@import "@/assets/styles/_main.scss";
+@import "@/assets/styles/otherComponentStyles/_navigation-bar.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
-  .navigation-bar-block {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 48px;
-    width: 100%;
-    box-sizing: border-box;
+  .home-navigation-bar-block {
+    margin-bottom: 12 * $module;
     padding-left: 6 * $module;
     padding-right: 6 * $module;
-    .navigation-bar-block__logo-and-addings {
+    .home-navigation-bar-block__logo-and-addings {
       display: flex;
       margin: 0;
       padding: 0;
@@ -112,7 +113,7 @@ export default {
       }
     }
 
-    .navigation-bar-block__username-and-exit {
+    .home-navigation-bar-block__username-and-exit {
       margin: 4 * $module 0;
       cursor: pointer;
       -moz-user-select: none;
@@ -129,52 +130,21 @@ export default {
 @media screen and (min-device-width: 1024px) and (max-device-width: 1364px) {
 }
 @media screen and (min-device-width: 1365px) {
-  .navigation-bar-block {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 48px;
-    .navigation-bar-block__logo-and-addings {
-      display: flex;
-      margin: 0;
-      padding: 0;
+  .home-navigation-bar-block {
+    margin-bottom: 12 * $module;
+    .home-navigation-bar-block__logo-and-addings {
       p {
-        margin: 0;
         padding: 4 * $module 0;
-        margin-right: 24px;
+        margin-right: 6 * $module;
       }
       div {
-        color: #105cf4;
         padding: 4 * $module 2 * $module;
-        margin-right: 24px;
-        cursor: pointer;
-        -moz-user-select: none;
-        -khtml-user-select: none;
-        -webkit-user-select: none;
-        user-select: none;
-        &:hover {
-          color: #7aa6ff;
-        }
-      }
-      :last-child {
-        margin-right: 0;
+        margin-right: 6 * $module;
       }
     }
-
-    .navigation-bar-block__username-and-exit {
+    .home-navigation-bar-block__username-and-exit {
       margin: 4 * $module 0;
-      cursor: pointer;
-      -moz-user-select: none;
-      -khtml-user-select: none;
-      -webkit-user-select: none;
-      user-select: none;
       padding: 2 * $module 2 * $module;
-      border: 1px solid #e78080;
-      border-radius: $module;
-      color: #e78080;
-      &:hover {
-        background: #fff7f7;
-      }
     }
   }
 }

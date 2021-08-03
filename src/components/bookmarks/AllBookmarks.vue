@@ -15,12 +15,12 @@ export default {
 
 <style lang="scss">
 @import "@/assets/styles/_fonts.scss";
+@import "@/assets/styles/_main.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
   .category-plate {
     margin-right: 3 * $module;
     margin-bottom: 3 * $module;
     padding: 2 * $module 3 * $module;
-    background: #f5f5f5;
     display: flex;
     align-items: center;
     border-radius: 2 * $module;
@@ -47,7 +47,7 @@ export default {
 @media screen and (min-device-width: 1365px) {
   .category-plate {
     padding: 0 3 * $module;
-    background: #f5f5f5;
+    background: $category-plate-background-standart;
     display: flex;
     align-items: center;
     border-radius: $module;
