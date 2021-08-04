@@ -7,27 +7,30 @@
         empty: !this.$store.state.isEditShelf,
       }"
     >
-      <div class="popup-block__header-line">
+      <div class="edit-shelf-popup-block__header-line">
         <p class="header-2">Edit shelf</p>
-        <div @click="ToggleEditShelfPopup" class="popup-close">Cancel</div>
+        <div @click="ToggleEditShelfPopup" class="edit-shelf-popup-close">
+          Cancel
+        </div>
       </div>
-      <div class="input-block">
+      <div>
         <form
           @submit.prevent="editCategoryName([editShelfName, currentCategoryId])"
+          class="edit-shelf-input-block"
         >
           <p>New title</p>
           <input
             type="text"
             v-model="editShelfName"
-            class="input-text-block"
+            class="edit-shelf-input-text-block"
             placeholder="New title"
           />
-          <button type="submit" class="confirm-button">
+          <button type="submit" class="edit-shelf-confirm-button">
             <p class="paragraph-secondary">edit</p>
           </button>
         </form>
         <form @submit.prevent="deleteCategory(currentCategoryId)">
-          <button type="submit" class="delete-category">
+          <button type="submit" class="edit-shelf-delete-category">
             <p class="paragraph-secondary">delete category</p>
           </button>
         </form>
@@ -59,7 +62,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss">
 @import "@/assets/styles/_fonts.scss";
 @import "@/assets/styles/_main.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
@@ -83,15 +86,17 @@ export default {
     align-items: center;
     justify-content: center;
   }
-  .confirm-button {
+  .edit-shelf-confirm-button {
     cursor: pointer;
     background-color: #3283fe;
     border: none;
-    color: white;
+    width: auto;
+
     padding: 2 * $module 4 * $module;
     border-radius: 3 * $module;
     .paragraph-secondary {
       margin: 0;
+      color: white;
     }
     &:hover {
       background-color: #1966d8;
@@ -107,7 +112,7 @@ export default {
   .empty {
     display: none;
   }
-  .popup-block__header-line {
+  .edit-shelf-popup-block__header-line {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -117,29 +122,44 @@ export default {
       margin: 0;
     }
   }
-  .popup-close {
+  .edit-shelf-popup-close {
     cursor: pointer;
     color: #3283fe;
   }
-  .input-block {
+  .edit-shelf-input-block {
     margin-bottom: 8 * $module;
     background: #fff;
     display: flex;
     flex-direction: column;
-    .paragraph-secondary {
+    &.paragraph-secondary {
       margin-bottom: 2 * $module;
-      color: #6d7188;
     }
-    .input-text-block {
+    .edit-shelf-input-text-block {
       width: 325px;
       padding: 2 * $module 4 * $module;
       box-shadow: none;
       font-size: 14px;
       border: 1px solid #dddee4;
+      margin-bottom: 2 * $module;
       border-radius: $module;
       :active {
         border-radius: $module;
       }
+    }
+  }
+  .edit-shelf-delete-category {
+    border: none;
+    background: none;
+    color: $error-color;
+    padding: 2 * $module 2 * $module;
+    border-radius: $module;
+    font-family: $main-font-family;
+    &:hover {
+      color: $error-color-hover;
+      background: #fff6f6;
+    }
+    .paragraph-secondary {
+      margin: 0;
     }
   }
 }

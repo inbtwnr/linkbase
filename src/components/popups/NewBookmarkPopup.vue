@@ -7,30 +7,32 @@
       }"
       @submit.prevent="submit"
     >
-      <div class="popup-block__header-line">
+      <div class="edit-bookmark-popup-block__header-line">
         <p class="header-2">{{ newBookmarkHeader }}</p>
-        <div class="popup-close" @click="ToggleNewBookmarkPopup">Cancel</div>
+        <div class="edit-bookmark-popup-close" @click="ToggleNewBookmarkPopup">
+          Cancel
+        </div>
       </div>
-      <div class="input-block">
+      <div class="edit-bookmark-input-block">
         <p>{{ newBookmarkLabelMessage }}</p>
-        <select v-model="selected" class="selected-block">
+        <select v-model="selected" class="edit-bookmark-selected-block">
           <option
             v-for="(category, index) in this.$store.getters.userCategories"
             :value="{ title: category.title, id: category._id }"
             :key="index"
-            class="option-block"
+            class="edit-bookmark-option-block"
           >
             <p class="paragraph-secondary">{{ category.title }}</p>
           </option>
         </select>
         <input
           type="text"
-          class="input-text-block"
+          class="edit-bookmark-input-text-block"
           :placeholder="newBookmarkInputPlaceHolder"
           v-model="bookmarkTitle"
         />
       </div>
-      <button type="submit" class="confirm-button">
+      <button type="submit" class="edit-bookmark-confirm-button">
         <p class="paragraph-secondary">Add</p>
       </button>
     </form>
@@ -170,7 +172,7 @@ export default {
     align-items: center;
     justify-content: center;
   }
-  .confirm-button {
+  .edit-bookmark-confirm-button {
     cursor: pointer;
     background-color: #3283fe;
     border: none;
@@ -192,7 +194,7 @@ export default {
   .empty {
     display: none;
   }
-  .popup-block__header-line {
+  .edit-bookmark-popup-block__header-line {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -202,11 +204,11 @@ export default {
       margin: 0;
     }
   }
-  .popup-close {
+  .edit-bookmark-popup-close {
     cursor: pointer;
     color: #3283fe;
   }
-  .confirm-button {
+  .edit-bookmark-confirm-button {
     cursor: pointer;
     background-color: #3283fe;
     border: none;
@@ -218,12 +220,12 @@ export default {
       font-size: 13px;
     }
   }
-  .input-block {
+  .edit-bookmark-input-block {
     margin-bottom: 8 * $module;
     background: #fff;
     display: flex;
     flex-direction: column;
-    .selected-block {
+    .edit-bookmark-selected-block {
       margin-bottom: 4 * $module;
       padding: 2 * $module 4 * $module;
       font-size: 14px;
@@ -232,14 +234,14 @@ export default {
       :active {
         border-radius: $module;
       }
-      .option-block {
+      .edit-bookmark-option-block {
         padding: 2 * $module 4 * $module;
         font-size: 14px;
         border: 1px solid #dddee4;
         border-radius: $module;
       }
     }
-    .input-text-block {
+    .edit-bookmark-input-text-block {
       width: 325px;
       padding: 2 * $module 4 * $module;
       box-shadow: none;
