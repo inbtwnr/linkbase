@@ -1,6 +1,4 @@
-@import "@/assets/styles/_main.scss";
-
-  .new-shelf-confirm-button {
+.edit-shelf-confirm-button {
     font-family: $main-font-family;
     cursor: pointer;
     background: $login-button-standart;
@@ -14,10 +12,11 @@
       background-color: $login-button-hover;
     }
   }
+
   .empty {
     display: none;
   }
-  .new-shelf-popup-block__header-line {
+  .edit-shelf-popup-block__header-line {
     display: flex;
     justify-content: space-between;
     align-content: baseline;
@@ -26,27 +25,36 @@
     -webkit-user-select: none;
     user-select: none;
   }
-  .new-shelf-popup-close {
+  .edit-shelf-popup-close {
     cursor: pointer;
     color: $link-color-standart;
     &:hover{
       color: $link-color-hover;
     }
   }
-  .new-shelf-input-block {
+  .edit-shelf-input-block {
+    margin-bottom: 6 * $module;
     background: $white-color;
     display: flex;
     flex-direction: column;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
-    .new-shelf-input-text-block {
-      box-shadow: none;
+    .edit-shelf-input-text-block {
+        box-shadow: none;
       font-family: $main-font-family;
       border: 1px solid $input-stroke-standart;
       :active {
         border-radius: $module;
       }
+    }
+  }
+  .edit-shelf-delete-category {
+    padding: 2 * $module 2 * $module;
+    border: none;
+    background: none;
+    color: $error-color;
+    border-radius: $module;
+    font-family: $main-font-family;
+    &:hover {
+      color: $error-color-hover;
+      background: #fff6f6;
     }
   }

@@ -1,6 +1,6 @@
 @import "@/assets/styles/_main.scss";
 
-  .new-shelf-confirm-button {
+.new-bookmark-confirm-button {
     font-family: $main-font-family;
     cursor: pointer;
     background: $login-button-standart;
@@ -17,23 +17,25 @@
   .empty {
     display: none;
   }
-  .new-shelf-popup-block__header-line {
+  .new-bookmark-popup-block__header-line {
     display: flex;
     justify-content: space-between;
+    flex-direction: row;
     align-content: baseline;
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
   }
-  .new-shelf-popup-close {
+  .new-bookmark-popup-close {
+    cursor: pointer;
     cursor: pointer;
     color: $link-color-standart;
     &:hover{
       color: $link-color-hover;
     }
   }
-  .new-shelf-input-block {
+  .new-bookmark-input-block {
     background: $white-color;
     display: flex;
     flex-direction: column;
@@ -41,10 +43,16 @@
     -khtml-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-    .new-shelf-input-text-block {
-      box-shadow: none;
-      font-family: $main-font-family;
+    .new-bookmark-selected-block {
       border: 1px solid $input-stroke-standart;
+      border-radius: $module;
+      :active {
+        border-radius: $module;
+      }
+    }
+    .new-bookmark-input-text-block {
+      border: 1px solid $input-stroke-standart;
+      border-radius: $module;
       :active {
         border-radius: $module;
       }

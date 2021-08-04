@@ -7,32 +7,32 @@
       }"
       @submit.prevent="submit"
     >
-      <div class="edit-bookmark-popup-block__header-line">
+      <div class="new-bookmark-popup-block__header-line">
         <p class="header-2">{{ newBookmarkHeader }}</p>
-        <div class="edit-bookmark-popup-close" @click="ToggleNewBookmarkPopup">
+        <div class="new-bookmark-popup-close" @click="ToggleNewBookmarkPopup">
           Cancel
         </div>
       </div>
-      <div class="edit-bookmark-input-block">
+      <div class="new-bookmark-input-block">
         <p>{{ newBookmarkLabelMessage }}</p>
-        <select v-model="selected" class="edit-bookmark-selected-block">
+        <select v-model="selected" class="new-bookmark-selected-block">
           <option
             v-for="(category, index) in this.$store.getters.userCategories"
             :value="{ title: category.title, id: category._id }"
             :key="index"
-            class="edit-bookmark-option-block"
+            class="new-bookmark-option-block"
           >
             <p class="paragraph-secondary">{{ category.title }}</p>
           </option>
         </select>
         <input
           type="text"
-          class="edit-bookmark-input-text-block"
+          class="new-bookmark-input-text-block"
           :placeholder="newBookmarkInputPlaceHolder"
           v-model="bookmarkTitle"
         />
       </div>
-      <button type="submit" class="edit-bookmark-confirm-button">
+      <button type="submit" class="new-bookmark-confirm-button">
         <p class="paragraph-secondary">Add</p>
       </button>
     </form>
@@ -70,88 +70,8 @@ export default {
 <style lang="scss" scope>
 @import "@/assets/styles/_fonts.scss";
 @import "@/assets/styles/_main.scss";
+@import "@/assets/styles/popup styles/_new-bookmark.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
-  .popup-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 98;
-    background-color: rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .confirm-button {
-    cursor: pointer;
-    background-color: #3283fe;
-    border: none;
-    color: white;
-    padding: 2 * $module 3 * $module;
-    border-radius: $module;
-    .paragraph-secondary {
-      margin: 0;
-      font-size: 13px;
-    }
-  }
-  .popup-block {
-    background: #fff;
-    padding: 24px 38px;
-    border-radius: 4px;
-    box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.12);
-    z-index: 99;
-  }
-  .empty {
-    display: none;
-  }
-  .popup-block__header-line {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-content: baseline;
-    margin-bottom: 4 * $module;
-    p {
-      margin: 0;
-    }
-  }
-  .popup-close {
-    cursor: pointer;
-    color: #3283fe;
-  }
-  .confirm-button {
-    cursor: pointer;
-    background-color: #3283fe;
-    border: none;
-    color: white;
-    padding: 2 * $module 3 * $module;
-    border-radius: $module;
-    .paragraph-secondary {
-      margin: 0;
-      font-size: 13px;
-    }
-  }
-  .input-block {
-    margin-bottom: 8 * $module;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    .selected-block {
-      margin-bottom: 16px;
-      padding: 8px 16px;
-      font-size: 16px;
-    }
-    .input-text-block {
-      width: 325px;
-      padding: 2 * $module 4 * $module;
-      box-shadow: none;
-      font-size: 16px;
-    }
-  }
-  .option-block {
-    padding: 2 * $module;
-    font-size: 16px;
-  }
 }
 @media screen and (min-device-width: 425px) and (max-device-width: 768px) {
 }
@@ -160,97 +80,25 @@ export default {
 @media screen and (min-device-width: 1024px) and (max-device-width: 1364px) {
 }
 @media screen and (min-device-width: 1365px) {
-  .popup-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 98;
-    background-color: rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .edit-bookmark-confirm-button {
-    cursor: pointer;
-    background-color: #3283fe;
-    border: none;
-    color: white;
+  .new-bookmark-confirm-button {
     padding: 2 * $module 3 * $module;
     border-radius: $module;
-    .paragraph-secondary {
-      margin: 0;
-      font-size: 13px;
-    }
   }
-  .popup-block {
-    background: #fff;
-    padding: 24px 38px;
-    border-radius: 4px;
-    box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.12);
-    z-index: 99;
-  }
-  .empty {
-    display: none;
-  }
-  .edit-bookmark-popup-block__header-line {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    align-content: baseline;
+  .new-bookmark-popup-block__header-line {
     margin-bottom: 4 * $module;
-    p {
-      margin: 0;
-    }
   }
-  .edit-bookmark-popup-close {
-    cursor: pointer;
-    color: #3283fe;
-  }
-  .edit-bookmark-confirm-button {
-    cursor: pointer;
-    background-color: #3283fe;
-    border: none;
-    color: white;
-    padding: 2 * $module 3 * $module;
-    border-radius: $module;
-    .paragraph-secondary {
-      margin: 0;
-      font-size: 13px;
-    }
-  }
-  .edit-bookmark-input-block {
+  .new-bookmark-input-block {
     margin-bottom: 8 * $module;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    .edit-bookmark-selected-block {
+    .new-bookmark-selected-block {
       margin-bottom: 4 * $module;
       padding: 2 * $module 4 * $module;
       font-size: 14px;
-      border: 1px solid #dddee4;
-      border-radius: $module;
-      :active {
-        border-radius: $module;
-      }
-      .edit-bookmark-option-block {
-        padding: 2 * $module 4 * $module;
-        font-size: 14px;
-        border: 1px solid #dddee4;
-        border-radius: $module;
-      }
     }
-    .edit-bookmark-input-text-block {
+    .new-bookmark-input-text-block {
       width: 325px;
       padding: 2 * $module 4 * $module;
       box-shadow: none;
       font-size: 14px;
-      border: 1px solid #dddee4;
-      border-radius: $module;
-      :active {
-        border-radius: $module;
-      }
     }
   }
 }
