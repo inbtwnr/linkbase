@@ -18,7 +18,7 @@
           @submit.prevent="editCategoryName([editShelfName, currentCategoryId])"
           class="edit-shelf-input-block"
         >
-          <p class="paragraph-secondary">New title</p>
+          <p class="paragraph-secondary">Type new title for a shelf</p>
           <input
             type="text"
             v-model="editShelfName"
