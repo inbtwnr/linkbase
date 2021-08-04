@@ -1,50 +1,45 @@
-  .confirm-button {
+@import "@/assets/styles/_main.scss";
+  .new-shelf-confirm-button {
+    font-family: $main-font-family;
     cursor: pointer;
-    background: #3283fe;
+    background: $login-button-standart;
     border: none;
-    color: white;
-    padding: 2 * $module 4 * $module;
-    border-radius: 3 * $module;
-    .paragraph-secondary {
-      margin: 0;
-    }
+    color: $white-color;
     &:hover {
-      background-color: #1966d8;
+      background-color: $login-button-hover;
     }
   }
-
   .empty {
     display: none;
   }
-  .popup-block__header-line {
+  .new-shelf-popup-block__header-line {
     display: flex;
     justify-content: space-between;
-    flex-direction: row;
     align-content: baseline;
-    margin-bottom: 2 * $module;
-    p {
-      margin: 0;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .new-shelf-popup-close {
+    cursor: pointer;
+    color: $link-color-standart;
+    &:hover{
+      color: $link-color-hover;
     }
   }
-  .popup-close {
-    cursor: pointer;
-    color: #3283fe;
-  }
-  .input-block {
-    margin-bottom: 8 * $module;
+  .new-shelf-input-block {
     background: #fff;
     display: flex;
     flex-direction: column;
-    .paragraph-secondary {
-      margin-bottom: 2 * $module;
-    }
-    .input-text-block {
-      width: 325px;
-      padding: 2 * $module 4 * $module;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    .new-shelf-input-text-block {
       box-shadow: none;
-      font-size: 14px;
-      border: 1px solid #dddee4;
-      border-radius: $module;
+      font-family: $main-font-family;
+      border: 1px solid $input-stroke-standart;
       :active {
         border-radius: $module;
       }
