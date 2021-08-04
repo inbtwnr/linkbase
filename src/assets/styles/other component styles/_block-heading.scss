@@ -2,7 +2,6 @@
 @import "@/assets/styles/_main.scss";
 
 .shelf-block-heading-block {
-    
     p {
       margin: 0;
       -moz-user-select: none;
@@ -14,13 +13,8 @@
       border: 1px solid $block-header-stroke;
     }
 }
-  
-
   .bookmark-block-heading-block {
-    
     p {
-      
-
       margin: 0;
       -moz-user-select: none;
       -khtml-user-select: none;
@@ -29,7 +23,7 @@
     }
     hr {
         border: 1px solid $block-header-stroke;
-        margin-top: 2 * $module;
+       
       }
   }
   

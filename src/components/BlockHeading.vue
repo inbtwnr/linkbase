@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "@/assets/styles/otherComponentStyles/_block-heading.scss";
+@import "@/assets/styles/other component styles/_block-heading.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
 }
 @media screen and (min-device-width: 425px) and (max-device-width: 768px) {
@@ -36,8 +36,7 @@ export default {
   .bookmark-block-heading-block {
     hr {
       margin-top: 2 * $module;
-      margin-block-start: 0;
-      margin-block-end: 0.2em;
+      margin-bottom: $module / 2;
     }
   }
 }

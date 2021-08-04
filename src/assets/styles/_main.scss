@@ -13,3 +13,23 @@ body{
 }
 
 $module: 4px;
+
+.popup-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 98;
+    background-color: rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+.popup-block {
+    background: #fff;
+    padding: 6 * $module 9 * $module;
+    border-radius: $module;
+    box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.12);
+    z-index: 99;
+  }

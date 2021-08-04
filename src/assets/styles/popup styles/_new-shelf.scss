@@ -1,0 +1,53 @@
+  .confirm-button {
+    cursor: pointer;
+    background: #3283fe;
+    border: none;
+    color: white;
+    padding: 2 * $module 4 * $module;
+    border-radius: 3 * $module;
+    .paragraph-secondary {
+      margin: 0;
+    }
+    &:hover {
+      background-color: #1966d8;
+    }
+  }
+  
+  .empty {
+    display: none;
+  }
+  .popup-block__header-line {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-content: baseline;
+    margin-bottom: 2 * $module;
+    p {
+      margin: 0;
+    }
+  }
+  .popup-close {
+    cursor: pointer;
+    color: #3283fe;
+  }
+  .input-block {
+    margin-bottom: 8 * $module;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    .paragraph-secondary {
+      margin-bottom: 2 * $module;
+      color: #6d7188;
+    }
+    .input-text-block {
+      width: 325px;
+      padding: 2 * $module 4 * $module;
+      box-shadow: none;
+      font-size: 14px;
+      border: 1px solid #dddee4;
+      border-radius: $module;
+      :active {
+        border-radius: $module;
+      }
+    }
+  }

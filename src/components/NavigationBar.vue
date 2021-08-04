@@ -80,7 +80,7 @@ export default {
 <style lang='scss' scoped>
 @import "@/assets/styles/_fonts.scss";
 @import "@/assets/styles/_main.scss";
-@import "@/assets/styles/otherComponentStyles/_navigation-bar.scss";
+@import "@/assets/styles/other component styles/_navigation-bar.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
   .home-navigation-bar-block {
     margin-bottom: 12 * $module;

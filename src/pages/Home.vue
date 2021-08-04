@@ -63,7 +63,7 @@ export default {
 @import "@/assets/styles/_fonts.scss";
 @import "@/assets/styles/_main.scss";
 @import "@/assets/styles/pages/_home.scss";
-@import "@/assets/styles/otherComponentStyles/_loading.scss";
+@import "@/assets/styles/other component styles/_loading.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
   .home-block {
     width: 100%;

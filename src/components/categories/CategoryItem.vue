@@ -144,6 +144,31 @@ export default {
     margin-bottom: 3 * $module;
     padding: $module 3 * $module;
     border-radius: $module;
+    .paragraph-primary {
+      margin-right: 2 * $module;
+    }
+  }
+  .category-options__btn {
+    .category-options__btn__points {
+      padding: 6.5px 1px 7.5px 1px;
+      &:hover {
+        padding: 6.5px 1px 7.5px 1px;
+      }
+      .category-options__btn__points__point {
+        width: $module;
+        height: $module;
+        margin-right: $module / 2;
+        border-radius: $module / 2;
+      }
+    }
+  }
+  .category-list {
+    div {
+      .category-plate {
+        margin-right: 3 * $module;
+        margin-bottom: 3 * $module;
+      }
+    }
   }
 }
 </style>

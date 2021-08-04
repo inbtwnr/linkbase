@@ -54,44 +54,4 @@ export default {
 @import "@/assets/styles/_fonts.scss";
 @import "@/assets/styles/_main.scss";
 @import "@/assets/styles/shelfs styles/_shelfs.scss";
-@media screen and (min-device-width: 360px) and (max-device-width: 424px) {
-  .category-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin-top: 6 * $module;
-
-    :last-child {
-      margin-right: 0;
-    }
-    div {
-      .category-plate {
-        margin-right: 3 * $module;
-        margin-bottom: 3 * $module;
-      }
-    }
-  }
-}
-@media screen and (min-device-width: 425px) and (max-device-width: 768px) {
-}
-@media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
-}
-@media screen and (min-device-width: 1024px) and (max-device-width: 1364px) {
-}
-@media screen and (min-device-width: 1365px) {
-  .category-list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    :last-child {
-      margin-right: 0;
-    }
-    div {
-      .category-plate {
-        margin-right: 3 * $module;
-        margin-bottom: 3 * $module;
-      }
-    }
-  }
-}
 </style>

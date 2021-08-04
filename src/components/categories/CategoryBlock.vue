@@ -33,7 +33,6 @@ export default {
 <style lang="scss">
 @import "@/assets/styles/_fonts.scss";
 @import "@/assets/styles/_main.scss";
-@import "@/assets/styles/otherComponentStyles/_block-heading.scss";
 @import "@/assets/styles/shelfs styles/_shelfs.scss";
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
   .category-block {
