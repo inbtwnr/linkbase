@@ -73,7 +73,6 @@ export default {
     margin-bottom: 4 * $module;
   }
   .edit-bookmark-change-category-block {
-    margin-bottom: 6 * $module;
     .paragraph-secondary {
       margin-bottom: 2 * $module;
     }
