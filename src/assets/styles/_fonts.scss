@@ -5,12 +5,6 @@ $main-font-family: 'Segoe UI', sans-serif;
 .header-2{ margin: 0; }
 
 @media screen and (min-width: 1366px) {
-    
-    .header-1{
-        font-size: 28px;
-        font-weight: 600;
-        letter-spacing: -0.6px;
-    }
 
     .header-2{
         font-size: 20px;
@@ -33,22 +27,20 @@ $main-font-family: 'Segoe UI', sans-serif;
 
 }
 @media screen and (min-device-width: 360px) and (max-device-width: 767px){
-    .header-1{
-        font-size: 24px;
-        font-weight: 600;
-        letter-spacing: -0.6px;
-    }
+
     .header-2{
         font-size: 20px;
         font-weight: 600;
         line-height: 130%;
         letter-spacing: -0.6px;
     }
+
     .paragraph-primary{
         font-size: 18px;
         line-height: 160%;
         letter-spacing: -0.5px;
     }
+    
     .paragraph-secondary{
         font-size: 14px;
         line-height: 160%;

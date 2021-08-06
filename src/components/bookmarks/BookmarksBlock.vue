@@ -35,6 +35,7 @@ export default {
 <style lang="scss">
 @import "@/assets/styles/_fonts.scss";
 @import "@/assets/styles/_main.scss";
+@import "@/assets/styles/bookmarks styles/_bookmarks.scss";
 
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
   .bookmarks-block {
@@ -55,10 +56,8 @@ export default {
 }
 @media screen and (min-device-width: 1365px) {
   .bookmarks-block {
-    display: flex;
+    margin-bottom: 16 * $module;
     width: 1000px;
-    flex-direction: column;
-    margin-bottom: 64px;
   }
 }
 </style>

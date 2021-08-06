@@ -137,6 +137,8 @@ export default {
 <style lang="scss">
 @import "@/assets/styles/_fonts.scss";
 @import "@/assets/styles/_main.scss";
+@import "@/assets/styles/bookmarks styles/_bookmarks.scss";
+
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
 }
 @media screen and (min-device-width: 425px) and (max-device-width: 768px) {
@@ -147,85 +149,14 @@ export default {
 }
 @media screen and (min-device-width: 1365px) {
   .bookmarks-list {
-    overflow: auto;
     height: 540px;
     padding-bottom: 16 * $module;
-    box-sizing: border-box;
   }
-
   .empty-bookmark-list {
     margin-top: 4 * $module;
   }
-
   .bookmarks-list::-webkit-scrollbar {
     width: 0.6em;
-  }
-
-  .bookmarks-list::-webkit-scrollbar-track {
-    background-color: rgb(241, 241, 241);
-    border-radius: 100vh;
-  }
-
-  .bookmarks-list::-webkit-scrollbar-thumb {
-    background-color: rgb(199, 199, 199);
-    border-radius: 100vh;
-  }
-  .popup-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 98;
-    background-color: rgba(0, 0, 0, 0.2);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .confirm-button {
-    cursor: pointer;
-    background-color: #3283fe;
-    border: none;
-    color: white;
-    padding: 2 * $module 3 * $module;
-    border-radius: $module;
-    .paragraph-secondary {
-      margin: 0;
-      font-size: 13px;
-    }
-  }
-  .empty {
-    display: none;
-  }
-  .option-block {
-    padding: 2 * $module;
-    font-size: 16px;
-  }
-  .selected-block {
-    margin-bottom: 16px;
-    padding: 8px 16px;
-    font-size: 16px;
-    width: 360px;
-  }
-  .popup-block__header-line {
-    margin-bottom: 32px;
-  }
-  .change-category-block {
-    display: flex;
-    flex-direction: column;
-  }
-  .confirm-button {
-    cursor: pointer;
-    background-color: #3283fe;
-    border: none;
-    color: white;
-    padding: 2 * $module 3 * $module;
-    border-radius: $module;
-    .paragraph-secondary {
-      margin: 0;
-      font-size: 13px;
-    }
   }
 }
 </style>
