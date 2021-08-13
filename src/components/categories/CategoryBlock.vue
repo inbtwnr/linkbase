@@ -37,12 +37,11 @@ export default {
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
   .category-block {
     display: flex;
-    width: 100%;
-    flex-direction: column;
-    margin-bottom: 12 * $module;
-    box-sizing: border-box;
+    width: 320px;
     padding-left: 6 * $module;
     padding-right: 6 * $module;
+    flex-direction: column;
+    margin-bottom: 12 * $module;
   }
 }
 @media screen and (min-device-width: 425px) and (max-device-width: 768px) {

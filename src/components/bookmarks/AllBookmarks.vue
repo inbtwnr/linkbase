@@ -19,6 +19,13 @@ export default {
 @import "@/assets/styles/shelfs styles/_shelfs.scss";
 
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
+  .all-bookmark-category-plate {
+    padding: 0 3 * $module;
+    margin-right: 2 * $module;
+    .paragraph-primary {
+      margin-right: 2 * $module;
+    }
+  }
 }
 @media screen and (min-device-width: 425px) and (max-device-width: 768px) {
 }

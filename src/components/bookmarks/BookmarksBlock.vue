@@ -39,11 +39,8 @@ export default {
 
 @media screen and (min-device-width: 360px) and (max-device-width: 424px) {
   .bookmarks-block {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
+    width: 320px;
     margin-bottom: 64px;
-    box-sizing: border-box;
     padding-left: 6 * $module;
     padding-right: 6 * $module;
   }
