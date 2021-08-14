@@ -1,5 +1,6 @@
 <template>
   <div v-if="notice" class="bookmarks-list">
+    <new-bookmark-popup></new-bookmark-popup>
     <edit-bookmark-popup
       :currentBookmarkId="currentBookmarkId"
       :bookmarkCategory="bookmarkCategory"
@@ -20,13 +21,16 @@
   </div>
   <div v-else class="empty-bookmark-list">
     This is where your bookmarks will be located.
+    <span class="bookmark-add-link" @click="ToggleNewBookmarkPopup"
+      >Add a new bookmark</span
+    >
   </div>
 </template>
 
 <script>
 import BookmarksItem from "./BookmarksItem.vue";
 import EditBookmarkPopup from "@/components/popups/EditBookmarkPopup.vue";
-import { mapActions } from "vuex";
+import { mapActions, mapMutations } from "vuex";
 export default {
   components: {
     BookmarksItem,
@@ -45,6 +49,10 @@ export default {
   },
   methods: {
     ...mapActions(["changeBookmarkPlacing", "deleteBookmark"]),
+    ...mapMutations(["updateIsNewBookmark"]),
+    ToggleNewBookmarkPopup() {
+      this.updateIsNewBookmark(!this.$store.state.isNewBookmark);
+    },
     ToggleEditBookmarkPopup(bookmark) {
       this.currentBookmarkId = bookmark._id;
       this.bookmarkCategory = bookmark.category;
