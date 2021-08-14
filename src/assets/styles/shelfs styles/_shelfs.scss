@@ -8,9 +8,7 @@
     &:hover {
       background: $category-plate-background-hover;
     }
-    display: flex;
-    
-    align-items: center;    
+    display: flex; 
     .paragraph-primary {
       margin: 0;
     }
@@ -44,14 +42,30 @@
   }
   .category-list {
     display: flex;
-    :last-child {
-      margin-right: 0;
-    }
+    flex-wrap: wrap;
     div {
-        .category-plate {
-          margin-right: 3 * $module;
+      .category-plate {
+        margin-right: 3 * $module;
       }
     }
+  }
+  .add-category{
+    padding: $module 3 * $module;
+    border: 1px dashed rgb(219, 220, 248);
+    color: rgb(141, 145, 243);
+    border-radius: $module;
+    &:hover{
+      border: 1px dashed rgb(202, 204, 241);
+      background: rgb(245, 245, 255);
+    }
+    .paragraph-primary{
+      margin: 0;
+    }
+    cursor: pointer;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
   }
   .all-bookmark-category-plate {
     background: $category-plate-background-standart;

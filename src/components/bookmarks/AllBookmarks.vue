@@ -35,7 +35,7 @@ export default {
 }
 @media screen and (min-device-width: 1365px) {
   .all-bookmark-category-plate {
-    padding: 0 3 * $module;
+    padding: $module 3 * $module;
     margin-bottom: 3 * $module;
     margin-right: 3 * $module;
     .paragraph-primary {

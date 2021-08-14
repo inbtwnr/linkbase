@@ -1,5 +1,6 @@
 <template>
-  <div v-if="categories">
+  <div>
+    <new-shelf-popup></new-shelf-popup>
     <edit-shelf-popup :currentCategoryId="currentCategoryId"></edit-shelf-popup>
     <div class="category-list">
       <all-bookmarks></all-bookmarks>
@@ -11,15 +12,16 @@
           class="delete-category"
         ></category-item>
       </div>
+      <div class="add-category" @click="ToggleNewShelfPopup">+ new shelf</div>
     </div>
   </div>
-  <div v-else>This is where your shelfs will be located.</div>
 </template>
 
 <script>
 import CategoryItem from "./CategoryItem.vue";
 import AllBookmarks from "@/components/bookmarks/AllBookmarks.vue";
 import EditShelfPopup from "@/components/popups/EditShelfPopup.vue";
+import NewShelfPopup from "@/components/popups/NewShelfPopup.vue";
 import { mapMutations } from "vuex";
 
 export default {
@@ -35,10 +37,14 @@ export default {
     CategoryItem,
     AllBookmarks,
     EditShelfPopup,
+    NewShelfPopup,
   },
   props: ["categories"],
   methods: {
-    ...mapMutations(["updateIsEditShelf"]),
+    ...mapMutations(["updateIsEditShelf", "updateIsNewShelf"]),
+    ToggleNewShelfPopup() {
+      this.updateIsNewShelf(!this.$store.state.isNewShelf);
+    },
     ToggleEditShelfPopup() {
       this.updateIsEditShelf(!this.$store.state.isEditShelf);
     },
@@ -54,4 +60,7 @@ export default {
 @import "@/assets/styles/_fonts.scss";
 @import "@/assets/styles/_main.scss";
 @import "@/assets/styles/shelfs styles/_shelfs.scss";
+.lmao {
+  font-family: $main-font-family;
+}
 </style>

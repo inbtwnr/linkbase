@@ -85,6 +85,8 @@ export default {
   .category-plate {
     padding: $module 3 * $module;
     border-radius: $module;
+    margin-right: 3 * $module;
+    margin-bottom: 3 * $module;
     .paragraph-primary {
       margin-right: 2 * $module;
     }
@@ -104,15 +106,9 @@ export default {
     }
   }
   .category-list {
-    width: 100%;
+    width: 1000px;
+    display: flex;
     flex-wrap: wrap;
-    div {
-      display: inline-flex;
-      .category-plate {
-        margin-right: 3 * $module;
-        margin-bottom: 3 * $module;
-      }
-    }
   }
 }
 </style>

@@ -21,20 +21,22 @@
   </div>
   <div v-else class="empty-bookmark-list">
     This is where your bookmarks will be located.
-    <span class="bookmark-add-link" @click="ToggleNewBookmarkPopup"
-      >Add a new bookmark</span
-    >
+    <span class="bookmark-add-link" @click="ToggleNewBookmarkPopup">
+      Add a new bookmark
+    </span>
   </div>
 </template>
 
 <script>
 import BookmarksItem from "./BookmarksItem.vue";
+import NewBookmarkPopup from "@/components/popups/NewBookmarkPopup.vue";
 import EditBookmarkPopup from "@/components/popups/EditBookmarkPopup.vue";
 import { mapActions, mapMutations } from "vuex";
 export default {
   components: {
     BookmarksItem,
     EditBookmarkPopup,
+    NewBookmarkPopup,
   },
   props: ["bookmarks", "notice"],
   data() {
