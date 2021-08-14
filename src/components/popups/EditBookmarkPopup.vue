@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { mapActions, mapMutations } from "vuex";
+import { mapMutations, mapActions } from "vuex";
 export default {
   data() {
     return {

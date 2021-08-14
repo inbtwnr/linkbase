@@ -1,9 +1,10 @@
 <template>
-  <div :class="{ 'popup-screen': this.$store.state.isNewBookmark }">
+  <div :class="{ 'popup-screen': this.isNewBookmark }">
+    <div :class="{ 'popup-out': this.isNewBookmark }" @click="closePopup"></div>
     <form
       :class="{
-        'popup-block': this.$store.state.isNewBookmark,
-        empty: !this.$store.state.isNewBookmark,
+        'popup-block': this.isNewBookmark,
+        empty: !this.isNewBookmark,
       }"
       @submit.prevent="submit"
     >
@@ -40,7 +41,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from "vuex";
+import { mapMutations, mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -52,11 +53,17 @@ export default {
       selected: "",
     };
   },
+  computed: {
+    ...mapState(["isNewBookmark"]),
+  },
   methods: {
     ...mapMutations(["updateIsNewBookmark"]),
     ...mapActions(["createBookmark"]),
+    closePopup() {
+      this.updateIsNewBookmark(!this.isNewBookmark);
+    },
     ToggleNewBookmarkPopup() {
-      this.updateIsNewBookmark(!this.$store.state.isNewBookmark);
+      this.updateIsNewBookmark(!this.isNewBookmark);
     },
     async submit() {
       await this.createBookmark([this.bookmarkTitle, this.selected]);

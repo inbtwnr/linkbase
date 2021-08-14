@@ -1,6 +1,10 @@
 <template>
   <div :class="{ 'popup-screen': this.$store.state.isEditShelf }">
     <div
+      :class="{ 'popup-out': this.$store.state.isEditShelf }"
+      @click="closeIsEditShelfPopup"
+    ></div>
+    <div
       @submit.prevent="changeCategoryName || deleteCategory"
       :class="{
         'popup-block': this.$store.state.isEditShelf,
@@ -42,7 +46,7 @@
 </template>
 
 <script>
-import { mapActions, mapMutations } from "vuex";
+import { mapMutations, mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -52,13 +56,19 @@ export default {
   methods: {
     ...mapMutations(["updateIsEditShelf"]),
     ...mapActions(["changeCategoryName", "deleteCategory"]),
+    closeIsEditShelfPopup() {
+      this.updateIsEditShelf(!this.isEditShelf);
+    },
     async editCategoryName([editShelfName, currentCategoryId]) {
       await this.changeCategoryName([editShelfName, currentCategoryId]);
       this.editShelfName = "";
     },
     ToggleEditShelfPopup() {
-      this.updateIsEditShelf(!this.$store.state.isEditShelf);
+      this.updateIsEditShelf(!this.isEditShelf);
     },
+  },
+  computed: {
+    ...mapState(["isEditShelf"]),
   },
   props: ["currentCategoryId"],
 };

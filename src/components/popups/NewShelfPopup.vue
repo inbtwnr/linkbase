@@ -1,5 +1,9 @@
 <template>
   <div :class="{ 'popup-screen': this.$store.state.isNewShelf }">
+    <div
+      :class="{ 'popup-out': this.$store.state.isNewShelf }"
+      @click="closeIsNewShelfPopup"
+    ></div>
     <form
       :class="{
         'popup-block': this.$store.state.isNewShelf,
@@ -30,7 +34,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from "vuex";
+import { mapMutations, mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -40,11 +44,17 @@ export default {
       categoryTitle: "",
     };
   },
+  computed: {
+    ...mapState(["isNewShelf"]),
+  },
   methods: {
     ...mapMutations(["updateIsNewShelf"]),
     ...mapActions(["createCategory"]),
+    closeIsNewShelfPopup() {
+      this.updateIsNewShelf(!this.isNewShelf);
+    },
     ToggleNewShelfPopup() {
-      this.updateIsNewShelf(!this.$store.state.isNewShelf);
+      this.updateIsNewShelf(!this.isNewShelf);
     },
     async submit() {
       await this.createCategory([this.categoryTitle]);

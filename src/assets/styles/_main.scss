@@ -20,12 +20,22 @@ $module: 4px;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 98;
+    z-index: 90;
     background-color: rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
   }
+
+.popup-out{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 97;
+}
+
 .popup-block {
     background: #fff;
     padding: 6 * $module 9 * $module;
