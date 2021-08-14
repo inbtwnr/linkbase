@@ -46,7 +46,7 @@
       box-shadow: none;
       font-family: $main-font-family;
       border: 1px solid $input-stroke-standart;
-      margin-right: 3 * $module;
+      
       :active {
         border-radius: $module;
       }
