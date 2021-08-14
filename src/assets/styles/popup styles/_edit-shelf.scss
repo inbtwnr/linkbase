@@ -3,6 +3,7 @@
     cursor: pointer;
     background: $login-button-standart;
     border: none;
+    padding: 2*$module 3*$module;
     color: $white-color;
     -moz-user-select: none;
     -khtml-user-select: none;
@@ -42,24 +43,52 @@
     display: flex;
     flex-direction: column;
     .edit-shelf-input-text-block {
-        box-shadow: none;
+      box-shadow: none;
       font-family: $main-font-family;
       border: 1px solid $input-stroke-standart;
+      margin-right: 3 * $module;
       :active {
         border-radius: $module;
       }
     }
   }
+  .edit-shelf-input-and-button{
+    display: flex;
+    justify-content: center;
+  }
+  .edit-shelf-delete-container{
+    display: flex;
+    align-items: center;
+  }
+  .delete-label{
+    margin-right: 3 * $module;
+    color: $error-color;
+    font-weight: 500;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  .edit-shelf__edit-category-point-title{
+    margin-bottom: 4 * $module;
+    font-weight: 600;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
   .edit-shelf-delete-category {
     padding: 2 * $module 2 * $module;
+    cursor: pointer;
     border: none;
     font-weight: 500;
     background: none;
     color: $error-color;
     border-radius: $module;
     font-family: $main-font-family;
+    border: 1px solid $error-color;
     &:hover {
       color: $error-color-hover;
-      background: #fff6f6;
+      background: #fce3e3;
     }
   }

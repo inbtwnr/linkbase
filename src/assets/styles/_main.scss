@@ -34,11 +34,12 @@ $module: 4px;
   right: 0;
   bottom: 0;
   z-index: 97;
+  cursor: pointer;
 }
 
 .popup-block {
     background: #fff;
-    padding: 6 * $module 9 * $module;
+    padding: 6 * $module 9 * $module 10 * $module 9 * $module;
     border-radius: $module;
     box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.12);
     z-index: 99;

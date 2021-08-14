@@ -2,7 +2,7 @@
   <div :class="{ 'popup-screen': this.$store.state.isEditShelf }">
     <div
       :class="{ 'popup-out': this.$store.state.isEditShelf }"
-      @click="closeIsEditShelfPopup"
+      @click="ToggleEditShelfPopup"
     ></div>
     <div
       @submit.prevent="changeCategoryName || deleteCategory"
@@ -22,23 +22,36 @@
           @submit.prevent="editCategoryName([editShelfName, currentCategoryId])"
           class="edit-shelf-input-block"
         >
+          <div class="edit-shelf__edit-category-point-title">
+            <p class="paragraph-primary">Change title</p>
+          </div>
           <p class="paragraph-secondary">Type new title for a shelf</p>
-          <input
-            type="text"
-            v-model="editShelfName"
-            class="edit-shelf-input-text-block"
-            placeholder="New title"
-          />
-          <div>
+
+          <div class="edit-shelf-input-and-button">
+            <input
+              type="text"
+              v-model="editShelfName"
+              class="edit-shelf-input-text-block"
+              placeholder="New title"
+            />
             <button type="submit" class="edit-shelf-confirm-button">
               <p class="paragraph-secondary">edit</p>
             </button>
           </div>
         </form>
         <form @submit.prevent="deleteCategory(currentCategoryId)">
-          <button type="submit" class="edit-shelf-delete-category">
-            <p class="paragraph-secondary">delete category</p>
-          </button>
+          <div class="edit-shelf__edit-category-point-title">
+            <p class="paragraph-primary">Delete title</p>
+          </div>
+          <div class="edit-shelf-delete-container">
+            <div class="delete-label">
+              <p class="paragraph-secondary">Delete category</p>
+            </div>
+
+            <button type="submit" class="edit-shelf-delete-category">
+              <p class="paragraph-secondary">delete category</p>
+            </button>
+          </div>
         </form>
       </div>
     </div>
@@ -56,9 +69,6 @@ export default {
   methods: {
     ...mapMutations(["updateIsEditShelf"]),
     ...mapActions(["changeCategoryName", "deleteCategory"]),
-    closeIsEditShelfPopup() {
-      this.updateIsEditShelf(!this.isEditShelf);
-    },
     async editCategoryName([editShelfName, currentCategoryId]) {
       await this.changeCategoryName([editShelfName, currentCategoryId]);
       this.editShelfName = "";
@@ -88,7 +98,7 @@ export default {
 }
 @media screen and (min-device-width: 1365px) {
   .edit-shelf-popup-block__header-line {
-    margin-bottom: 4 * $module;
+    margin-bottom: 7 * $module;
   }
   .edit-shelf-input-block {
     margin-bottom: 6 * $module;
@@ -96,11 +106,11 @@ export default {
       margin-bottom: 2 * $module;
     }
     .edit-shelf-input-text-block {
-      width: 325px;
+      width: 240px;
       padding: 2 * $module 4 * $module;
       font-size: 16px;
       border-radius: $module;
-      margin-bottom: 3 * $module;
+      margin-right: 3 * $module;
     }
     .edit-shelf-confirm-button {
       padding: 2 * $module 3 * $module;

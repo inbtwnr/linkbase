@@ -1,9 +1,13 @@
 <template>
-  <div :class="{ 'popup-screen': this.$store.state.isEditBookmark }">
+  <div :class="{ 'popup-screen': this.isEditBookmark }">
+    <div
+      :class="{ 'popup-out': this.isEditBookmark }"
+      @click="ToggleEditBookmarkPopup"
+    ></div>
     <form
       :class="{
-        'popup-block': this.$store.state.isEditBookmark,
-        empty: !this.$store.state.isEditBookmark,
+        'popup-block': this.isEditBookmark,
+        empty: !this.isEditBookmark,
       }"
       @submit.prevent="
         changeBookmarkPlacing([selected, bookmarkCategory, currentBookmarkId])
@@ -38,18 +42,21 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from "vuex";
+import { mapMutations, mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
       selected: "",
     };
   },
+  computed: {
+    ...mapState(["isEditBookmark"]),
+  },
   methods: {
     ...mapMutations(["updateIsEditBookmark"]),
     ...mapActions(["changeBookmarkPlacing"]),
     ToggleEditBookmarkPopup() {
-      this.updateIsEditBookmark(!this.$store.state.isEditBookmark);
+      this.updateIsEditBookmark(!this.isEditBookmark);
     },
   },
   props: ["currentBookmarkId", "bookmarkCategory"],

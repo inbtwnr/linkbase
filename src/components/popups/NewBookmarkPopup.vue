@@ -1,6 +1,9 @@
 <template>
   <div :class="{ 'popup-screen': this.isNewBookmark }">
-    <div :class="{ 'popup-out': this.isNewBookmark }" @click="closePopup"></div>
+    <div
+      :class="{ 'popup-out': this.isNewBookmark }"
+      @click="ToggleNewBookmarkPopup"
+    ></div>
     <form
       :class="{
         'popup-block': this.isNewBookmark,
@@ -59,9 +62,6 @@ export default {
   methods: {
     ...mapMutations(["updateIsNewBookmark"]),
     ...mapActions(["createBookmark"]),
-    closePopup() {
-      this.updateIsNewBookmark(!this.isNewBookmark);
-    },
     ToggleNewBookmarkPopup() {
       this.updateIsNewBookmark(!this.isNewBookmark);
     },

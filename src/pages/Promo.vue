@@ -1,9 +1,8 @@
 <template>
-  <div
-    v-if="!promoPageBookmarks && !promoPageShelfs && !promoPagePic"
-    class="loading-screen"
-  >
-    <img src="@/assets/spinner.svg" alt="" />
+  <div v-if="!promoPagePic && !promoPageBookmarks && !promoPageShelfs">
+    <div class="loading-screen">
+      <img src="@/assets/spinner.svg" />
+    </div>
   </div>
   <div v-else class="promo-block">
     <div class="promo-container">
@@ -75,6 +74,7 @@ export default {
 <style lang="scss">
 @import "@/assets/styles/_fonts.scss";
 @import "@/assets/styles/_main.scss";
+@import "@/assets/styles/pages/_home.scss";
 @import "@/assets/styles/other component styles/_navigation-bar.scss";
 @import "@/assets/styles/pages/_promo.scss";
 

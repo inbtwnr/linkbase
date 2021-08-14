@@ -2,7 +2,7 @@
   <div :class="{ 'popup-screen': this.$store.state.isNewShelf }">
     <div
       :class="{ 'popup-out': this.$store.state.isNewShelf }"
-      @click="closeIsNewShelfPopup"
+      @click="ToggleNewShelfPopup"
     ></div>
     <form
       :class="{
@@ -50,9 +50,6 @@ export default {
   methods: {
     ...mapMutations(["updateIsNewShelf"]),
     ...mapActions(["createCategory"]),
-    closeIsNewShelfPopup() {
-      this.updateIsNewShelf(!this.isNewShelf);
-    },
     ToggleNewShelfPopup() {
       this.updateIsNewShelf(!this.isNewShelf);
     },

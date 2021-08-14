@@ -28,7 +28,7 @@
         </div>
         <div>
           <div class="settings-button">
-            <p class="paragraph-secondary">Settings</p>
+            <p class="paragraph-secondary">Actions</p>
             <div class="bookmark-settings-block">
               <form>
                 <div
