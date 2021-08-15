@@ -52,8 +52,10 @@
   .add-category{
     padding: $module 3 * $module;
     border: 1px dashed rgb(219, 220, 248);
-    color: rgb(141, 145, 243);
+    color: rgb(65, 70, 230);
     border-radius: $module;
+    line-height: 160%;
+    height: 25px;
     &:hover{
       border: 1px dashed rgb(202, 204, 241);
       background: rgb(245, 245, 255);
