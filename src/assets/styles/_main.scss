@@ -21,11 +21,22 @@ $module: 4px;
     right: 0;
     bottom: 0;
     z-index: 90;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.07);
     display: flex;
     align-items: center;
     justify-content: center;
+    animation-name: popupScreen;
+    animation-duration: 0.12s;
+}  
+@keyframes popupScreen {
+  from {
+    opacity: 0;
   }
+  to {
+    opacity: 100%;
+  }
+}
+  
 
 .popup-out{
   position: fixed;
@@ -41,6 +52,6 @@ $module: 4px;
     background: #fff;
     padding: 6 * $module 9 * $module 10 * $module 9 * $module;
     border-radius: $module;
-    box-shadow: 0px 12px 12px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.062);
     z-index: 99;
   }
