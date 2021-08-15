@@ -3,7 +3,7 @@
 ## About ptoject
 
 ### Linkbase — bookmark storage.
-Linkbase is a stoage of links in the web.
+Linkbase is a storage of links in the web.
 
 #### Save links.
 Link manager that keeps your links in one place. You can save it
