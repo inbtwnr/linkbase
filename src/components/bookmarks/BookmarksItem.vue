@@ -206,9 +206,9 @@ export default {
 
   .bookmark-block__informartion-section__primary {
     width: 500px;
-    margin: 0 0 3 * $module 0;
+    margin: 0 0 2 * $module 0;
     p {
-      margin-bottom: 3 * $module;
+      margin-bottom: 2 * $module;
     }
   }
   .bookmark-block__informartion-section__secondary {

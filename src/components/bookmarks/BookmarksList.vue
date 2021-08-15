@@ -5,18 +5,23 @@
       :currentBookmarkId="currentBookmarkId"
       :bookmarkCategory="bookmarkCategory"
     ></edit-bookmark-popup>
-    <div v-for="(bookmark, index) in bookmarks" :key="index">
-      <bookmarks-item
-        :bookmarkLogo="bookmarkFavicon(bookmark)"
-        :bookmarkHeader="bookmarkHeader(bookmark)"
-        :bookmarkDescription="bookmark.description"
-        :bookmarkDate="bookmarkDateItem(bookmark)"
-        :bookmarkLink="bookmark.link"
-        :bookmarkSharedLink="bookmarkSharedLink(bookmark)"
-        :bookmark="bookmark"
-        @button-trigger="ToggleEditBookmarkPopup(bookmark)"
-        @delete-button="deleteBookmark(bookmark)"
-      ></bookmarks-item>
+    <div v-if="bookmarks">
+      <div v-for="(bookmark, index) in bookmarks" :key="index">
+        <bookmarks-item
+          :bookmarkLogo="bookmarkFavicon(bookmark)"
+          :bookmarkHeader="bookmarkHeader(bookmark)"
+          :bookmarkDescription="bookmark.description"
+          :bookmarkDate="bookmarkDateItem(bookmark)"
+          :bookmarkLink="bookmark.link"
+          :bookmarkSharedLink="bookmarkSharedLink(bookmark)"
+          :bookmark="bookmark"
+          @button-trigger="ToggleEditBookmarkPopup(bookmark)"
+          @delete-button="deleteBookmark(bookmark)"
+        ></bookmarks-item>
+      </div>
+    </div>
+    <div v-else class="bookmarks-list-loader">
+      <img src="@/assets/spinner.svg" alt="" />
     </div>
   </div>
   <div v-else class="empty-bookmark-list">
@@ -167,6 +172,10 @@ export default {
   }
   .bookmarks-list::-webkit-scrollbar {
     width: 0.6em;
+  }
+  .bookmarks-list-loader {
+    height: 540px;
+    padding-bottom: 16 * $module;
   }
 }
 </style>
