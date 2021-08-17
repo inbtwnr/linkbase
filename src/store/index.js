@@ -35,6 +35,7 @@ export default new Vuex.Store({
         isEditShelf: false,
         isEditBookmark: false,
         loadingTrigger: null,
+        settingsBlockTrigger: false
     },
     actions: {
         async loginClick(ctx, [email, password]) {
@@ -570,6 +571,9 @@ export default new Vuex.Store({
         },
         updateUserName(state, userName) {
             state.userName = userName;
+        },
+        updateSettingsBlockTrigger(state, settingsBlockTrigger) {
+            state.settingsBlockTrigger = settingsBlockTrigger
         },
         updateUserPassword(state, userPassword) {
             state.userPassword = userPassword;

@@ -20,7 +20,7 @@ $module: 4px;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 90;
+    z-index: 50;
     background-color: rgba(0, 0, 0, 0.07);
     display: flex;
     align-items: center;
@@ -36,7 +36,6 @@ $module: 4px;
     opacity: 100%;
   }
 }
-  
 
 .popup-out{
   position: fixed;
@@ -44,7 +43,7 @@ $module: 4px;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 97;
+  z-index: 50;
   cursor: pointer;
 }
 
