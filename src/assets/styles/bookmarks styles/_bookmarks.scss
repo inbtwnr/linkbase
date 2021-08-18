@@ -82,10 +82,13 @@
   }
   .bookmark-block__informartion-section__secondary {
     display: flex;
+    align-items: center;
     p {
       cursor: pointer;
     }
     a {
+      display: flex;
+      align-items: center;
       text-decoration: none;
       color: $link-color-standart;
       :visited {

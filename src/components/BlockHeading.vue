@@ -5,8 +5,7 @@
       'bookmark-block-heading-block': isBookmarkHeading,
     }"
   >
-    <p class="header-2">{{ blcHeader }}</p>
-    <hr />
+    <p class="header-1">{{ blcHeader }}</p>
   </div>
 </template>
 
@@ -27,17 +26,5 @@ export default {
 @media screen and (min-device-width: 1024px) and (max-device-width: 1364px) {
 }
 @media screen and (min-device-width: 1365px) {
-  .shelf-block-heading-block {
-    hr {
-      margin-top: 2 * $module;
-      margin-bottom: 4 * $module;
-    }
-  }
-  .bookmark-block-heading-block {
-    hr {
-      margin-top: 2 * $module;
-      margin-bottom: $module / 2;
-    }
-  }
 }
 </style>

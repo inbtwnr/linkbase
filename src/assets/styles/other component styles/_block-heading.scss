@@ -9,10 +9,8 @@
       -webkit-user-select: none;
       user-select: none;
     }
-    hr {
-      border: 1px solid $block-header-stroke;
-    }
-}
+    margin-bottom: 6 * $module;
+  }
   .bookmark-block-heading-block {
     p {
       margin: 0;
@@ -21,9 +19,6 @@
       -webkit-user-select: none;
       user-select: none;
     }
-    hr {
-        border: 1px solid $block-header-stroke;
-       
-      }
+    margin-bottom: 6 * $module;
   }
   

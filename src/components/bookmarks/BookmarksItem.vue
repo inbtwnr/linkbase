@@ -1,64 +1,13 @@
 <template>
   <div class="bookmark-block">
-    <!-- <div class="bookmark-block__logo-section">
-      <a :href="`${bookmarkLink}`" target="_blank">
-        <img
-          :src="`${bookmarkLogo}`"
-          class="bookmark-block__logo-section__logo"
-          alt=""
-        />
-      </a>
-    </div>
     <div class="bookmark-block__informartion-section">
       <div class="bookmark-block__informartion-section__primary">
         <a :href="`${bookmarkLink}`" target="_blank">
           <p class="header-2">{{ bookmarkHeader }}</p>
         </a>
-        <p class="paragraph-primary">{{ bookmarkDescription }}</p>
-      </div>
-      <div class="bookmark-block__informartion-section__secondary">
-        <a
-          :href="`${bookmarkLink}`"
-          target="_blank"
-          class="bookmark-block__informartion-section__secondary__link"
-          ><p class="paragraph-secondary">{{ bookmarkSharedLink }}</p>
+        <a :href="`${bookmarkLink}`" target="_blank"
+          ><p class="paragraph-primary">{{ bookmarkDescription }}</p>
         </a>
-        <div class="bookmark-date-block">
-          <p class="paragraph-secondary">{{ bookmarkDate }}</p>
-        </div>
-        <div>
-          <div class="settings-button">
-            <p @click="ToggleSettingsBlock" class="paragraph-secondary">
-              Actions
-            </p>
-            <div
-              v-if="this.settingsBlockTrigger"
-              class="bookmark-settings-block"
-            >
-              <form>
-                <div
-                  @click="$emit('button-trigger')"
-                  class="confirm-button-edit"
-                >
-                  <p class="paragraph-secondary">change shelf</p>
-                </div>
-              </form>
-              <form @submit.prevent="$emit('delete-button')">
-                <button type="submit" class="confirm-button-delete">
-                  <p class="paragraph-secondary">delete</p>
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
-    <div class="bookmark-block__informartion-section">
-      <div class="bookmark-block__informartion-section__primary">
-        <a :href="`${bookmarkLink}`" target="_blank">
-          <p class="header-2">{{ bookmarkHeader }}</p>
-        </a>
-        <p class="paragraph-primary">{{ bookmarkDescription }}</p>
       </div>
       <div class="bookmark-block__informartion-section__secondary">
         <a :href="`${bookmarkLink}`" target="_blank">
@@ -249,24 +198,28 @@ export default {
     margin-right: 6 * $module;
   }
   .bookmark-block {
-    padding: 3 * $module 2 * $module;
-    margin-bottom: 6 * $module;
-  }
-  .bookmark-block__logo-section {
-    margin-right: 3 * $module;
-    .bookmark-block__logo-section__logo {
-      width: 10 * $module;
-      height: 10 * $module;
+    padding: 3 * $module 5 * $module 3 * $module 5 * $module;
+    margin-bottom: 3 * $module;
+    margin-right: 2 * $module;
+    text-decoration: none;
+    color: $main-font-color;
+    &:hover {
+      background: $category-plate-background-standart;
+      border-radius: 4 * $module;
     }
   }
   .bookmark-block__informartion-section__primary {
-    width: 500px;
-    margin: 0 0 2 * $module 0;
+    width: 80%;
+    margin: 0 0 $module 0;
     p {
       margin-bottom: 2 * $module;
+      line-height: 150%;
     }
   }
   .bookmark-block__informartion-section__secondary {
+    :first-child {
+      margin-right: 2 * $module;
+    }
     p {
       margin-right: 5 * $module;
     }
