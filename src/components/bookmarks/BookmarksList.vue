@@ -10,7 +10,7 @@
         <bookmarks-item
           :bookmarkLogo="bookmarkFavicon(bookmark)"
           :bookmarkHeader="bookmarkHeader(bookmark)"
-          :bookmarkDescription="bookmark.description"
+          :bookmarkDescription="bookmarkDescription(bookmark)"
           :bookmarkDate="bookmarkDateItem(bookmark)"
           :bookmarkLink="bookmark.link"
           :bookmarkSharedLink="bookmarkSharedLink(bookmark)"
@@ -65,6 +65,13 @@ export default {
       this.bookmarkCategory = bookmark.category;
       this.$store.state.isEditBookmark = !this.$store.state.isEditBookmark;
       console.log(this.currentBookmarkId);
+    },
+    bookmarkDescription(bookmark) {
+      let itemDescription = bookmark.description;
+      if (itemDescription == "No description.") {
+        itemDescription = "";
+      }
+      return itemDescription;
     },
     bookmarkFavicon(bookmark) {
       let linkIcon = bookmark.favicon[bookmark.favicon.length - 1];

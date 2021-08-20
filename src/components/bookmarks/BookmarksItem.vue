@@ -5,7 +5,7 @@
         <a :href="`${bookmarkLink}`" target="_blank">
           <p class="header-2">{{ bookmarkHeader }}</p>
         </a>
-        <a :href="`${bookmarkLink}`" target="_blank"
+        <a :href="`${bookmarkLink}`" target="_blank" v-if="bookmarkDescription"
           ><p class="paragraph-primary">{{ bookmarkDescription }}</p>
         </a>
       </div>
