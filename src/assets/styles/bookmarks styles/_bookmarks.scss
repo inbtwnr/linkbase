@@ -8,6 +8,22 @@
 .bookmarks-list {
   overflow: auto;
   box-sizing: border-box;
+  div:last-child{
+    div:last-child{ 
+      .bookmark-block{
+        .bookmark-block__informartion-section {
+          .bookmark-block__informartion-section__secondary {
+            .settings-button {
+              .bookmark-settings-block {
+               order: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
 }
 .bookmarks-list::-webkit-scrollbar-track {
   background-color: rgb(241, 241, 241);
@@ -36,8 +52,9 @@
     .bookmark-settings-block {
       display: block;
       position: relative;
+      top: -1;
       background: $white-color;
-      z-index: 1;
+      z-index: 99;
       padding: 0;
       height: 0;
       border-radius: 2 * $module;
@@ -176,4 +193,26 @@
       word-wrap: break-word;
     }
   
+  }
+
+  .arrow {
+    border: solid $additional-font-color;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+  }
+
+  .up {
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+  }
+  
+  .down {
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+  }
+
+  .center{
+    display: flex;
+    align-items: center;
   }

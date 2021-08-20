@@ -18,37 +18,39 @@
           />
         </a>
         <a
+          class="bookmark-block__informartion-section__secondary__link"
           :href="`${bookmarkLink}`"
           target="_blank"
-          class="bookmark-block__informartion-section__secondary__link"
           ><p class="paragraph-secondary">{{ bookmarkSharedLink }}</p>
         </a>
         <div class="bookmark-date-block">
           <p class="paragraph-secondary">{{ bookmarkDate }}</p>
         </div>
-        <div>
-          <div class="settings-button">
-            <p @click="ToggleSettingsBlock" class="paragraph-secondary">
-              Actions
-            </p>
-            <div
-              v-if="this.settingsBlockTrigger"
-              class="bookmark-settings-block"
-            >
-              <form>
-                <div
-                  @click="$emit('button-trigger')"
-                  class="confirm-button-edit"
-                >
-                  <p class="paragraph-secondary">change shelf</p>
-                </div>
-              </form>
-              <form @submit.prevent="$emit('delete-button')">
-                <button type="submit" class="confirm-button-delete">
-                  <p class="paragraph-secondary">delete</p>
-                </button>
-              </form>
-            </div>
+        <div class="settings-button">
+          <div @click="ToggleSettingsBlock" class="center">
+            <p class="paragraph-secondary center">Actions</p>
+            <i
+              :class="{
+                'arrow up': this.settingsBlockTrigger,
+                'arrow down': !this.settingsBlockTrigger,
+              }"
+            ></i>
+          </div>
+          <div
+            :class="{ 'popup-out': this.settingsBlockTrigger }"
+            @click="ToggleSettingsBlock"
+          ></div>
+          <div v-if="this.settingsBlockTrigger" class="bookmark-settings-block">
+            <form>
+              <div @click="$emit('button-trigger')" class="confirm-button-edit">
+                <p class="paragraph-secondary">change shelf</p>
+              </div>
+            </form>
+            <form @submit.prevent="$emit('delete-button')">
+              <button type="submit" class="confirm-button-delete">
+                <p class="paragraph-secondary">delete</p>
+              </button>
+            </form>
           </div>
         </div>
       </div>
