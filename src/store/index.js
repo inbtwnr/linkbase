@@ -323,18 +323,7 @@ export default new Vuex.Store({
                         userBookmarks = "Have no links";
                         this.state.isLinks = false;
                     }
-                    const categoryTitle = await axios.get(`${this.getters.baseURL}user/`, {
-                        headers: {
-                            Authorization: "Bearer " + this.getters.userToken,
-                        },
-                    });
-                    const userCategories = categoryTitle.data.data.categories.map(
-                        (item) => {
-                            return item;
-                        }
-                    );
-                    let currentCategory = userCategories.filter(word => word.id == selected._id)
-                    ctx.commit('updateCurrentCategory', currentCategory[0].title)
+                    ctx.commit('updateCurrentCategory', selected.title)
                     ctx.commit('updateUserBookmarks', userBookmarks)
                 }
                 this.state.isNewBookmark = !this.state.isNewBookmark;

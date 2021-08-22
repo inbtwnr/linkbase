@@ -8,22 +8,6 @@
 .bookmarks-list {
   overflow: auto;
   box-sizing: border-box;
-  div:last-child{
-    div:last-child{ 
-      .bookmark-block{
-        .bookmark-block__informartion-section {
-          .bookmark-block__informartion-section__secondary {
-            .settings-button {
-              .bookmark-settings-block {
-               order: 1;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-  
 }
 .bookmarks-list::-webkit-scrollbar-track {
   background-color: rgb(241, 241, 241);
